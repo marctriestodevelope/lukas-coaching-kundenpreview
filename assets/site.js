@@ -724,31 +724,20 @@
             submitButton.style.opacity = '0.65';
             setStatus('Anfrage wird gesendet ...');
 
-            try {
-                const response = await fetch('/api/waitlist', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: nameInput.value.trim(),
-                        email: emailInput.value.trim(),
-                        instagram: instagramInput.value.trim(),
-                        message: messageInput.value.trim(),
-                        privacyAccepted: privacyInput.checked,
-                        website: honeyInput?.value.trim() || '',
-                    }),
-                });
-                const result = await response.json().catch(() => ({}));
-                if (!response.ok || !result.ok) throw new Error(result.message || 'Senden fehlgeschlagen.');
+            const subject = encodeURIComponent(`Coaching-Anfrage von ${nameInput.value.trim()}`);
+            const body = encodeURIComponent([
+                `Name: ${nameInput.value.trim()}`,
+                `E-Mail: ${emailInput.value.trim() || '-'}`,
+                `Instagram: ${instagramInput.value.trim() || '-'}`,
+                '',
+                'Alle relevanten Informationen:',
+                messageInput.value.trim(),
+            ].join('\n'));
 
-                form.reset();
-                syncContactValidity();
-                setStatus(result.message || 'Danke! Deine Anfrage ist eingegangen.', 'success');
-            } catch (error) {
-                setStatus(error.message || 'Technischer Fehler. Bitte versuche es später erneut.', 'error');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.style.opacity = '';
-            }
+            setStatus('Dein E-Mail-Programm wird geöffnet. Bitte sende die vorbereitete Nachricht dort ab.', 'success');
+            window.location.href = `mailto:luk.black@me.com?subject=${subject}&body=${body}`;
+            submitButton.disabled = false;
+            submitButton.style.opacity = '';
         });
     };
 
