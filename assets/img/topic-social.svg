@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
+  <title id="title">Verbundenes soziales Umfeld</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M40 88c2-17 12-27 27-27s25 10 27 27" stroke="#2755c7"/>
+    <circle cx="67" cy="42" r="13" stroke="#c5a059"/>
+    <path d="M88 61c5-7 12-10 21-10 14 0 23 9 25 24" stroke="#a91d1d"/>
+    <circle cx="109" cy="35" r="10" stroke="#a91d1d"/>
+    <path d="M28 83c2-13 9-21 20-24M40 49a9 9 0 1 1 8-16" stroke="#ffffff" stroke-opacity=".62"/>
+    <path d="M57 94h58" stroke="#ffffff" stroke-opacity=".24"/>
+  </g>
+</svg>

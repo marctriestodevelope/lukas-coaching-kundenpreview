@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": "kompensation-verstehen",
+      "category": "Coaching",
+      "title": "Kompensation verstehen",
+      "excerpt": "Wie kurzfristige Strategien zu langfristigen Einschränkungen werden können.",
+      "image": "",
+      "published": false,
+      "body": []
+    },
+    {
+      "id": "biomechanik-im-alltag",
+      "category": "Biomechanik",
+      "title": "Biomechanik im Alltag",
+      "excerpt": "Warum Bewegungsoptionen nicht erst im Training eine Rolle spielen.",
+      "image": "",
+      "published": false,
+      "body": []
+    },
+    {
+      "id": "klarheit-schafft-freiheit",
+      "category": "Ganzheitliches Coaching",
+      "title": "Klarheit schafft Freiheit",
+      "excerpt": "Wie Werte, Ziele und Handlungen wieder in eine Richtung kommen.",
+      "image": "",
+      "published": false,
+      "body": []
+    }
+  ]
+}
