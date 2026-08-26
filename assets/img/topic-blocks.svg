@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
-  <title id="title">Blockaden erkennen und auflösen</title>
+  <title id="title">Aufsteigender Phönix für gelöste Blockaden</title>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M28 92h104" stroke="#ffffff" stroke-opacity=".24" stroke-width="2"/>
-    <path d="M42 92V45h30v47M88 92V45h30v47" stroke="#2755c7" stroke-width="3"/>
-    <path d="M72 45 80 57l8-12" stroke="#a91d1d" stroke-width="4"/>
-    <path d="M80 78V29m0 0L68 41m12-12 12 12" stroke="#c5a059" stroke-width="4"/>
-    <path d="M57 72 47 62m56 10 10-10" stroke="#ffffff" stroke-opacity=".55" stroke-width="2.5"/>
+    <path d="M79 49C65 37 50 28 25 23c9 9 15 17 18 26-7-4-14-6-22-6 12 10 21 18 28 30" stroke="#2755c7" stroke-width="3"/>
+    <path d="M81 49c14-12 29-21 54-26-9 9-15 17-18 26 7-4 14-6 22-6-12 10-21 18-28 30" stroke="#a91d1d" stroke-width="3"/>
+    <path d="M80 45c-7 8-11 18-9 29 1 9-3 16-12 23 10-1 17-5 21-12 4 7 11 11 21 12-9-7-13-14-12-23 2-11-2-21-9-29Z" stroke="#c5a059" stroke-width="3"/>
+    <path d="M80 45c-2-6 1-12 8-16-1 6 3 10 9 12-6 0-11 3-17 10" stroke="#ffffff" stroke-opacity=".7" stroke-width="2.5"/>
+    <path d="m51 47-13-11m18 23-17-4m70-8 13-11m-18 23 17-4" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
+    <path d="M80 62c-5 8-6 17 0 28 6-11 5-20 0-28Z" fill="#a91d1d" fill-opacity=".7" stroke="#a91d1d" stroke-width="2"/>
   </g>
 </svg>

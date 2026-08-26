@@ -45,7 +45,9 @@
     "fallback_anchor": ""
   },
   "faq": {
-    "items": [
+    "training": {
+      "title": "FAQ Krafttraining",
+      "items": [
       {
         "question": "Was erwarte ich von dir?",
         "answer": "Ehrliche Kommunikation: Ohne Vertrauen und Kommunikation funktioniert Coaching nicht.\n\nDein Bestmöglichstes: Ich kann dir den roten Teppich ausrollen — gehen musst du selbst. Fehler sind willkommen. Daraus lernen wir."
@@ -74,7 +76,12 @@
         "question": "Ich möchte langfristig abnehmen und den Jo-Jo-Effekt vermeiden. Ist das Lifestyle Coaching für mich geeignet?",
         "answer": "Ja, das Lifestyle Coaching ist genau dafür geeignet. Der Fokus liegt darauf, Ursachen für wiederkehrende Probleme im Training und in der Ernährung zu erkennen und langfristige Strategien zu entwickeln, die zu dir und deinem Alltag passen."
       }
-    ]
+      ]
+    },
+    "holistic": {
+      "title": "FAQ Ganzheitliches Coaching",
+      "items": []
+    }
   },
   "holistic": {
     "eyebrow": "Ganzheitliches Coaching",
@@ -132,19 +139,19 @@
         "title": "Soziales & Umfeld",
         "subtitle": "Masken-Bild",
         "text": "Dein Umfeld hat Einfluss auf dich – positiven wie negativen. Familie, Freunde und Partner sollten zu dir passen. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst.",
-        "image": "assets/img/topic-social.svg"
+        "image": "assets/img/topic-social.svg?v=20260826"
       },
       {
         "title": "Kompensationen & Blockaden",
         "subtitle": "Phoenix",
         "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
-        "image": "assets/img/topic-blocks.svg"
+        "image": "assets/img/topic-blocks.svg?v=20260826"
       },
       {
         "title": "Gesundheit & Training",
         "subtitle": "Körper und Geist",
         "text": "Körper und Geist sind untrennbar miteinander verbunden. Deine Haltung ist die Repräsentation deines Lebens. Wie sieht es in dir aus? Nur ein fitter Körper kann einen fitten Geist haben.",
-        "image": "assets/img/topic-health.svg"
+        "image": "assets/img/topic-health.svg?v=20260826"
       }
     ]
   }

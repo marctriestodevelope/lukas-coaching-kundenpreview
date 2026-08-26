@@ -36,8 +36,6 @@
 
         <div id="site-menu" class="site-menu" aria-hidden="true">
             <div class="site-menu__panel">
-                <a class="site-menu__item" href="#philosophie">Philosophie</a>
-                <a class="site-menu__item" href="#methodik">Warum / Methodik</a>
                 <div class="site-menu__group">
                     <a class="site-menu__item" href="#coaching">Coaching</a>
                     <div class="site-menu__children">
@@ -46,8 +44,18 @@
                         <a href="#ganzheitlich">Ganzheitliches Coaching</a>
                     </div>
                 </div>
-                <a class="site-menu__item" href="testimonials.html">Testimonials</a>
+                <a class="site-menu__item" href="#philosophie">Philosophie</a>
+                <a class="site-menu__item" href="#methodik">Warum / Methodik</a>
+                <div class="site-menu__group">
+                    <a class="site-menu__item" href="#testimonials">Testimonials</a>
+                    <div class="site-menu__children">
+                        <a href="#testimonials-krafttraining">Krafttraining</a>
+                        <a href="#testimonials-ganzheitlich">Ganzheitlich</a>
+                    </div>
+                </div>
                 <a class="site-menu__item" href="#kontakt">Kontakt</a>
+                <a class="site-menu__item" href="#faq">FAQ</a>
+                <a class="site-menu__item" href="ueber-mich.html">Über mich</a>
                 <div class="site-menu__group">
                     <a class="site-menu__item" href="blog.html">Blog</a>
                     <div class="site-menu__children">
@@ -56,7 +64,6 @@
                         <a href="artikel.html?id=klarheit-schafft-freiheit">Artikel 3</a>
                     </div>
                 </div>
-                <a class="site-menu__item" href="#faq">FAQ</a>
                 <a class="site-menu__item" href="impressum.html">Impressum</a>
                 <a class="site-menu__item" href="datenschutz.html">Datenschutz</a>
             </div>
@@ -73,6 +80,18 @@
                 </div>
             </div>
         </header>
+
+        <section id="leistungen" class="coaching-section scroll-mt-24">
+            <span id="coaching" class="anchor-alias" aria-hidden="true"></span>
+            <div class="section-shell">
+                <header class="section-heading reveal">
+                    <p class="section-kicker">Drei Wege. Ein Prinzip.</p>
+                    <h2>Coaching</h2>
+                    <p>Lifestyle, Wettkampf und ganzheitliche Entwicklung – individuell auf dein Ziel, deinen Körper und deinen Alltag abgestimmt.</p>
+                </header>
+                <div id="offers-root" class="coaching-grid" aria-live="polite"></div>
+            </div>
+        </section>
 
         <section id="philosophie" class="approach-section approach-section--dark scroll-mt-24">
             <div class="section-shell approach-grid">
@@ -92,31 +111,6 @@
             </div>
         </section>
 
-        <section id="leistungen" class="coaching-section scroll-mt-24">
-            <span id="coaching" class="anchor-alias" aria-hidden="true"></span>
-            <div class="section-shell">
-                <header class="section-heading reveal">
-                    <p class="section-kicker">Zwei Wege. Ein Prinzip.</p>
-                    <h2>Coaching</h2>
-                    <p>Individuell auf dein Ziel, deinen Körper und deinen Alltag abgestimmt.</p>
-                </header>
-                <div id="offers-root" class="coaching-grid" aria-live="polite"></div>
-            </div>
-        </section>
-
-        <section id="testimonials" class="testimonials-section scroll-mt-24">
-            <div class="section-shell testimonial-heading-row">
-                <header class="section-heading section-heading--left reveal">
-                    <p class="section-kicker">Echte Zusammenarbeit</p>
-                    <h2>Testimonials</h2>
-                </header>
-                <a href="testimonials.html" class="button button--blue testimonial-more">Mehr anzeigen</a>
-            </div>
-            <div class="testimonial-carousel" data-testimonial-carousel>
-                <div class="testimonial-track no-scrollbar" data-testimonial-track aria-label="Testimonials, horizontal scrollbar"></div>
-            </div>
-        </section>
-
         <section id="kontakt" class="contact-band scroll-mt-24" data-contact-section>
             <span id="warteliste" class="anchor-alias" aria-hidden="true"></span>
             <div class="section-shell contact-band__inner">
@@ -129,16 +123,6 @@
             </div>
         </section>
 
-        <section id="faq" class="faq-section scroll-mt-24">
-            <div class="section-shell faq-grid">
-                <header class="section-heading section-heading--left reveal">
-                    <p class="section-kicker">Klar gefragt. Klar beantwortet.</p>
-                    <h2>FAQ</h2>
-                </header>
-                <div id="faq-root" class="faq-list reveal"></div>
-            </div>
-        </section>
-
         <section id="ganzheitlich" class="holistic-section scroll-mt-24">
             <div class="section-shell">
                 <header class="holistic-intro reveal">
@@ -147,15 +131,21 @@
                     <p id="holistic-lead" class="holistic-lead"></p>
                 </header>
 
-                <div class="holistic-story">
-                    <div class="holistic-story__copy-column">
-                        <div id="holistic-copy" class="holistic-copy reveal"></div>
-                        <details id="holistic-details" class="content-disclosure reveal">
-                            <summary>Mehr anzeigen</summary>
-                            <div id="holistic-expanded" class="content-disclosure__body"></div>
-                        </details>
+                <div class="holistic-story-rows">
+                    <div class="holistic-story-row">
+                        <div id="holistic-copy-primary" class="holistic-copy reveal"></div>
+                        <div id="holistic-gallery-primary" class="people-gallery people-gallery--inline reveal reveal-right" aria-label="Einblicke in das ganzheitliche Coaching"></div>
                     </div>
-                    <div id="gallery-root" class="people-gallery people-gallery--inline reveal reveal-right" aria-label="Bilder aus Coaching, Wettkampf und Leben"></div>
+                    <div class="holistic-story-row holistic-story-row--reverse">
+                        <div id="holistic-gallery-secondary" class="people-gallery people-gallery--inline reveal reveal-left" aria-label="Weitere Einblicke in Coaching und Alltag"></div>
+                        <div class="holistic-story__copy-column reveal">
+                            <div id="holistic-copy-secondary" class="holistic-copy"></div>
+                            <details id="holistic-details" class="content-disclosure">
+                                <summary>Mehr anzeigen</summary>
+                                <div id="holistic-expanded" class="content-disclosure__body"></div>
+                            </details>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -170,16 +160,42 @@
             </div>
         </section>
 
-        <section id="testimonials-ganzheitlich" class="testimonials-section testimonials-section--secondary scroll-mt-24">
+        <section id="kontakt-ganzheitlich" class="contact-band contact-band--holistic scroll-mt-24" data-contact-section>
+            <div class="section-shell contact-band__inner">
+                <div class="contact-band__copy reveal">
+                    <p class="section-kicker">Ganzheitliches Coaching</p>
+                    <h2 data-contact-title>Lass uns herausfinden, was du wirklich brauchst.</h2>
+                    <p data-contact-text></p>
+                </div>
+                <div class="contact-band__actions reveal reveal-right" data-contact-actions></div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section scroll-mt-24">
             <div class="section-shell testimonial-heading-row">
                 <header class="section-heading section-heading--left reveal">
-                    <p class="section-kicker">Entwicklung, die spürbar wird</p>
-                    <h2>Weitere Stimmen</h2>
+                    <p class="section-kicker">Echte Zusammenarbeit</p>
+                    <h2>Testimonials</h2>
                 </header>
-                <a href="testimonials.html" class="button button--red testimonial-more">Mehr anzeigen</a>
+                <a href="testimonials.html" class="button button--blue testimonial-more">Mehr anzeigen</a>
             </div>
-            <div class="testimonial-carousel" data-testimonial-carousel>
-                <div class="testimonial-track no-scrollbar" data-testimonial-track aria-label="Weitere Testimonials, horizontal scrollbar"></div>
+            <div id="testimonials-krafttraining" class="testimonial-category scroll-mt-24">
+                <div class="section-shell testimonial-category__heading reveal">
+                    <p class="section-kicker">Krafttraining</p>
+                    <h3>Stimmen aus Training &amp; Wettkampf</h3>
+                </div>
+                <div class="testimonial-carousel" data-testimonial-carousel>
+                    <div class="testimonial-track no-scrollbar" data-testimonial-track data-testimonial-category="krafttraining" aria-label="Testimonials Krafttraining, horizontal scrollbar"></div>
+                </div>
+            </div>
+            <div id="testimonials-ganzheitlich" class="testimonial-category testimonial-category--holistic scroll-mt-24">
+                <div class="section-shell testimonial-category__heading reveal">
+                    <p class="section-kicker">Ganzheitlich</p>
+                    <h3>Stimmen aus persönlicher Entwicklung</h3>
+                </div>
+                <div class="testimonial-carousel" data-testimonial-carousel>
+                    <div class="testimonial-track no-scrollbar" data-testimonial-track data-testimonial-category="ganzheitlich" aria-label="Testimonials Ganzheitliches Coaching, horizontal scrollbar"></div>
+                </div>
             </div>
         </section>
 
@@ -191,6 +207,16 @@
                     <p data-contact-text>Du kennst mich bereits oder möchtest direkt über dein Ziel sprechen? Wähle deinen bevorzugten Kontaktweg.</p>
                 </div>
                 <div class="contact-band__actions reveal reveal-right" data-contact-actions></div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section scroll-mt-24">
+            <div class="section-shell faq-section__inner">
+                <header class="section-heading section-heading--left reveal">
+                    <p class="section-kicker">Klar gefragt. Klar beantwortet.</p>
+                    <h2>FAQ</h2>
+                </header>
+                <div id="faq-root" class="faq-columns reveal"></div>
             </div>
         </section>
     </main>

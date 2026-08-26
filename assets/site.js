@@ -100,9 +100,9 @@
         const button = document.querySelector(SELECTORS.menuButton);
         if (!nav) return;
 
-        const updateScrolledState = () => nav.classList.toggle('site-nav--scrolled', window.scrollY > 18);
-        updateScrolledState();
-        window.addEventListener('scroll', updateScrolledState, { passive: true });
+        // Pages without the animated homepage hero always use the solid navigation.
+        // On the homepage, initHeroClaim drives the background continuously instead.
+        nav.classList.toggle('site-nav--scrolled', !document.querySelector('.hero'));
 
         if (!menu || !button) return;
 
@@ -127,18 +127,50 @@
         const hero = document.querySelector('.hero');
         const nav = document.querySelector(SELECTORS.nav);
         const claim = document.getElementById('site-nav-claim');
-        if (!hero) return;
+        if (!hero || !nav) return;
+
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let framePending = false;
+
+        const clamp = (value, minimum = 0, maximum = 1) => Math.min(maximum, Math.max(minimum, value));
+        const ease = (value) => value * value * (3 - (2 * value));
 
         const update = () => {
-            const revealAfter = Math.min(140, Math.max(80, window.innerHeight * 0.12));
-            const visible = window.scrollY >= revealAfter;
+            framePending = false;
+            const transitionEnd = clamp(window.innerHeight * 0.2, 130, 190);
+            const rawProgress = clamp((window.scrollY - 10) / transitionEnd);
+            const progress = reducedMotionQuery.matches
+                ? (rawProgress >= 0.5 ? 1 : 0)
+                : ease(rawProgress);
+            const claimProgress = clamp((progress - 0.12) / 0.88);
+            const heroProgress = clamp(progress / 0.82);
+            const visible = claimProgress >= 0.52;
+
+            nav.style.setProperty('--nav-background-alpha', (progress * 0.96).toFixed(3));
+            nav.style.setProperty('--nav-border-alpha', (progress * 0.14).toFixed(3));
+            nav.style.setProperty('--nav-blur', `${(progress * 13).toFixed(2)}px`);
+            nav.style.setProperty('--nav-saturation', `${(100 + (progress * 25)).toFixed(1)}%`);
+            nav.style.setProperty('--claim-opacity', claimProgress.toFixed(3));
+            nav.style.setProperty('--claim-offset', `${((1 - claimProgress) * 9).toFixed(2)}px`);
+            nav.style.setProperty('--claim-scale', (0.985 + (claimProgress * 0.015)).toFixed(4));
+            hero.style.setProperty('--hero-brand-opacity', (1 - heroProgress).toFixed(3));
+            hero.style.setProperty('--hero-brand-offset', `${(heroProgress * -28).toFixed(2)}px`);
+            hero.style.setProperty('--hero-brand-scale', (1 - (heroProgress * 0.04)).toFixed(4));
             hero.classList.toggle('is-claim-visible', visible);
-            nav?.classList.toggle('site-nav--claim-visible', visible);
+            nav.classList.toggle('site-nav--claim-visible', visible);
             claim?.setAttribute('aria-hidden', visible ? 'false' : 'true');
         };
 
+        const requestUpdate = () => {
+            if (framePending) return;
+            framePending = true;
+            requestAnimationFrame(update);
+        };
+
         update();
-        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate, { passive: true });
+        reducedMotionQuery.addEventListener?.('change', requestUpdate);
     };
 
     let revealObserver;
@@ -275,10 +307,6 @@
         header.appendChild(createElement('h3', '', testimonial.name || ''));
         card.appendChild(header);
         card.appendChild(createElement('blockquote', '', testimonial.quote ? `„${testimonial.quote}“` : ''));
-        const action = createElement('a', 'testimonial-card__more', 'Mehr anzeigen');
-        action.href = `testimonials.html#testimonial-${slugify(testimonial.name)}`;
-        action.setAttribute('aria-label', `Ausführliches Testimonial von ${testimonial.name || 'dieser Person'} anzeigen`);
-        card.appendChild(action);
         return card;
     };
 
@@ -286,19 +314,21 @@
         const items = data?.items || [];
         document.querySelectorAll('[data-testimonial-track]').forEach((track) => {
             track.innerHTML = '';
-            if (!items.length) {
+            const category = track.dataset.testimonialCategory || '';
+            const visibleItems = category
+                ? items.filter((item) => (item.category || 'krafttraining') === category)
+                : items;
+            if (!visibleItems.length) {
                 track.appendChild(createElement('p', 'testimonial-card', 'Weitere Testimonials sind in Vorbereitung.'));
                 return;
             }
 
-            for (let copy = 0; copy < 3; copy += 1) {
+            // Five identical sets provide enough buffer for continuous swiping in
+            // both directions while the viewport is silently recentered.
+            for (let copy = 0; copy < 5; copy += 1) {
                 const set = createElement('div', 'testimonial-set');
-                set.setAttribute('aria-hidden', copy === 1 ? 'false' : 'true');
-                items.forEach((item) => {
-                    const card = buildTestimonialCard(item);
-                    if (copy !== 1) card.querySelector('.testimonial-card__more').tabIndex = -1;
-                    set.appendChild(card);
-                });
+                set.setAttribute('aria-hidden', copy === 2 ? 'false' : 'true');
+                visibleItems.forEach((item) => set.appendChild(buildTestimonialCard(item)));
                 track.appendChild(set);
             }
         });
@@ -312,141 +342,134 @@
             const firstSet = track?.querySelector('.testimonial-set');
             if (!track || !firstSet || track.dataset.initialized === 'true') return;
             track.dataset.initialized = 'true';
+            track.dataset.autoplay = 'running';
 
             let interactingUntil = 0;
-            let visible = false;
             let isDragging = false;
-            let pointerHovering = false;
+            let isPointerDown = false;
+            let dragAxis = null;
             let pointerId = null;
             let startX = 0;
-            let startScrollLeft = 0;
-            let ignoreScrollUntil = 0;
+            let startY = 0;
+            let startPhase = 0;
+            let phase = 0;
+            let measuredLoopWidth = 0;
             let lastAutoTick = performance.now();
+            let pixelRemainder = 0;
 
-            const pause = (duration = 1800) => {
+            const pause = (duration = 700) => {
                 interactingUntil = performance.now() + duration;
-            };
-
-            const markProgrammaticScroll = () => {
-                ignoreScrollUntil = performance.now() + 100;
             };
 
             const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
             const loopWidth = () => firstSet.getBoundingClientRect().width + gap();
 
-            const normalizePosition = () => {
-                const width = loopWidth();
-                if (width <= 1) return;
-                let normalized = track.scrollLeft;
-                while (normalized < width * 0.5) normalized += width;
-                while (normalized >= width * 1.5) normalized -= width;
-                if (Math.abs(normalized - track.scrollLeft) > 0.5) {
-                    markProgrammaticScroll();
-                    track.scrollLeft = normalized;
-                    return true;
-                }
-                return false;
+            const wrapPhase = (value, width = measuredLoopWidth) => {
+                if (width <= 1) return 0;
+                return ((value % width) + width) % width;
             };
 
-            requestAnimationFrame(() => {
-                track.scrollLeft = loopWidth();
-            });
+            const applyPosition = () => {
+                if (measuredLoopWidth <= 1) return;
+                phase = wrapPhase(phase);
+                const offset = (measuredLoopWidth * 2) + phase;
+                track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+            };
 
-            const visibilityObserver = new IntersectionObserver((entries) => {
-                visible = entries[0]?.isIntersecting || false;
-            }, { threshold: 0.08 });
-            visibilityObserver.observe(carousel);
+            const refreshGeometry = () => {
+                const previousWidth = measuredLoopWidth;
+                const nextWidth = loopWidth();
+                if (nextWidth <= 1) return;
+                const progress = previousWidth > 1 ? phase / previousWidth : 0;
+                measuredLoopWidth = nextWidth;
+                phase = progress * measuredLoopWidth;
+                applyPosition();
+            };
 
-            track.addEventListener('scroll', () => {
-                const wasProgrammatic = performance.now() < ignoreScrollUntil;
-                normalizePosition();
-                if (!wasProgrammatic && !isDragging) pause(1200);
-            }, { passive: true });
+            refreshGeometry();
 
-            track.addEventListener('wheel', (event) => {
+            carousel.addEventListener('wheel', (event) => {
                 const horizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.1;
                 if (!horizontalIntent) return;
                 event.preventDefault();
-                pause();
-                track.scrollLeft += event.deltaX;
-                normalizePosition();
+                pause(850);
+                phase += event.deltaX;
+                applyPosition();
             }, { passive: false });
 
-            track.addEventListener('pointerenter', (event) => {
-                if (event.pointerType === 'mouse') pointerHovering = true;
-            });
-
-            track.addEventListener('pointerleave', (event) => {
-                if (event.pointerType !== 'mouse') return;
-                pointerHovering = false;
-                pause(700);
-            });
-
-            track.addEventListener('click', (event) => {
-                const action = event.target.closest('.testimonial-card__more');
-                if (!action) return;
-                event.preventDefault();
-                window.location.assign(action.href);
-            });
-
-            track.addEventListener('pointerdown', (event) => {
-                pause();
-                if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            carousel.addEventListener('pointerdown', (event) => {
+                if (event.pointerType === 'mouse' && event.button !== 0) return;
                 if (event.target.closest('a, button')) return;
-                isDragging = true;
+                isPointerDown = true;
+                isDragging = event.pointerType === 'mouse';
+                dragAxis = isDragging ? 'horizontal' : null;
                 pointerId = event.pointerId;
                 startX = event.clientX;
-                startScrollLeft = track.scrollLeft;
-                track.classList.add('is-dragging');
-                track.setPointerCapture(event.pointerId);
+                startY = event.clientY;
+                startPhase = phase;
+                if (isDragging) {
+                    pause(850);
+                    track.classList.add('is-dragging');
+                    carousel.setPointerCapture?.(event.pointerId);
+                }
             });
 
-            track.addEventListener('pointermove', (event) => {
-                if (!isDragging || event.pointerId !== pointerId) return;
-                track.scrollLeft = startScrollLeft - (event.clientX - startX) * 1.15;
-                normalizePosition();
+            carousel.addEventListener('pointermove', (event) => {
+                if (!isPointerDown || event.pointerId !== pointerId) return;
+                const deltaX = event.clientX - startX;
+                const deltaY = event.clientY - startY;
+                if (!dragAxis && Math.max(Math.abs(deltaX), Math.abs(deltaY)) >= 6) {
+                    dragAxis = Math.abs(deltaX) > Math.abs(deltaY) * 1.05 ? 'horizontal' : 'vertical';
+                    if (dragAxis === 'horizontal') {
+                        isDragging = true;
+                        pause(850);
+                        track.classList.add('is-dragging');
+                        carousel.setPointerCapture?.(event.pointerId);
+                    }
+                }
+                if (dragAxis !== 'horizontal') return;
+                event.preventDefault();
+                phase = startPhase - (deltaX * 1.15);
+                applyPosition();
             });
 
             const endDrag = (event) => {
-                if (!isDragging || (event.pointerId !== undefined && event.pointerId !== pointerId)) return;
+                if (!isPointerDown || (event.pointerId !== undefined && event.pointerId !== pointerId)) return;
+                const hadHorizontalDrag = isDragging;
+                isPointerDown = false;
                 isDragging = false;
+                dragAxis = null;
                 pointerId = null;
                 track.classList.remove('is-dragging');
-                pause();
+                if (hadHorizontalDrag) pause(550);
             };
-            track.addEventListener('pointerup', endDrag);
-            track.addEventListener('pointercancel', endDrag);
-            track.addEventListener('lostpointercapture', endDrag);
-            track.addEventListener('touchstart', () => pause(1800), { passive: true });
+            carousel.addEventListener('pointerup', endDrag);
+            carousel.addEventListener('pointercancel', endDrag);
+            carousel.addEventListener('lostpointercapture', endDrag);
 
-            const autoplay = () => {
-                const timestamp = performance.now();
-                const deltaTime = Math.min(160, timestamp - lastAutoTick);
+            const autoplay = (timestamp) => {
+                const deltaTime = Math.min(64, timestamp - lastAutoTick);
                 lastAutoTick = timestamp;
-                if (!reducedMotion && visible && !isDragging && !pointerHovering && performance.now() >= interactingUntil) {
-                    const speed = window.innerWidth < 768 ? 44 : 52;
-                    markProgrammaticScroll();
-                    track.scrollLeft += speed * deltaTime / 1000;
-                    normalizePosition();
+                if (!document.hidden && !isDragging && timestamp >= interactingUntil) {
+                    const baseSpeed = window.innerWidth < 768 ? 46 : 58;
+                    const speed = reducedMotion ? baseSpeed * 0.78 : baseSpeed;
+                    pixelRemainder += speed * deltaTime / 1000;
+                    const pixels = Math.floor(pixelRemainder);
+                    if (pixels > 0) {
+                        pixelRemainder -= pixels;
+                        phase += pixels;
+                        applyPosition();
+                    }
                 }
+                requestAnimationFrame(autoplay);
             };
-            window.setInterval(autoplay, 32);
+            requestAnimationFrame(autoplay);
 
-            let lastWindowY = window.scrollY;
-            window.addEventListener('scroll', () => {
-                const currentY = window.scrollY;
-                const deltaY = currentY - lastWindowY;
-                lastWindowY = currentY;
-                if (!visible || isDragging || performance.now() < interactingUntil || Math.abs(deltaY) < 1) return;
-                markProgrammaticScroll();
-                track.scrollLeft += deltaY * (window.innerWidth < 768 ? 0.2 : 0.28);
-                normalizePosition();
-            }, { passive: true });
-
-            window.addEventListener('resize', () => {
-                markProgrammaticScroll();
-                track.scrollLeft = loopWidth();
+            document.addEventListener('visibilitychange', () => {
+                lastAutoTick = performance.now();
             });
+
+            window.addEventListener('resize', refreshGeometry, { passive: true });
         });
     };
 
@@ -488,16 +511,41 @@
         const root = document.getElementById('faq-root');
         if (!root) return;
         root.innerHTML = '';
-        (data?.items || []).forEach((item) => {
-            const details = createElement('details', 'faq-item');
-            details.appendChild(createElement('summary', '', item.question || ''));
-            details.appendChild(createElement('p', '', item.answer || ''));
-            root.appendChild(details);
+
+        const groups = [
+            {
+                title: data?.training?.title || 'FAQ Krafttraining',
+                items: data?.training?.items || data?.items || [],
+                className: 'faq-column--training',
+            },
+            {
+                title: data?.holistic?.title || 'FAQ Ganzheitliches Coaching',
+                items: data?.holistic?.items || [],
+                className: 'faq-column--holistic',
+            },
+        ];
+
+        groups.forEach((group) => {
+            const column = createElement('section', `faq-column ${group.className}`);
+            column.appendChild(createElement('h3', '', group.title));
+            const list = createElement('div', 'faq-list');
+            if (!group.items.length) {
+                list.appendChild(createElement('p', 'faq-placeholder', 'Fragen und Antworten folgen in Kürze.'));
+            } else {
+                group.items.forEach((item) => {
+                    const details = createElement('details', 'faq-item');
+                    details.appendChild(createElement('summary', '', item.question || ''));
+                    details.appendChild(createElement('p', '', item.answer || ''));
+                    list.appendChild(details);
+                });
+            }
+            column.appendChild(list);
+            root.appendChild(column);
         });
     };
 
-    const renderGallery = (items) => {
-        const root = document.getElementById('gallery-root');
+    const renderGallery = (items, rootId = 'gallery-root') => {
+        const root = document.getElementById(rootId);
         if (!root || !items?.length) return;
         root.innerHTML = '';
 
@@ -563,30 +611,38 @@
         const eyebrow = document.getElementById('holistic-eyebrow');
         const title = document.getElementById('holistic-title');
         const lead = document.getElementById('holistic-lead');
-        const copy = document.getElementById('holistic-copy');
+        const primaryCopy = document.getElementById('holistic-copy-primary');
+        const secondaryCopy = document.getElementById('holistic-copy-secondary');
         const expanded = document.getElementById('holistic-expanded');
 
         if (eyebrow) eyebrow.textContent = data.eyebrow || '';
         if (title) title.textContent = data.title || '';
         if (lead) lead.textContent = data.lead || '';
-        if (copy) {
-            copy.innerHTML = '';
-            (data.intro || []).forEach((text) => copy.appendChild(createElement('p', '', text)));
+        const intro = data.intro || [];
+        const splitAt = Math.max(1, Math.ceil(intro.length / 2));
+        if (primaryCopy) {
+            primaryCopy.innerHTML = '';
+            intro.slice(0, splitAt).forEach((text) => primaryCopy.appendChild(createElement('p', '', text)));
+        }
+        if (secondaryCopy) {
+            secondaryCopy.innerHTML = '';
+            intro.slice(splitAt).forEach((text) => secondaryCopy.appendChild(createElement('p', '', text)));
         }
         if (expanded) {
             expanded.innerHTML = '';
             (data.expanded || []).forEach((text) => expanded.appendChild(createElement('p', '', text)));
         }
-        renderGallery(data.gallery || []);
+        const gallery = data.gallery || [];
+        const gallerySplit = Math.max(1, Math.ceil(gallery.length / 2));
+        renderGallery(gallery.slice(0, gallerySplit), 'holistic-gallery-primary');
+        renderGallery(gallery.slice(gallerySplit).length ? gallery.slice(gallerySplit) : gallery, 'holistic-gallery-secondary');
 
         const disclosure = document.getElementById('holistic-details');
         const summary = disclosure?.querySelector('summary');
         if (disclosure && summary && !disclosure.dataset.toggleBound) {
             disclosure.dataset.toggleBound = 'true';
-            const story = disclosure.closest('.holistic-story');
             const syncDisclosureLayout = () => {
                 summary.textContent = disclosure.open ? 'Weniger anzeigen' : 'Mehr anzeigen';
-                story?.classList.toggle('holistic-story--expanded', disclosure.open);
             };
             disclosure.addEventListener('toggle', syncDisclosureLayout);
             syncDisclosureLayout();
@@ -632,23 +688,39 @@
         const root = document.getElementById('testimonial-detail-root');
         if (!root) return;
         root.innerHTML = '';
-        (data?.items || []).forEach((item) => {
-            const article = createElement('article', 'testimonial-detail reveal');
-            article.id = `testimonial-${slugify(item.name)}`;
-            const media = createElement('div', 'testimonial-detail__media');
-            const image = createElement('img');
-            image.src = item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
-            image.alt = item.name || 'Testimonial';
-            image.loading = 'lazy';
-            if (item.image_placeholder) image.classList.add('is-placeholder');
-            media.appendChild(image);
-            const copy = createElement('div', 'testimonial-detail__copy');
-            copy.appendChild(createElement('p', 'section-kicker', 'Testimonial'));
-            copy.appendChild(createElement('h2', '', item.name || ''));
-            copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
-            article.appendChild(media);
-            article.appendChild(copy);
-            root.appendChild(article);
+        const items = data?.items || [];
+        const groups = [
+            { id: 'krafttraining', title: 'Testimonials Krafttraining' },
+            { id: 'ganzheitlich', title: 'Testimonials Ganzheitlich' },
+        ];
+
+        groups.forEach((group) => {
+            const groupItems = items.filter((item) => (item.category || 'krafttraining') === group.id);
+            if (!groupItems.length) return;
+            const section = createElement('section', 'testimonial-detail-group');
+            section.id = `testimonials-${group.id}`;
+            section.appendChild(createElement('h2', 'testimonial-detail-group__title', group.title));
+            const list = createElement('div', 'testimonial-detail-group__list');
+            groupItems.forEach((item) => {
+                const article = createElement('article', 'testimonial-detail reveal');
+                article.id = `testimonial-${slugify(item.name)}`;
+                const media = createElement('div', 'testimonial-detail__media');
+                const image = createElement('img');
+                image.src = item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
+                image.alt = item.name || 'Testimonial';
+                image.loading = 'lazy';
+                if (item.image_placeholder) image.classList.add('is-placeholder');
+                media.appendChild(image);
+                const copy = createElement('div', 'testimonial-detail__copy');
+                copy.appendChild(createElement('p', 'section-kicker', group.id === 'ganzheitlich' ? 'Ganzheitlich' : 'Krafttraining'));
+                copy.appendChild(createElement('h3', '', item.name || ''));
+                copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
+                article.appendChild(media);
+                article.appendChild(copy);
+                list.appendChild(article);
+            });
+            section.appendChild(list);
+            root.appendChild(section);
         });
     };
 

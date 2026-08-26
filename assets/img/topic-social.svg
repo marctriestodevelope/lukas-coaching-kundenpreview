@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
-  <title id="title">Verbundenes soziales Umfeld</title>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
-    <path d="M40 88c2-17 12-27 27-27s25 10 27 27" stroke="#2755c7"/>
-    <circle cx="67" cy="42" r="13" stroke="#c5a059"/>
-    <path d="M88 61c5-7 12-10 21-10 14 0 23 9 25 24" stroke="#a91d1d"/>
-    <circle cx="109" cy="35" r="10" stroke="#a91d1d"/>
-    <path d="M28 83c2-13 9-21 20-24M40 49a9 9 0 1 1 8-16" stroke="#ffffff" stroke-opacity=".62"/>
-    <path d="M57 94h58" stroke="#ffffff" stroke-opacity=".24"/>
+  <title id="title">Zwei Masken für soziales Umfeld und Rollen</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 25c15-6 29-4 42 3l-2 35c-1 17-9 29-24 35-13-9-19-22-17-39Z" stroke="#2755c7" stroke-width="3"/>
+    <path d="M52 29c13-8 28-10 44-5l6 34c3 18-3 31-16 41-16-4-26-15-29-32Z" fill="#0c0d0e" fill-opacity=".72" stroke="#a91d1d" stroke-width="3"/>
+    <path d="M37 51c6-4 12-4 18-1m18-3c6-4 12-4 18 0" stroke="#ffffff" stroke-opacity=".65" stroke-width="2.5"/>
+    <path d="M38 74c8 6 17 7 25 1m9 5c7-7 14-8 22-3" stroke="#c5a059" stroke-width="3"/>
+    <path d="m26 31-8-6m13 16-11 1m79-14 10-8m-8 18 12 2" stroke="#ffffff" stroke-opacity=".28" stroke-width="2"/>
+    <path d="M46 39c2-5 5-8 10-11m31 7c-5-5-11-8-18-9" stroke="#ffffff" stroke-opacity=".32" stroke-width="1.5"/>
   </g>
 </svg>
