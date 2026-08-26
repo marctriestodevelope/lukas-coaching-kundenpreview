@@ -4,13 +4,13 @@
       "id": "lifestyle",
       "accent": "blue",
       "title": "Lifestyle Coaching",
-      "tagline": "Mehr Freude an Bewegung. Weniger Schmerzen. Nachhaltige Veränderung.",
+      "tagline": "",
       "summary": "Für Menschen, die wieder mehr Freude an Bewegung haben möchten, Schmerzen reduzieren wollen, überschüssiges Fett nachhaltig verlieren möchten und ein Training suchen, das individuell auf ihren Körper und ihre biomechanischen Voraussetzungen abgestimmt ist.",
       "image": "assets/img/IMG_8198_2.JPG",
       "image_rotation": 0,
       "details": {
         "intro": [],
-        "left_heading": "Das bekommst du:",
+        "left_heading": "Coaching:",
         "left_list": [
           {
             "title": "Onboarding Call",
@@ -22,27 +22,27 @@
           },
           {
             "title": "Individuell abgestimmter Trainingsplan",
-            "text": "Ein biomechanisch fundierter Plan, angepasst an deine Ziele und Bedürfnisse."
+            "text": "Erstellung eines Trainingsplans auf biomechanischer Grundlage, angepasst an deine Ziele und Bedürfnisse."
           },
           {
-            "title": "Persönliche Betreuung und Feedback",
-            "text": "Fünfmal pro Woche Feedback zu Training und Fragen, in der Regel innerhalb von 24 Stunden."
+            "title": "Persönliche Betreuung & Feedback",
+            "text": "5x pro Woche Feedback zu deinem Training und deinen Fragen (in der Regel Antwort innerhalb von 24 Stunden)."
           },
           {
-            "title": "Biomechanisches Cueing und Training Correction",
+            "title": "Biomechanisches Cueing & Training Correction",
             "text": "Optimierung deiner Übungsausführung durch gezielte Hinweise und Videoanalysen."
           },
           {
-            "title": "Ernährungs- und Supplemente-Planung",
-            "text": "Bei Bedarf erhältst du einen individuellen, auf deine Ziele abgestimmten Plan."
+            "title": "Ernährungs- & Supplemente Planung",
+            "text": "Erstellung eines individuellen Plans bei Bedarf, abgestimmt auf deine Ziele."
           },
           {
             "title": "Dynamische Anpassung",
-            "text": "Dein Plan entwickelt sich kontinuierlich mit deinen Fortschritten und Veränderungen weiter."
+            "text": "Dein Plan entwickelt sich kontinuierlich weiter und passt sich an deine Fortschritte und Veränderungen an."
           },
           {
             "title": "Verständnis für deinen Körper",
-            "text": "Du lernst, wie dein Körper funktioniert und warum bestimmte Anpassungen entscheidend sind."
+            "text": "Du lernst, wie dein Körper funktioniert und warum bestimmte Anpassungen für deine Entwicklung entscheidend sind."
           }
         ],
         "right_heading": "",
@@ -56,13 +56,13 @@
       "id": "wettkampf",
       "accent": "red",
       "title": "Wettkampf Coaching",
-      "tagline": "Gezielte Vorbereitung für Streetlifting und Powerlifting.",
-      "summary": "Für Athleten, die im Streetlifting oder Powerlifting an Wettkämpfen teilnehmen möchten und ihren Körper gezielt auf maximale Leistung ausrichten wollen.",
+      "tagline": "",
+      "summary": "Für Athleten, die im Streetlifting oder Powerlifting an Wettkämpfen teilnehmen möchten und ihren Körper gezielt auf maximale Leistung ausrichten wollen",
       "image": "assets/img/2_2.JPEG",
       "image_rotation": 0,
       "details": {
         "intro": [],
-        "left_heading": "Das bekommst du:",
+        "left_heading": "Coaching:",
         "left_list": [
           {
             "title": "Onboarding Call",
@@ -74,26 +74,26 @@
           },
           {
             "title": "Individuell abgestimmter Trainingsplan",
-            "text": "Ein biomechanisch fundierter Plan, angepasst an deine Ziele und Bedürfnisse."
+            "text": "Erstellung eines Trainingsplans auf biomechanischer Grundlage, angepasst an deine Ziele und Bedürfnisse."
           },
           {
-            "title": "Persönliche Betreuung und Feedback",
-            "text": "Fünfmal pro Woche Feedback zu Training und Fragen, in der Regel innerhalb von 24 Stunden."
+            "title": "Persönliche Betreuung & Feedback",
+            "text": "5x pro Woche Feedback zu deinem Training und deinen Fragen (in der Regel Antwort innerhalb von 24 Stunden)."
           },
           {
-            "title": "Biomechanisches Cueing und Korrektur",
+            "title": "Biomechanisches Cueing & Korrektur des Trainings",
             "text": "Optimierung deiner Bewegungsausführung durch gezielte Hinweise und Videoanalysen."
           },
           {
-            "title": "Ernährungs- und Supplemente-Planung",
-            "text": "Bei Bedarf erhältst du einen individuellen, auf deine Ziele abgestimmten Plan."
+            "title": "Ernährungs- & Supplemente Planung",
+            "text": "Erstellung eines individuellen Plans bei Bedarf, abgestimmt auf deine Ziele."
           },
           {
             "title": "Dynamische Anpassung des Plans",
-            "text": "Dein Training entwickelt sich kontinuierlich mit deinem Fortschritt weiter."
+            "text": "Dein Training entwickelt sich kontinuierlich weiter und passt sich an deinen Fortschritt und deine aktuellen Bedürfnisse an."
           },
           {
-            "title": "Verständnis für deinen Körper",
+            "title": "Verständnis für die Funktionsweise deines Körpers",
             "text": "Du lernst, deinen Körper besser zu verstehen und gezielt mit ihm zu arbeiten."
           },
           {
@@ -101,8 +101,8 @@
             "text": "Klärung offener Fragen, Anpassungen und spezifische Vorbereitung während der Wettkampfsaison."
           },
           {
-            "title": "Live-Wettkampfbetreuung vor Ort",
-            "text": "Individuelle Unterstützung direkt während deines Wettkampfes."
+            "title": "Live Wettkampfbetreuung vor Ort",
+            "text": "Individuelle Unterstützung und Betreuung direkt während deines Wettkampfes."
           }
         ],
         "right_heading": "",

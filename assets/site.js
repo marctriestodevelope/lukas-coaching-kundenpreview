@@ -110,6 +110,7 @@
             menu.classList.toggle('is-open', open);
             menu.setAttribute('aria-hidden', open ? 'false' : 'true');
             button.setAttribute('aria-expanded', open ? 'true' : 'false');
+            document.documentElement.classList.toggle('menu-open', open);
         };
 
         button.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
@@ -124,11 +125,16 @@
 
     const initHeroClaim = () => {
         const hero = document.querySelector('.hero');
+        const nav = document.querySelector(SELECTORS.nav);
+        const claim = document.getElementById('site-nav-claim');
         if (!hero) return;
 
         const update = () => {
             const revealAfter = Math.min(140, Math.max(80, window.innerHeight * 0.12));
-            hero.classList.toggle('is-claim-visible', window.scrollY >= revealAfter);
+            const visible = window.scrollY >= revealAfter;
+            hero.classList.toggle('is-claim-visible', visible);
+            nav?.classList.toggle('site-nav--claim-visible', visible);
+            claim?.setAttribute('aria-hidden', visible ? 'false' : 'true');
         };
 
         update();
@@ -166,9 +172,24 @@
         copy.appendChild(createElement('h2', '', data.title || ''));
         copy.appendChild(createElement('p', 'approach-lead', data.lead || ''));
 
+        const allParagraphs = data.paragraphs || [];
+        const previewCount = Math.max(1, Number(data.preview_count || 1));
         const paragraphs = createElement('div', 'approach-paragraphs');
-        (data.paragraphs || []).forEach((text) => paragraphs.appendChild(createElement('p', '', text)));
+        allParagraphs.slice(0, previewCount).forEach((text) => paragraphs.appendChild(createElement('p', '', text)));
         copy.appendChild(paragraphs);
+
+        if (allParagraphs.length > previewCount) {
+            const disclosure = createElement('details', 'approach-disclosure content-disclosure');
+            const summary = createElement('summary', '', 'Mehr anzeigen');
+            const expanded = createElement('div', 'content-disclosure__body');
+            allParagraphs.slice(previewCount).forEach((text) => expanded.appendChild(createElement('p', '', text)));
+            disclosure.appendChild(summary);
+            disclosure.appendChild(expanded);
+            disclosure.addEventListener('toggle', () => {
+                summary.textContent = disclosure.open ? 'Weniger anzeigen' : 'Mehr anzeigen';
+            });
+            copy.appendChild(disclosure);
+        }
 
         const image = document.getElementById(`${prefix}-image`);
         if (image) {
@@ -200,13 +221,24 @@
             body.appendChild(createElement('p', 'coaching-card__tagline', offer.tagline || ''));
             body.appendChild(createElement('p', 'coaching-card__summary', offer.summary || ''));
 
+            const allServices = offer.details?.left_list || [];
+            const previewServices = createElement('ul', 'coaching-list coaching-list--preview');
+            allServices.slice(0, 2).forEach((item) => {
+                const listItem = createElement('li');
+                listItem.appendChild(createElement('strong', '', `${item.title || ''}: `));
+                listItem.appendChild(document.createTextNode(item.text || ''));
+                previewServices.appendChild(listItem);
+            });
+            body.appendChild(previewServices);
+
             const disclosure = createElement('details');
-            disclosure.appendChild(createElement('summary', '', 'Leistungen anzeigen'));
+            const summary = createElement('summary', '', 'Weitere Leistungen anzeigen');
+            disclosure.appendChild(summary);
             const details = createElement('div', 'coaching-card__details');
             details.appendChild(createElement('p', '', offer.details?.left_heading || 'Das bekommst du:'));
 
             const list = createElement('ul', 'coaching-list');
-            (offer.details?.left_list || []).forEach((item) => {
+            allServices.slice(2).forEach((item) => {
                 const listItem = createElement('li');
                 const strong = createElement('strong', '', `${item.title || ''}: `);
                 listItem.appendChild(strong);
@@ -216,10 +248,13 @@
             details.appendChild(list);
             disclosure.appendChild(details);
             body.appendChild(disclosure);
+            disclosure.addEventListener('toggle', () => {
+                summary.textContent = disclosure.open ? 'Leistungen schließen' : 'Weitere Leistungen anzeigen';
+            });
 
             const action = createElement('a', `button button--${accent}`,'Kontakt aufnehmen');
             action.href = '#kontakt';
-            action.style.marginTop = '1.5rem';
+            action.classList.add('coaching-card__action');
             body.appendChild(action);
 
             card.appendChild(media);
@@ -232,9 +267,10 @@
         const card = createElement('article', 'testimonial-card');
         const header = createElement('div', 'testimonial-card__header');
         const image = createElement('img');
-        image.src = testimonial.image || '';
+        image.src = testimonial.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
         image.alt = testimonial.name || 'Testimonial';
         image.loading = 'lazy';
+        if (testimonial.image_placeholder) image.classList.add('is-placeholder');
         header.appendChild(image);
         header.appendChild(createElement('h3', '', testimonial.name || ''));
         card.appendChild(header);
@@ -247,14 +283,8 @@
     };
 
     const renderTestimonials = (data) => {
-        const allItems = data?.items || [];
+        const items = data?.items || [];
         document.querySelectorAll('[data-testimonial-track]').forEach((track) => {
-            const carousel = track.closest('[data-testimonial-carousel]');
-            const start = Number(carousel?.dataset.sliceStart || 0);
-            const count = Number(carousel?.dataset.sliceCount || allItems.length);
-            const subset = allItems.slice(start, start + count);
-            const items = subset.length ? subset : allItems;
-
             track.innerHTML = '';
             if (!items.length) {
                 track.appendChild(createElement('p', 'testimonial-card', 'Weitere Testimonials sind in Vorbereitung.'));
@@ -264,8 +294,11 @@
             for (let copy = 0; copy < 3; copy += 1) {
                 const set = createElement('div', 'testimonial-set');
                 set.setAttribute('aria-hidden', copy === 1 ? 'false' : 'true');
-                if (copy !== 1) set.inert = true;
-                items.forEach((item) => set.appendChild(buildTestimonialCard(item)));
+                items.forEach((item) => {
+                    const card = buildTestimonialCard(item);
+                    if (copy !== 1) card.querySelector('.testimonial-card__more').tabIndex = -1;
+                    set.appendChild(card);
+                });
                 track.appendChild(set);
             }
         });
@@ -304,18 +337,15 @@
             const normalizePosition = () => {
                 const width = loopWidth();
                 if (width <= 1) return;
-                let adjusted = false;
-                if (track.scrollLeft >= width * 2) {
+                let normalized = track.scrollLeft;
+                while (normalized < width * 0.5) normalized += width;
+                while (normalized >= width * 1.5) normalized -= width;
+                if (Math.abs(normalized - track.scrollLeft) > 0.5) {
                     markProgrammaticScroll();
-                    track.scrollLeft -= width;
-                    adjusted = true;
+                    track.scrollLeft = normalized;
+                    return true;
                 }
-                if (track.scrollLeft <= 0) {
-                    markProgrammaticScroll();
-                    track.scrollLeft += width;
-                    adjusted = true;
-                }
-                return adjusted;
+                return false;
             };
 
             requestAnimationFrame(() => {
@@ -354,7 +384,7 @@
 
             track.addEventListener('click', (event) => {
                 const action = event.target.closest('.testimonial-card__more');
-                if (!action || action.closest('[inert]')) return;
+                if (!action) return;
                 event.preventDefault();
                 window.location.assign(action.href);
             });
@@ -430,13 +460,16 @@
     const createMessengerButton = (type, url, fallback) => {
         const directUrl = String(url || '').trim();
         const anchor = createElement('a', `button messenger-button messenger-button--${type}`);
-        anchor.href = directUrl || fallback || '#kontaktformular';
+        const fallbackUrl = String(fallback || '').trim();
+        if (directUrl || fallbackUrl) anchor.href = directUrl || fallbackUrl;
         anchor.innerHTML = `${messengerIcon(type)}<span>${type === 'whatsapp' ? 'WhatsApp Kontakt' : 'Telegram Kontakt'}</span>`;
         if (directUrl) {
             anchor.target = '_blank';
             anchor.rel = 'noopener noreferrer';
         } else {
-            anchor.title = 'Direkter Messenger-Link folgt. Anfrageformular öffnen.';
+            anchor.classList.add('is-disabled');
+            anchor.setAttribute('aria-disabled', 'true');
+            anchor.title = 'Direkter Messenger-Link folgt.';
         }
         return anchor;
     };
@@ -532,7 +565,6 @@
         const lead = document.getElementById('holistic-lead');
         const copy = document.getElementById('holistic-copy');
         const expanded = document.getElementById('holistic-expanded');
-        const image = document.getElementById('holistic-image');
 
         if (eyebrow) eyebrow.textContent = data.eyebrow || '';
         if (title) title.textContent = data.title || '';
@@ -545,11 +577,20 @@
             expanded.innerHTML = '';
             (data.expanded || []).forEach((text) => expanded.appendChild(createElement('p', '', text)));
         }
-        if (image) {
-            image.src = data.image || image.src;
-            image.alt = data.image_alt || '';
-        }
         renderGallery(data.gallery || []);
+
+        const disclosure = document.getElementById('holistic-details');
+        const summary = disclosure?.querySelector('summary');
+        if (disclosure && summary && !disclosure.dataset.toggleBound) {
+            disclosure.dataset.toggleBound = 'true';
+            const story = disclosure.closest('.holistic-story');
+            const syncDisclosureLayout = () => {
+                summary.textContent = disclosure.open ? 'Weniger anzeigen' : 'Mehr anzeigen';
+                story?.classList.toggle('holistic-story--expanded', disclosure.open);
+            };
+            disclosure.addEventListener('toggle', syncDisclosureLayout);
+            syncDisclosureLayout();
+        }
     };
 
     const renderTopics = (data) => {
@@ -576,12 +617,8 @@
     };
 
     const renderSiteContent = (site) => {
-        const heroKicker = document.getElementById('hero-kicker');
-        const heroHeadline = document.getElementById('hero-headline');
-        const heroSubline = document.getElementById('hero-subline');
-        if (heroKicker) heroKicker.textContent = site?.hero?.kicker || '';
-        if (heroHeadline) heroHeadline.textContent = site?.hero?.headline || '';
-        if (heroSubline) heroSubline.textContent = site?.hero?.subline || '';
+        const navClaim = document.getElementById('site-nav-claim');
+        if (navClaim) navClaim.textContent = site?.hero?.headline || '';
 
         renderApproach(site?.philosophy, 'philosophy');
         renderApproach(site?.methodology, 'methodology');
@@ -600,14 +637,15 @@
             article.id = `testimonial-${slugify(item.name)}`;
             const media = createElement('div', 'testimonial-detail__media');
             const image = createElement('img');
-            image.src = item.image || '';
+            image.src = item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
             image.alt = item.name || 'Testimonial';
             image.loading = 'lazy';
+            if (item.image_placeholder) image.classList.add('is-placeholder');
             media.appendChild(image);
             const copy = createElement('div', 'testimonial-detail__copy');
             copy.appendChild(createElement('p', 'section-kicker', 'Testimonial'));
             copy.appendChild(createElement('h2', '', item.name || ''));
-            copy.appendChild(createElement('blockquote', '', `„${item.long_text || item.quote || ''}“`));
+            copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
             article.appendChild(media);
             article.appendChild(copy);
             root.appendChild(article);
@@ -724,20 +762,31 @@
             submitButton.style.opacity = '0.65';
             setStatus('Anfrage wird gesendet ...');
 
-            const subject = encodeURIComponent(`Coaching-Anfrage von ${nameInput.value.trim()}`);
-            const body = encodeURIComponent([
-                `Name: ${nameInput.value.trim()}`,
-                `E-Mail: ${emailInput.value.trim() || '-'}`,
-                `Instagram: ${instagramInput.value.trim() || '-'}`,
-                '',
-                'Alle relevanten Informationen:',
-                messageInput.value.trim(),
-            ].join('\n'));
+            try {
+                const response = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        instagram: instagramInput.value.trim(),
+                        message: messageInput.value.trim(),
+                        privacyAccepted: privacyInput.checked,
+                        website: honeyInput?.value.trim() || '',
+                    }),
+                });
+                const result = await response.json().catch(() => ({}));
+                if (!response.ok || !result.ok) throw new Error(result.message || 'Senden fehlgeschlagen.');
 
-            setStatus('Dein E-Mail-Programm wird geöffnet. Bitte sende die vorbereitete Nachricht dort ab.', 'success');
-            window.location.href = `mailto:luk.black@me.com?subject=${subject}&body=${body}`;
-            submitButton.disabled = false;
-            submitButton.style.opacity = '';
+                form.reset();
+                syncContactValidity();
+                setStatus(result.message || 'Danke! Deine Anfrage ist eingegangen.', 'success');
+            } catch (error) {
+                setStatus(error.message || 'Technischer Fehler. Bitte versuche es später erneut.', 'error');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.style.opacity = '';
+            }
         });
     };
 

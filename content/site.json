@@ -2,92 +2,112 @@
   "hero": {
     "kicker": "Lukas Schwarz Coaching",
     "headline": "Kompensierst du noch oder lebst du schon?",
-    "subline": "Biomechanik, Coaching und ganzheitliche Entwicklung für mehr Leistungsfähigkeit, Klarheit und Freiheit."
+    "subline": ""
   },
   "philosophy": {
     "eyebrow": "Philosophie",
     "title": "Authentisch. Ehrlich. Menschlich.",
-    "lead": "100 % du selbst bedeutet 100 % Leichtigkeit und den Weg des geringsten Widerstandes. Keine Kopie. Keine Rolle. Sondern authentisch du selbst.",
+    "lead": "Meine Philosophie ist einfach: 100 % du selbst = 100 % Leichtigkeit und der Weg des geringsten Widerstandes. Keine Kopie. Keine Rolle. Sondern authentisch du selbst.",
+    "preview_count": 2,
     "paragraphs": [
       "Das passiert allerdings nur, wenn du aufhörst, gegen dich selbst, deinen Körper und deinen Geist anzukämpfen. Erst dann entstehen Leichtigkeit, Leistungsfähigkeit und Schmerzfreiheit.",
-      "Nur durch eine ganzheitliche Betrachtung des Menschen ist es möglich, Kompensationen in Körper und Geist zu identifizieren und aufzulösen. So kannst du langfristig Fortschritte machen, Rückfälle vermeiden und schmerzfrei sowie leistungsfähig werden.",
-      "Ich arbeite seit über zehn Jahren als Coach mit Menschen in Rehabilitation, Wettkampfsport und Gewichtsreduktion. Mein Coaching ist ein dynamischer und maßgeschneiderter Prozess, der sich mit dir weiterentwickelt.",
-      "Authentisch: Körper und Geist werden auf dein Ziel ausgerichtet. Gemeinsam überwinden wir Kompensationen, damit deine Muster, Routinen, Gedanken und dein Nervensystem für dich arbeiten.",
-      "Ehrlich: Ich begleite dich von der Analyse bis zur Umsetzung in Training und Alltag. Wir kommunizieren direkt und ohne Filter, damit du eigenverantwortlich handeln lernst.",
-      "Menschlich: Es gibt kein Produkt für die Masse, sondern ehrliches Interesse an dir und deinen Zielen. Deshalb begleite ich bewusst nur eine begrenzte Anzahl an Menschen gleichzeitig."
+      "Nur durch eine ganzheitliche Betrachtung des Menschen ist es möglich, Kompensationen in Körper und Geist zu identifizieren und aufzulösen. Nur so kannst du langfristig Fortschritte machen, Rückfälle vermeiden und schmerzfrei sowie leistungsfähig werden.",
+      "Genau auf diesem Prinzip basiert meine Arbeit.",
+      "Ich arbeite seit über 10 Jahren als Coach mit Menschen in den unterschiedlichsten Bereichen: Rehabilitation, Wettkampfsport und Gewichtsreduktion. Mein Coaching ist ein dynamischer und maßgeschneiderter Prozess, der sich ständig weiterentwickelt, um für dich die bestmöglichen Ergebnisse zu erzielen.",
+      "Mein Coaching basiert auf drei Kernbereichen:",
+      "Authentisch: Körper und Geist werden auf dein Ziel ausgerichtet. Gemeinsam überwinden wir Kompensationen. Deine Muster, Routinen, Gedanken und dein Nervensystem sollen für dich arbeiten – nicht gegen dich.",
+      "Ehrlich: Ich nehme dich mit durch den kompletten Prozess – von der ersten Analyse bis zur Umsetzung im Training und Alltag. Wir kommunizieren immer direkt und ehrlich miteinander, ohne Filter. Das Ziel ist, dass du lernst, bewusst und eigenverantwortlich mit dir und deinem Körper umzugehen.",
+      "Menschlich: Bei mir gibt es kein Produkt für die Masse, sondern ehrliches Interesse an dir als Mensch und deinen Zielen. Jeder Prozess ist individuell und maßgeschneidert. Deshalb begleite ich bewusst nur eine begrenzte Anzahl an Menschen gleichzeitig."
     ],
     "image": "assets/img/DSC08607.JPG",
     "image_alt": "Lukas Schwarz mit einem Athleten"
   },
   "methodology": {
-    "eyebrow": "Warum und Methodik",
+    "eyebrow": "Methodik",
     "title": "Resilient. Effizient. Leicht.",
-    "lead": "Wir optimieren deine Biomechanik und lösen Kompensationen, statt ihre Symptome immer wieder kurzfristig zu überdecken.",
+    "lead": "Wir optimieren deine Biomechanik und lösen deine Kompensationen.",
+    "preview_count": 4,
     "paragraphs": [
-      "Kompensationen sind Notlösungen deines Körpers, um eine Bewegungsaufgabe zu bewältigen. Der Körper sucht dabei instinktiv den schnellsten Weg. Das ist selten der langfristig smarteste Weg und kann zu Leistungsplateaus, Schmerzen oder Rückschritten führen.",
-      "Um Kompensationen nachhaltig zu lösen, zeigen wir deinem Körper eine bessere Strategie. Wir erkennen unbewusste Bewegungsmuster und implementieren neue, gesunde Bewegungsabläufe.",
-      "Der Schlüssel ist eine ganzheitliche biomechanische Betrachtung: Welche Bewegungsoptionen besitzt du? Wo liegen Einschränkungen? Welche Kompensation nutzt du aktuell?",
-      "Jede Übung, jeder Trainingsplan und jede Analyse ist darauf abgestimmt, ineffiziente Muster zu beseitigen und neue Routinen zu verankern. Das schafft mehr Effizienz, Leistung, Widerstandsfähigkeit und Bewegungsfreude."
+      "Kompensationen sind im Grunde nichts anderes als Notlösungen (kurzfristige Strategien) deines Körpers, um eine Bewegungsaufgabe zu bewältigen.",
+      "Das Problem dabei? Der Körper sucht sich instinktiv immer den schnellsten und vermeintlich leichtesten Weg. Das ist aber selten der smarteste Weg. Die Folge können Leistungsplateaus, Schmerzen oder Rückschritte sein.",
+      "Um Kompensationen nachhaltig zu lösen, müssen wir dem Körper eine bessere, langfristige Strategie zeigen. Das bedeutet: Wir setzen uns zuerst bewusst mit dem Problem auseinander, erkennen unbewusste Bewegungsmuster und implementieren neue, gesunde Bewegungsabläufe.",
+      "Der Schlüssel dazu ist eine ganzheitliche, biomechanische Betrachtung deines Körpers: Was sind deine Bewegungsoptionen? Wo liegen Einschränkungen? Welche Kompensation nutzt du aktuell?",
+      "Jede Übung, jeder Trainingsplan und jede Analyse ist genau darauf abgestimmt: alte, ineffiziente Muster zu beseitigen und neue, smarte Routinen zu verankern. Das führt zu mehr Effizienz im Training, mehr Leistung, mehr Gewicht auf der Hantel, weniger Schmerzen und maximaler Widerstandsfähigkeit (Resilienz) im Alltag – sowie spürbar mehr Leichtigkeit und Bewegungsfreude in deinem Leben."
     ],
     "image": "assets/img/4C717C74-BA7B-4691-81F6-4DBEA18D7FF3.JPG",
     "image_alt": "Lukas Schwarz nach einem Wettkampf"
   },
   "contact": {
     "title": "Lass uns herausfinden, was du wirklich brauchst.",
-    "text": "Du kennst mich bereits oder möchtest direkt über dein Ziel sprechen? Wähle deinen bevorzugten Kontaktweg.",
-    "whatsapp_url": "",
-    "telegram_url": "",
-    "fallback_anchor": "#kontaktformular"
+    "text": "",
+    "whatsapp_url": "https://wa.me/message/DESOIT6QG64AJ1",
+    "telegram_url": "https://t.me/Lukas_Schwarz",
+    "fallback_anchor": ""
   },
   "faq": {
     "items": [
       {
-        "question": "Was erwartest du von mir?",
-        "answer": "Ehrliche Kommunikation und dein Bestmöglichstes. Ohne Vertrauen und Kommunikation funktioniert Coaching nicht. Ich kann dir den roten Teppich ausrollen - gehen musst du selbst. Fehler sind willkommen, denn daraus lernen wir."
+        "question": "Was erwarte ich von dir?",
+        "answer": "Ehrliche Kommunikation: Ohne Vertrauen und Kommunikation funktioniert Coaching nicht.\n\nDein Bestmöglichstes: Ich kann dir den roten Teppich ausrollen — gehen musst du selbst. Fehler sind willkommen. Daraus lernen wir."
       },
       {
         "question": "Was bedeutet Biomechanik genau?",
-        "answer": "Biomechanik ist die wissenschaftliche Betrachtung des menschlichen Körpers und seiner Bewegungsgesetze. Statt Muskeln isoliert zu betrachten, analysieren wir, wie Muskeln, Gelenke und Nervensystem als Einheit funktionieren."
+        "answer": "Biomechanik ist die wissenschaftliche Betrachtung des menschlichen Körpers und seiner Bewegungsgesetze. Statt Muskeln nur isoliert zu betrachten, analysieren wir hier die fundamentalen Grundprinzipien des Körpers. Wir betrachten wie dein gesamtes System aus Muskeln, Gelenken und Nerven als Einheit funktioniert."
       },
       {
         "question": "Wie lange dauert es, bis ich schmerzfrei werde?",
-        "answer": "In der Regel braucht es sechs bis acht Wochen, bis erste deutliche Erfolge sichtbar werden. Eine komplette Beschwerdefreiheit hängt von der individuellen Problematik und der Dauer der bestehenden Kompensation ab."
+        "answer": "In der Regel braucht es 6–8 Wochen, bis erste deutliche Erfolge im Bereich der Schmerzsymptomatik sichtbar werden. Eine komplette Beschwerdefreiheit hängt immer stark von der individuellen Problematik und der Dauer der bestehenden Kompensation ab."
       },
       {
         "question": "Wie lange dauert es, bis ich meine Wettkampfleistung verbessern kann?",
-        "answer": "Für eine spezifische Wettkampfvorbereitung sollten mindestens drei Monate eingeplant werden. Wenn Kompensationen deine Leistung einschränken, sind sechs Monate für nachhaltige Veränderungen empfehlenswert."
+        "answer": "Für eine spezifische Wettkampfvorbereitung sollten mindestens 3 Monate eingeplant werden. Wenn Kompensationen vorliegen, die deine aktuelle Wettkampfleistung einschränken, sind 6 Monate empfehlenswert, um nachhaltige Veränderungen umzusetzen."
       },
       {
         "question": "Was kostet ein Coaching?",
-        "answer": "Die Coaching-Preise werden nach einer ersten Anfrage und der Analyse deiner Ziele gemeinsam besprochen."
+        "answer": "Die Coaching Preise werden nach einer ersten Anfrage und Analyse deiner Ziele gemeinsam besprochen."
       },
       {
         "question": "Welche Voraussetzungen brauche ich für das Training?",
-        "answer": "Das Training ist grundsätzlich in jedem kommerziellen Fitnessstudio oder mit einfachem Equipment zu Hause möglich."
+        "answer": "Grundsätzlich ist das Training in jedem kommerziellen Fitnessstudio oder auch mit einfachem Equipment zu Hause möglich."
       },
       {
-        "question": "Ist das Lifestyle Coaching für langfristiges Abnehmen ohne Jo-Jo-Effekt geeignet?",
-        "answer": "Ja. Der Fokus liegt darauf, Ursachen für wiederkehrende Probleme in Training und Ernährung zu erkennen und langfristige Strategien zu entwickeln, die zu dir und deinem Alltag passen."
+        "question": "Ich möchte langfristig abnehmen und den Jo-Jo-Effekt vermeiden. Ist das Lifestyle Coaching für mich geeignet?",
+        "answer": "Ja, das Lifestyle Coaching ist genau dafür geeignet. Der Fokus liegt darauf, Ursachen für wiederkehrende Probleme im Training und in der Ernährung zu erkennen und langfristige Strategien zu entwickeln, die zu dir und deinem Alltag passen."
       }
     ]
   },
   "holistic": {
     "eyebrow": "Ganzheitliches Coaching",
     "title": "Klarheit. Authentizität. Freiheit.",
-    "lead": "Kompensationen entstehen nicht nur im Körper, sondern auch im Geist. Sie sind Strategien unseres Systems, um Herausforderungen kurzfristig zu bewältigen.",
+    "lead": "Kompensationen entstehen nicht nur im Körper, sondern auch im Geist. Sie sind nichts anderes als Strategien unseres Systems, um Herausforderungen kurzfristig zu bewältigen.",
     "intro": [
-      "Im Körper nutzt dein Nervensystem erlernte Ausweichbewegungen. Nach einer Verletzung hilft dir das kurzfristig, langfristig können daraus aber Fehlhaltungen, Schmerzen und Einschränkungen entstehen.",
-      "Das gleiche Prinzip zeigt sich in anderen Lebensbereichen: Du vermeidest ein wichtiges Gespräch, kompensierst Stress mit Essen, suchst Bestätigung oder planst endlos, statt den ersten Schritt zu machen.",
-      "Diese Strategien erfüllen zunächst einen Zweck. Das Problem beginnt, wenn aus kurzfristiger Erleichterung ein langfristiges Muster wird."
+      "Im Körper ist es dein Nervensystem, das erlernte Ausweichbewegungen nutzt und automatisch abruft. Wenn du dir den Fuß verletzt, humpelst du, um den Schmerz zu vermeiden. Kurzfristig hilft diese Strategie – langfristig können daraus aber Fehlhaltungen entstehen, die deinen Fortschritt einschränken oder langfristige Schmerzen verursachen.",
+      "Doch Kompensation gibt es nicht nur im Körper, sondern auch in allen anderen Lebensbereichen. Vielleicht kennst du es:",
+      "Du möchtest ein wichtiges Gespräch führen, hast aber Angst vor Ablehnung oder Konflikten und vermeidest es deshalb immer wieder.",
+      "Du möchtest eigentlich gesünder leben und abnehmen, greifst aber regelmäßig zu Süßigkeiten oder Essen, um Stress oder unangenehme Gefühle auszugleichen."
     ],
     "expanded": [
+      "Du fühlst dich in deiner Beziehung nicht gesehen, sprichst es aber nicht an, sondern suchst heimlich Bestätigung durch Flirts oder Aufmerksamkeit von anderen",
+      "Du hast Angst zu scheitern, beschäftigst dich deshalb endlos mit Planung und Vorbereitung, statt endlich den ersten Schritt zu machen.",
+      "Diese Liste könnte endlos weitergehen. Kompensation gibt es wie Sand am Meer. Und wenn wir ehrlich sind: Jeder von uns hat schon einmal kompensiert. Oder etwa nicht?",
+      "Diese Strategien haben einen Zweck: Sie helfen dir kurzfristig, eine Situation auszuhalten.",
+      "Das Problem: Kompensationen sind oft nur Notlösungen für langfristige Probleme. Was kurzfristig eine Erleichterung darstellt, kann langfristig schwerwiegende Folgen haben.",
+      "Aus einem Glas Alkohol am Abend, um Stress oder innere Leere zu füllen, kann eine Abhängigkeit entstehen, die Beziehungen zerstört und die Gesundheit massiv schädigt.",
+      "Aus dem ständigen Funktionieren und dem Ignorieren von Grenzen kann ein schwerer Burnout entstehen, der Menschen jahrelang aus ihrem Leben reißen kann.",
+      "Aus dem dauerhaften Verdrängen von Überforderung kann eine schwere Depression entstehen, die einem jede Lebensfreude nimmt.",
+      "Woran erkennt man eine Kompensation",
+      "Bist du ständig müde? Musst du immer funktionieren? Für Karriere, Anerkennung, Sicherheit? Innerlich herrscht Chaos. Du performst unter Dauerdruck, hast Angst, dass ohne dich alles zusammenbricht – und fühlst dich trotzdem nie gut genug. Das ist Kompensation. Ein Teil von dir weiß es längst – aber du handelst noch nach alten Mustern",
+      "Auch die Flucht in Belangloses kann eine Kompensation sein: Instagram, Süßigkeiten, Ablenkung. Jeden Tag das gleiche Muster. Du drehst dich im Kreis, weil Veränderung Angst macht. Keine Kontrolle mehr. Also bleibt man lieber in den bekannten schädlichen Mustern, auch wenn es einen langfristig nicht erfüllt.",
+      "Du willst raus, du merkst es, aber du weißt nicht wie.",
+      "That's Life? Nicht wirklich….",
       "Kompensationen kannst du erst lösen, wenn du sie bewusst wahrnimmst und dich mit ihnen auseinandersetzt. Es geht darum, Ruhe und Klarheit in dein System zu bringen.",
-      "Erst wenn alle Anteile in dir in eine Richtung zeigen, du dein Warum kennst und deine Werte als Kompass nutzt, entsteht die Grundlage, alte Muster loszulassen und Neues zu implementieren.",
-      "Wie beim Erlernen einer neuen Bewegung fühlt sich Veränderung am Anfang ungewohnt und unsicher an. Durch bewusste Wiederholung entsteht Vertrauen, bis das Neue selbstverständlich wird.",
-      "Klarheit entsteht durch das Verständnis deiner Werte, Ziele und aktuellen Muster. Authentizität entsteht, wenn Worte, Denken, Fühlen und Handeln wieder in eine Richtung zeigen. Freiheit bedeutet, alte Einschränkungen loszulassen und Raum für Entwicklung und Leichtigkeit zu schaffen."
+      "Erst wenn alle Anteile in dir in eine Richtung zeigen, wenn du ein klares Warum besitzt und deine Werte, deinen Nordstern, deinen Kompass kennst, entsteht die Grundlage, alte Muster loszulassen und Neues zu implementieren",
+      "Im Grunde funktioniert es genauso wie beim Erlernen einer neuen Bewegung nach einer Verletzung. Am Anfang fühlt sich alles ungewohnt, wackelig und unsicher an. Doch durch bewusste Wiederholung entsteht Vertrauen, bis die Bewegung automatisch und besser denn je abläuft und wieder Kilos auf die Hantel geladen werden können.",
+      "Daher beschäftigen wir uns in der ganzheitlichen Arbeit mit verschiedenen Themenbereichen eines Menschen stets mit dem Ziel, mehr Klarheit, Authentizität und Freiheit zu schaffen.",
+      "Klarheit: Durch das Verständnis deiner Werte, Ziele und aktuellen Muster.",
+      "Authentizität: Wenn deine Worte, dein Denken, dein Fühlen und deine Handlungen wieder in eine Richtung zeigen.",
+      "Freiheit: Freiheit von alten Mustern, Einschränkungen und Blockaden – und Freiheit für Entwicklung, Leistungsfähigkeit und ein Leben, das zu dir Leichtigkeit verspricht."
     ],
-    "image": "assets/img/DSCF9956.JPG",
-    "image_alt": "Lukas Schwarz im Austausch mit Freunden",
     "gallery": [
       { "image": "assets/img/DSCF9956.JPG", "alt": "Gemeinsamer Abend am Tisch" },
       { "image": "assets/img/ganzheitlich-berggruppe.jpg", "alt": "Gemeinsame Zeit in den Bergen" },
@@ -103,28 +123,28 @@
     "title": "Themen, die wir im Rahmen des Coachings behandeln könnten",
     "items": [
       {
-        "title": "Werte und Ziele",
-        "subtitle": "Dein Kompass",
-        "text": "Wer bist du und was willst du wirklich? Deine Träume, Ziele und deine Ausrichtung geben dir Energie und Orientierung.",
+        "title": "Werte & Ziele",
+        "subtitle": "Kompass",
+        "text": "Wer bist du eigentlich und was willst du eigentlich? Und wo stellst du dich hinten an, obwohl du es eigentlich gar nicht möchtest? Deine Träume, deine Ziele, deine Ausrichtung – genau das macht dich energetisch.",
         "image": "assets/img/topic-values.svg"
       },
       {
-        "title": "Soziales und Umfeld",
-        "subtitle": "Ohne Masken",
-        "text": "Familie, Freunde und Partner prägen dich. Wir schauen darauf, welche Beziehungen dich stärken und wo du dich verbiegst.",
+        "title": "Soziales & Umfeld",
+        "subtitle": "Masken-Bild",
+        "text": "Dein Umfeld hat Einfluss auf dich – positiven wie negativen. Familie, Freunde und Partner sollten zu dir passen. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst.",
         "image": "assets/img/topic-social.svg"
       },
       {
-        "title": "Gesundheit und Training",
-        "subtitle": "Körper und Geist",
-        "text": "Körper und Geist sind untrennbar verbunden. Deine Haltung und deine Gesundheit spiegeln wider, wie es in deinem System aussieht.",
-        "image": "assets/img/topic-health.svg"
+        "title": "Kompensationen & Blockaden",
+        "subtitle": "Phoenix",
+        "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
+        "image": "assets/img/topic-blocks.svg"
       },
       {
-        "title": "Kompensationen und Blockaden",
-        "subtitle": "Altes loslassen",
-        "text": "Wir schauen dorthin, wo es bisher unangenehm war, lösen wiederkehrende Muster und schaffen Raum für Neues.",
-        "image": "assets/img/topic-blocks.svg"
+        "title": "Gesundheit & Training",
+        "subtitle": "Körper und Geist",
+        "text": "Körper und Geist sind untrennbar miteinander verbunden. Deine Haltung ist die Repräsentation deines Lebens. Wie sieht es in dir aus? Nur ein fitter Körper kann einen fitten Geist haben.",
+        "image": "assets/img/topic-health.svg"
       }
     ]
   }

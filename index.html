@@ -25,6 +25,7 @@
             </a>
 
             <div class="site-nav__actions">
+                <span id="site-nav-claim" class="site-nav__claim" aria-hidden="true">Kompensierst du noch oder lebst du schon?</span>
                 <a href="#kontakt" class="site-nav__contact">Kontakt</a>
                 <button id="site-menu-button" type="button" class="site-nav__menu-button" aria-controls="site-menu" aria-expanded="false">
                     <span>Menü</span>
@@ -34,20 +35,30 @@
         </div>
 
         <div id="site-menu" class="site-menu" aria-hidden="true">
-            <div class="site-menu__grid">
-                <a href="#philosophie"><span>01</span>Philosophie</a>
-                <a href="#methodik"><span>02</span>Warum / Methodik</a>
-                <a href="#coaching"><span>03</span>Coaching</a>
-                <a href="#lifestyle"><span>04</span>Lifestyle Coaching</a>
-                <a href="#wettkampf"><span>05</span>Wettkampf Coaching</a>
-                <a href="#ganzheitlich"><span>06</span>Ganzheitliches Coaching</a>
-                <a href="#testimonials"><span>07</span>Testimonials</a>
-                <a href="#kontakt"><span>08</span>Kontakt</a>
-                <a href="ueber-mich.html"><span>09</span>Über mich</a>
-                <a href="blog.html"><span>10</span>Blog</a>
-                <a href="#faq"><span>11</span>FAQ</a>
-                <a href="impressum.html"><span>12</span>Impressum</a>
-                <a href="datenschutz.html"><span>13</span>Datenschutz</a>
+            <div class="site-menu__panel">
+                <a class="site-menu__item" href="#philosophie">Philosophie</a>
+                <a class="site-menu__item" href="#methodik">Warum / Methodik</a>
+                <div class="site-menu__group">
+                    <a class="site-menu__item" href="#coaching">Coaching</a>
+                    <div class="site-menu__children">
+                        <a href="#lifestyle">Lifestyle Coaching</a>
+                        <a href="#wettkampf">Wettkampf Coaching</a>
+                        <a href="#ganzheitlich">Ganzheitliches Coaching</a>
+                    </div>
+                </div>
+                <a class="site-menu__item" href="testimonials.html">Testimonials</a>
+                <a class="site-menu__item" href="#kontakt">Kontakt</a>
+                <div class="site-menu__group">
+                    <a class="site-menu__item" href="blog.html">Blog</a>
+                    <div class="site-menu__children">
+                        <a href="artikel.html?id=kompensation-verstehen">Artikel 1</a>
+                        <a href="artikel.html?id=biomechanik-im-alltag">Artikel 2</a>
+                        <a href="artikel.html?id=klarheit-schafft-freiheit">Artikel 3</a>
+                    </div>
+                </div>
+                <a class="site-menu__item" href="#faq">FAQ</a>
+                <a class="site-menu__item" href="impressum.html">Impressum</a>
+                <a class="site-menu__item" href="datenschutz.html">Datenschutz</a>
             </div>
         </div>
     </nav>
@@ -59,15 +70,6 @@
             <div class="hero__content">
                 <div class="hero__brand-lockup">
                     <img src="assets/img/Logo-LS_Coaching_white.png" alt="Lukas Schwarz Coaching">
-                </div>
-                <div class="hero__panel">
-                    <p id="hero-kicker" class="hero__kicker">Lukas Schwarz Coaching</p>
-                    <h1 id="hero-headline">Kompensierst du noch oder lebst du schon?</h1>
-                    <p id="hero-subline" class="hero__subline">Biomechanik, Coaching und ganzheitliche Entwicklung für mehr Leistungsfähigkeit, Klarheit und Freiheit.</p>
-                    <div class="hero__actions">
-                        <a href="#kontakt" class="button button--red">Direkt Kontakt aufnehmen</a>
-                        <a href="#coaching" class="button button--ghost">Coaching entdecken</a>
-                    </div>
                 </div>
             </div>
         </header>
@@ -110,12 +112,13 @@
                 </header>
                 <a href="testimonials.html" class="button button--blue testimonial-more">Mehr anzeigen</a>
             </div>
-            <div class="testimonial-carousel" data-testimonial-carousel data-slice-start="0" data-slice-count="7">
+            <div class="testimonial-carousel" data-testimonial-carousel>
                 <div class="testimonial-track no-scrollbar" data-testimonial-track aria-label="Testimonials, horizontal scrollbar"></div>
             </div>
         </section>
 
         <section id="kontakt" class="contact-band scroll-mt-24" data-contact-section>
+            <span id="warteliste" class="anchor-alias" aria-hidden="true"></span>
             <div class="section-shell contact-band__inner">
                 <div class="contact-band__copy reveal">
                     <p class="section-kicker">Kontaktanfrage</p>
@@ -145,18 +148,15 @@
                 </header>
 
                 <div class="holistic-story">
-                    <div id="holistic-copy" class="holistic-copy reveal"></div>
-                    <figure class="holistic-feature reveal reveal-right">
-                        <img id="holistic-image" src="assets/img/DSCF9956.JPG" alt="Lukas Schwarz im Austausch mit Freunden">
-                    </figure>
+                    <div class="holistic-story__copy-column">
+                        <div id="holistic-copy" class="holistic-copy reveal"></div>
+                        <details id="holistic-details" class="content-disclosure reveal">
+                            <summary>Mehr anzeigen</summary>
+                            <div id="holistic-expanded" class="content-disclosure__body"></div>
+                        </details>
+                    </div>
+                    <div id="gallery-root" class="people-gallery people-gallery--inline reveal reveal-right" aria-label="Bilder aus Coaching, Wettkampf und Leben"></div>
                 </div>
-
-                <details id="holistic-details" class="content-disclosure reveal">
-                    <summary>Mehr über den Ansatz anzeigen</summary>
-                    <div id="holistic-expanded" class="content-disclosure__body"></div>
-                </details>
-
-                <div id="gallery-root" class="people-gallery reveal" aria-label="Bilder aus Coaching, Wettkampf und Leben"></div>
             </div>
         </section>
 
@@ -178,57 +178,19 @@
                 </header>
                 <a href="testimonials.html" class="button button--red testimonial-more">Mehr anzeigen</a>
             </div>
-            <div class="testimonial-carousel" data-testimonial-carousel data-slice-start="7" data-slice-count="6">
+            <div class="testimonial-carousel" data-testimonial-carousel>
                 <div class="testimonial-track no-scrollbar" data-testimonial-track aria-label="Weitere Testimonials, horizontal scrollbar"></div>
             </div>
         </section>
 
-        <section id="ueber-mich" class="about-teaser scroll-mt-24">
-            <div class="section-shell about-teaser__inner reveal">
-                <p class="section-kicker">Der Mensch hinter dem Coaching</p>
-                <h2>Authentisch statt austauschbar.</h2>
-                <a href="ueber-mich.html" class="button button--ghost">Mehr über mich</a>
-            </div>
-        </section>
-
-        <section id="kontaktformular" class="direct-form-section scroll-mt-24">
-            <span id="warteliste" class="anchor-alias" aria-hidden="true"></span>
-            <div class="section-shell direct-form-grid">
-                <div class="direct-form-copy reveal">
-                    <p class="section-kicker">Noch lieber schriftlich?</p>
-                    <h2>Schick mir deine Anfrage.</h2>
-                    <p>Falls WhatsApp oder Telegram noch nicht dein Weg sind, kannst du mir hier alle relevanten Informationen senden.</p>
-                    <div class="direct-form-messenger" data-contact-actions></div>
+        <section id="kontakt-abschluss" class="contact-band contact-band--closing scroll-mt-24" data-contact-section>
+            <div class="section-shell contact-band__inner">
+                <div class="contact-band__copy reveal">
+                    <p class="section-kicker">Kontaktanfrage</p>
+                    <h2 data-contact-title>Lass uns herausfinden, was du wirklich brauchst.</h2>
+                    <p data-contact-text>Du kennst mich bereits oder möchtest direkt über dein Ziel sprechen? Wähle deinen bevorzugten Kontaktweg.</p>
                 </div>
-
-                <form id="waitlist-form" class="contact-form reveal" novalidate>
-                    <label for="waitlist-name">Name *</label>
-                    <input id="waitlist-name" name="name" type="text" autocomplete="name" required>
-
-                    <div class="contact-form__split">
-                        <div>
-                            <label for="waitlist-email">E-Mail</label>
-                            <input id="waitlist-email" name="email" type="email" autocomplete="email">
-                        </div>
-                        <div>
-                            <label for="waitlist-instagram">Instagram Tag</label>
-                            <input id="waitlist-instagram" name="instagram" type="text" placeholder="@name" autocomplete="off">
-                        </div>
-                    </div>
-
-                    <label for="waitlist-message">Alle relevanten Informationen *</label>
-                    <textarea id="waitlist-message" name="message" rows="6" required></textarea>
-                    <input id="waitlist-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot">
-
-                    <label class="privacy-check">
-                        <input id="waitlist-privacy" name="privacy" type="checkbox" required>
-                        <span>Ich habe die Hinweise zur Verarbeitung meiner Daten in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen.</span>
-                    </label>
-                    <p class="contact-form__hint">Pflichtfelder: Name, Beschreibung und mindestens E-Mail oder Instagram.</p>
-
-                    <button id="waitlist-submit" type="submit" class="button button--red button--full">Anfrage senden</button>
-                    <p id="waitlist-status" class="contact-form__status" aria-live="polite"></p>
-                </form>
+                <div class="contact-band__actions reveal reveal-right" data-contact-actions></div>
             </div>
         </section>
     </main>
