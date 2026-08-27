@@ -618,19 +618,23 @@
         if (eyebrow) eyebrow.textContent = data.eyebrow || '';
         if (title) title.textContent = data.title || '';
         if (lead) lead.textContent = data.lead || '';
-        const intro = data.intro || [];
-        const splitAt = Math.max(1, Math.ceil(intro.length / 2));
+        const allParagraphs = [...(data.intro || []), ...(data.expanded || [])];
+        const requestedVisibleCount = Number(data.visible_paragraph_count || data.intro?.length || 1);
+        const visibleCount = Math.min(allParagraphs.length, Math.max(2, requestedVisibleCount));
+        const visibleParagraphs = allParagraphs.slice(0, visibleCount);
+        const remainingParagraphs = allParagraphs.slice(visibleCount);
+        const splitAt = Math.max(1, Math.ceil(visibleParagraphs.length / 2));
         if (primaryCopy) {
             primaryCopy.innerHTML = '';
-            intro.slice(0, splitAt).forEach((text) => primaryCopy.appendChild(createElement('p', '', text)));
+            visibleParagraphs.slice(0, splitAt).forEach((text) => primaryCopy.appendChild(createElement('p', '', text)));
         }
         if (secondaryCopy) {
             secondaryCopy.innerHTML = '';
-            intro.slice(splitAt).forEach((text) => secondaryCopy.appendChild(createElement('p', '', text)));
+            visibleParagraphs.slice(splitAt).forEach((text) => secondaryCopy.appendChild(createElement('p', '', text)));
         }
         if (expanded) {
             expanded.innerHTML = '';
-            (data.expanded || []).forEach((text) => expanded.appendChild(createElement('p', '', text)));
+            remainingParagraphs.forEach((text) => expanded.appendChild(createElement('p', '', text)));
         }
         const gallery = data.gallery || [];
         const gallerySplit = Math.max(1, Math.ceil(gallery.length / 2));
@@ -639,6 +643,7 @@
 
         const disclosure = document.getElementById('holistic-details');
         const summary = disclosure?.querySelector('summary');
+        if (disclosure) disclosure.hidden = remainingParagraphs.length === 0;
         if (disclosure && summary && !disclosure.dataset.toggleBound) {
             disclosure.dataset.toggleBound = 'true';
             const syncDisclosureLayout = () => {
@@ -656,18 +661,21 @@
         if (title) title.textContent = data?.title || '';
         root.innerHTML = '';
 
-        (data?.items || []).forEach((item) => {
+        (data?.items || []).forEach((item, index) => {
             const card = createElement('article', 'topic-card reveal');
             const media = createElement('div', 'topic-card__image');
+            media.appendChild(createElement('span', 'topic-card__index', String(index + 1).padStart(2, '0')));
             const image = createElement('img');
             image.src = item.image || '';
             image.alt = '';
             image.loading = 'lazy';
             media.appendChild(image);
             card.appendChild(media);
-            card.appendChild(createElement('p', 'topic-card__subtitle', item.subtitle || ''));
-            card.appendChild(createElement('h3', '', item.title || ''));
-            card.appendChild(createElement('p', 'topic-card__text', item.text || ''));
+            const copy = createElement('div', 'topic-card__copy');
+            copy.appendChild(createElement('p', 'topic-card__subtitle', item.subtitle || ''));
+            copy.appendChild(createElement('h3', '', item.title || ''));
+            copy.appendChild(createElement('p', 'topic-card__text', item.text || ''));
+            card.appendChild(copy);
             root.appendChild(card);
         });
     };
