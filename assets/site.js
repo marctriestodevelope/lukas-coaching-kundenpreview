@@ -245,6 +245,7 @@
             image.src = offer.image || '';
             image.alt = offer.title || 'Coaching';
             image.loading = 'lazy';
+            if (offer.image_position) image.style.objectPosition = offer.image_position;
             media.appendChild(image);
 
             const body = createElement('div', 'coaching-card__body');
@@ -573,6 +574,7 @@
             thumb.src = item.image || '';
             thumb.alt = '';
             thumb.loading = 'lazy';
+            thumb.style.objectPosition = item.image_position || 'center center';
             button.appendChild(thumb);
             thumbs.appendChild(button);
             return button;
@@ -584,6 +586,7 @@
             window.setTimeout(() => {
                 image.src = items[activeIndex].image || '';
                 image.alt = items[activeIndex].alt || '';
+                image.style.objectPosition = items[activeIndex].image_position || 'center center';
                 image.style.opacity = '1';
             }, 90);
             thumbButtons.forEach((button, buttonIndex) => {
@@ -637,7 +640,8 @@
             remainingParagraphs.forEach((text) => expanded.appendChild(createElement('p', '', text)));
         }
         const gallery = data.gallery || [];
-        const gallerySplit = Math.max(1, Math.ceil(gallery.length / 2));
+        const requestedGallerySplit = Number(data.gallery_split_count || Math.ceil(gallery.length / 2));
+        const gallerySplit = Math.min(gallery.length, Math.max(1, requestedGallerySplit));
         renderGallery(gallery.slice(0, gallerySplit), 'holistic-gallery-primary');
         renderGallery(gallery.slice(gallerySplit).length ? gallery.slice(gallerySplit) : gallery, 'holistic-gallery-secondary');
 
@@ -699,7 +703,7 @@
         const items = data?.items || [];
         const groups = [
             { id: 'krafttraining', title: 'Testimonials Krafttraining' },
-            { id: 'ganzheitlich', title: 'Testimonials Ganzheitlich' },
+            { id: 'ganzheitlich', title: 'Stimmen aus dem ganzheitlichen Coaching' },
         ];
 
         groups.forEach((group) => {
@@ -720,7 +724,7 @@
                 if (item.image_placeholder) image.classList.add('is-placeholder');
                 media.appendChild(image);
                 const copy = createElement('div', 'testimonial-detail__copy');
-                copy.appendChild(createElement('p', 'section-kicker', group.id === 'ganzheitlich' ? 'Ganzheitlich' : 'Krafttraining'));
+                copy.appendChild(createElement('p', 'section-kicker', group.id === 'ganzheitlich' ? 'Ganzheitliches Coaching' : 'Krafttraining'));
                 copy.appendChild(createElement('h3', '', item.name || ''));
                 copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
                 article.appendChild(media);

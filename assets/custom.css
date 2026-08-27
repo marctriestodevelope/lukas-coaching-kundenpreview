@@ -294,6 +294,12 @@ img {
     visibility: visible;
 }
 
+.site-nav__claim--static {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+}
+
 .site-nav__contact,
 .site-nav__menu-button {
     min-height: 42px;

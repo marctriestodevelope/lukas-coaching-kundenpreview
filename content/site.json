@@ -116,15 +116,17 @@
       "Authentizität: Wenn deine Worte, dein Denken, dein Fühlen und deine Handlungen wieder in eine Richtung zeigen.",
       "Freiheit: Freiheit von alten Mustern, Einschränkungen und Blockaden – und Freiheit für Entwicklung, Leistungsfähigkeit und ein Leben, das zu dir Leichtigkeit verspricht."
     ],
+    "gallery_split_count": 4,
     "gallery": [
       { "image": "assets/img/DSCF9956.JPG", "alt": "Gemeinsamer Abend am Tisch" },
       { "image": "assets/img/ganzheitlich-berggruppe.jpg", "alt": "Gemeinsame Zeit in den Bergen" },
       { "image": "assets/img/DSCF9953.JPG", "alt": "Freunde bei einem gemeinsamen Abend" },
       { "image": "assets/img/DSCF9971.JPG", "alt": "Lukas Schwarz im Gespräch" },
-      { "image": "assets/img/DSCF9984 2.JPG", "alt": "Gemeinsamer Stadionbesuch" },
-      { "image": "assets/img/cdb9f2d6-22db-4eb8-9cc1-18050a7cade7.JPG", "alt": "Coaching und Austausch im Alltag" },
-      { "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG", "alt": "Gemeinsamer Erfolg nach dem Wettkampf" },
-      { "image": "assets/img/DSCF0214_3.JPG", "alt": "Lukas Schwarz mit seinem Team" }
+      { "image": "assets/img/resilient-mentoring/hallen-event.jpg", "alt": "Lukas Schwarz mit einer Athletin in der Veranstaltungshalle" },
+      { "image": "assets/img/resilient-mentoring/mentoring-am-wasser.jpg", "alt": "Gemeinsame Zeit am Wasser" },
+      { "image": "assets/img/resilient-mentoring/mentoring-unterwegs.jpg", "alt": "Lukas Schwarz mit einem Coachee unterwegs" },
+      { "image": "assets/img/resilient-mentoring/gemeinsame-zeit-am-meer.jpg", "alt": "Gemeinsame Zeit mit der Mentoring-Gruppe am Meer" },
+      { "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG", "alt": "Gemeinsamer Erfolg nach dem Wettkampf", "image_position": "center 25%" }
     ]
   },
   "topics": {
