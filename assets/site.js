@@ -33,7 +33,8 @@
     const scrollToHashTarget = (hash, behavior = 'smooth') => {
         if (!hash || hash === '#') return false;
         const id = decodeURIComponent(String(hash).replace(/^#/, ''));
-        const target = document.getElementById(id);
+        const aliases = { wettkampf: 'performance', 'testimonials-krafttraining': 'kundenfeedback', 'testimonials-ganzheitlich': 'kundenfeedback' };
+        const target = document.getElementById(aliases[id] || id);
         if (!target) return false;
         const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - getNavOffset());
         window.scrollTo({ top, behavior });
@@ -101,13 +102,14 @@
         if (!nav) return;
 
         // Pages without the animated homepage hero always use the solid navigation.
-        // On the homepage, initHeroClaim drives the background continuously instead.
+        // On the homepage, initHeroNavigation drives the background continuously instead.
         nav.classList.toggle('site-nav--scrolled', !document.querySelector('.hero'));
 
         if (!menu || !button) return;
 
         const setOpen = (open) => {
             menu.classList.toggle('is-open', open);
+            menu.inert = !open;
             menu.setAttribute('aria-hidden', open ? 'false' : 'true');
             button.setAttribute('aria-expanded', open ? 'true' : 'false');
             document.documentElement.classList.toggle('menu-open', open);
@@ -123,10 +125,9 @@
         });
     };
 
-    const initHeroClaim = () => {
+    const initHeroNavigation = () => {
         const hero = document.querySelector('.hero');
         const nav = document.querySelector(SELECTORS.nav);
-        const claim = document.getElementById('site-nav-claim');
         if (!hero || !nav) return;
 
         const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -142,23 +143,10 @@
             const progress = reducedMotionQuery.matches
                 ? (rawProgress >= 0.5 ? 1 : 0)
                 : ease(rawProgress);
-            const claimProgress = clamp((progress - 0.12) / 0.88);
-            const heroProgress = clamp(progress / 0.82);
-            const visible = claimProgress >= 0.52;
-
             nav.style.setProperty('--nav-background-alpha', (progress * 0.96).toFixed(3));
             nav.style.setProperty('--nav-border-alpha', (progress * 0.14).toFixed(3));
             nav.style.setProperty('--nav-blur', `${(progress * 13).toFixed(2)}px`);
             nav.style.setProperty('--nav-saturation', `${(100 + (progress * 25)).toFixed(1)}%`);
-            nav.style.setProperty('--claim-opacity', claimProgress.toFixed(3));
-            nav.style.setProperty('--claim-offset', `${((1 - claimProgress) * 9).toFixed(2)}px`);
-            nav.style.setProperty('--claim-scale', (0.985 + (claimProgress * 0.015)).toFixed(4));
-            hero.style.setProperty('--hero-brand-opacity', (1 - heroProgress).toFixed(3));
-            hero.style.setProperty('--hero-brand-offset', `${(heroProgress * -28).toFixed(2)}px`);
-            hero.style.setProperty('--hero-brand-scale', (1 - (heroProgress * 0.04)).toFixed(4));
-            hero.classList.toggle('is-claim-visible', visible);
-            nav.classList.toggle('site-nav--claim-visible', visible);
-            claim?.setAttribute('aria-hidden', visible ? 'false' : 'true');
         };
 
         const requestUpdate = () => {
@@ -234,7 +222,7 @@
         const root = document.getElementById('offers-root');
         if (!root) return;
         root.innerHTML = '';
-
+        const disclosures = [];
         (data?.items || []).forEach((offer, index) => {
             const accent = offer.accent === 'blue' ? 'blue' : 'red';
             const card = createElement('article', `coaching-card coaching-card--${accent} reveal`);
@@ -248,7 +236,7 @@
             if (offer.image_position) image.style.objectPosition = offer.image_position;
             media.appendChild(image);
 
-            const body = createElement('div', 'coaching-card__body');
+            const body = createElement('div', 'coaching-card__intro');
             body.appendChild(createElement('span', 'coaching-card__number', `0${index + 1}`));
             body.appendChild(createElement('h3', '', offer.title || ''));
             body.appendChild(createElement('p', 'coaching-card__tagline', offer.tagline || ''));
@@ -262,10 +250,10 @@
                 listItem.appendChild(document.createTextNode(item.text || ''));
                 previewServices.appendChild(listItem);
             });
-            body.appendChild(previewServices);
-
-            const disclosure = createElement('details');
+            const disclosure = createElement('details', 'coaching-card__disclosure');
+            disclosure.id = `services-${card.id}`;
             const summary = createElement('summary', '', 'Weitere Leistungen anzeigen');
+            summary.setAttribute('aria-expanded', 'false');
             disclosure.appendChild(summary);
             const details = createElement('div', 'coaching-card__details');
             details.appendChild(createElement('p', '', offer.details?.left_heading || 'Das bekommst du:'));
@@ -280,33 +268,46 @@
             });
             details.appendChild(list);
             disclosure.appendChild(details);
-            body.appendChild(disclosure);
-            disclosure.addEventListener('toggle', () => {
-                summary.textContent = disclosure.open ? 'Leistungen schließen' : 'Weitere Leistungen anzeigen';
+            disclosures.push(disclosure);
+            summary.addEventListener('click', (event) => {
+                event.preventDefault();
+                const open = !disclosure.open;
+                disclosures.forEach((entry) => {
+                    entry.open = open;
+                    const toggle = entry.querySelector('summary');
+                    toggle.textContent = open ? 'Leistungen schließen' : 'Weitere Leistungen anzeigen';
+                    toggle.setAttribute('aria-expanded', String(open));
+                });
             });
 
             const action = createElement('a', `button button--${accent}`,'Kontakt aufnehmen');
             action.href = '#kontakt';
             action.classList.add('coaching-card__action');
-            body.appendChild(action);
-
             card.appendChild(media);
             card.appendChild(body);
+            card.appendChild(previewServices);
+            card.appendChild(disclosure);
+            card.appendChild(action);
             root.appendChild(card);
         });
+        disclosures.forEach((entry) => entry.querySelector('summary').setAttribute('aria-controls', disclosures.map((item) => item.id).join(' ')));
     };
+
+    const feedbackName = (item) => String(item.name || '').trim().split(/\s+/)[0];
 
     const buildTestimonialCard = (testimonial) => {
         const card = createElement('article', 'testimonial-card');
         const header = createElement('div', 'testimonial-card__header');
         const image = createElement('img');
         image.src = testimonial.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
-        image.alt = testimonial.name || 'Testimonial';
+        image.alt = feedbackName(testimonial) || 'Kundenfeedback';
         image.loading = 'lazy';
+        image.style.objectPosition = testimonial.image_position || 'center center';
         if (testimonial.image_placeholder) image.classList.add('is-placeholder');
         header.appendChild(image);
-        header.appendChild(createElement('h3', '', testimonial.name || ''));
+        header.appendChild(createElement('h3', '', feedbackName(testimonial)));
         card.appendChild(header);
+        if (testimonial.result?.trim()) card.appendChild(createElement('p', 'testimonial-card__result', testimonial.result));
         card.appendChild(createElement('blockquote', '', testimonial.quote ? `„${testimonial.quote}“` : ''));
         return card;
     };
@@ -320,7 +321,7 @@
                 ? items.filter((item) => (item.category || 'krafttraining') === category)
                 : items;
             if (!visibleItems.length) {
-                track.appendChild(createElement('p', 'testimonial-card', 'Weitere Testimonials sind in Vorbereitung.'));
+                track.appendChild(createElement('p', 'testimonial-card', 'Weiteres Kundenfeedback ist in Vorbereitung.'));
                 return;
             }
 
@@ -343,7 +344,16 @@
             const firstSet = track?.querySelector('.testimonial-set');
             if (!track || !firstSet || track.dataset.initialized === 'true') return;
             track.dataset.initialized = 'true';
-            track.dataset.autoplay = 'running';
+            let userPaused = reducedMotion;
+            const pauseButton = document.querySelector('[data-testimonial-pause]');
+            const syncPauseButton = () => {
+                track.dataset.autoplay = userPaused ? 'paused' : 'running';
+                if (!pauseButton) return;
+                pauseButton.textContent = userPaused ? 'Animation starten' : 'Animation pausieren';
+                pauseButton.setAttribute('aria-pressed', String(userPaused));
+            };
+            syncPauseButton();
+            pauseButton?.addEventListener('click', () => { userPaused = !userPaused; syncPauseButton(); });
 
             let interactingUntil = 0;
             let isDragging = false;
@@ -388,6 +398,13 @@
             };
 
             refreshGeometry();
+            carousel.addEventListener('keydown', (event) => {
+                if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+                event.preventDefault();
+                pause(2500);
+                phase += (event.key === 'ArrowRight' ? 1 : -1) * (firstSet.querySelector('.testimonial-card').getBoundingClientRect().width + gap());
+                applyPosition();
+            });
 
             carousel.addEventListener('wheel', (event) => {
                 const horizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.1;
@@ -451,9 +468,9 @@
             const autoplay = (timestamp) => {
                 const deltaTime = Math.min(64, timestamp - lastAutoTick);
                 lastAutoTick = timestamp;
-                if (!document.hidden && !isDragging && timestamp >= interactingUntil) {
+                if (!document.hidden && !userPaused && !isPointerDown && timestamp >= interactingUntil) {
                     const baseSpeed = window.innerWidth < 768 ? 46 : 58;
-                    const speed = reducedMotion ? baseSpeed * 0.78 : baseSpeed;
+                    const speed = baseSpeed;
                     pixelRemainder += speed * deltaTime / 1000;
                     const pixels = Math.floor(pixelRemainder);
                     if (pixels > 0) {
@@ -471,6 +488,7 @@
             });
 
             window.addEventListener('resize', refreshGeometry, { passive: true });
+            document.fonts?.ready.then(refreshGeometry);
         });
     };
 
@@ -552,9 +570,13 @@
 
         let activeIndex = 0;
         const stage = createElement('div', 'gallery-stage');
+        const imageButton = createElement('button', 'gallery-image-button');
+        imageButton.type = 'button';
+        imageButton.setAttribute('aria-label', 'Nächstes Bild anzeigen');
         const image = createElement('img');
         image.loading = 'lazy';
-        stage.appendChild(image);
+        imageButton.appendChild(image);
+        stage.appendChild(imageButton);
 
         const previous = createElement('button', 'gallery-arrow gallery-arrow--prev', '‹');
         previous.type = 'button';
@@ -565,47 +587,27 @@
         stage.appendChild(previous);
         stage.appendChild(next);
 
-        const thumbs = createElement('div', 'gallery-thumbs');
-        const thumbButtons = items.map((item, index) => {
-            const button = createElement('button', 'gallery-thumb');
-            button.type = 'button';
-            button.setAttribute('aria-label', `Bild ${index + 1} anzeigen`);
-            const thumb = createElement('img');
-            thumb.src = item.image || '';
-            thumb.alt = '';
-            thumb.loading = 'lazy';
-            thumb.style.objectPosition = item.image_position || 'center center';
-            button.appendChild(thumb);
-            thumbs.appendChild(button);
-            return button;
-        });
-
+        const status = createElement('p', 'gallery-status');
+        status.setAttribute('aria-live', 'polite');
+        status.setAttribute('aria-atomic', 'true');
         const show = (index) => {
             activeIndex = (index + items.length) % items.length;
-            image.style.opacity = '0.35';
-            window.setTimeout(() => {
-                image.src = items[activeIndex].image || '';
-                image.alt = items[activeIndex].alt || '';
-                image.style.objectPosition = items[activeIndex].image_position || 'center center';
-                image.style.opacity = '1';
-            }, 90);
-            thumbButtons.forEach((button, buttonIndex) => {
-                button.classList.toggle('is-active', buttonIndex === activeIndex);
-                button.setAttribute('aria-current', buttonIndex === activeIndex ? 'true' : 'false');
-            });
+            image.src = items[activeIndex].image || '';
+            image.alt = items[activeIndex].alt || '';
+            image.style.objectPosition = items[activeIndex].image_position || 'center center';
+            status.textContent = `Bild ${activeIndex + 1} / ${items.length} – ${items[activeIndex].alt || ''}`;
         };
-
-        thumbButtons.forEach((button, index) => button.addEventListener('click', () => show(index)));
+        imageButton.addEventListener('click', () => show(activeIndex + 1));
         previous.addEventListener('click', () => show(activeIndex - 1));
         next.addEventListener('click', () => show(activeIndex + 1));
-        stage.tabIndex = 0;
         stage.addEventListener('keydown', (event) => {
+            if (['ArrowLeft', 'ArrowRight'].includes(event.key)) event.preventDefault();
             if (event.key === 'ArrowLeft') show(activeIndex - 1);
             if (event.key === 'ArrowRight') show(activeIndex + 1);
         });
 
         root.appendChild(stage);
-        root.appendChild(thumbs);
+        root.appendChild(status);
         show(0);
     };
 
@@ -614,8 +616,7 @@
         const eyebrow = document.getElementById('holistic-eyebrow');
         const title = document.getElementById('holistic-title');
         const lead = document.getElementById('holistic-lead');
-        const primaryCopy = document.getElementById('holistic-copy-primary');
-        const secondaryCopy = document.getElementById('holistic-copy-secondary');
+        const copy = document.getElementById('holistic-copy');
         const expanded = document.getElementById('holistic-expanded');
 
         if (eyebrow) eyebrow.textContent = data.eyebrow || '';
@@ -626,24 +627,16 @@
         const visibleCount = Math.min(allParagraphs.length, Math.max(2, requestedVisibleCount));
         const visibleParagraphs = allParagraphs.slice(0, visibleCount);
         const remainingParagraphs = allParagraphs.slice(visibleCount);
-        const splitAt = Math.max(1, Math.ceil(visibleParagraphs.length / 2));
-        if (primaryCopy) {
-            primaryCopy.innerHTML = '';
-            visibleParagraphs.slice(0, splitAt).forEach((text) => primaryCopy.appendChild(createElement('p', '', text)));
-        }
-        if (secondaryCopy) {
-            secondaryCopy.innerHTML = '';
-            visibleParagraphs.slice(splitAt).forEach((text) => secondaryCopy.appendChild(createElement('p', '', text)));
+        if (copy) {
+            copy.innerHTML = '';
+            visibleParagraphs.forEach((text) => copy.appendChild(createElement('p', '', text)));
         }
         if (expanded) {
             expanded.innerHTML = '';
             remainingParagraphs.forEach((text) => expanded.appendChild(createElement('p', '', text)));
         }
         const gallery = data.gallery || [];
-        const requestedGallerySplit = Number(data.gallery_split_count || Math.ceil(gallery.length / 2));
-        const gallerySplit = Math.min(gallery.length, Math.max(1, requestedGallerySplit));
-        renderGallery(gallery.slice(0, gallerySplit), 'holistic-gallery-primary');
-        renderGallery(gallery.slice(gallerySplit).length ? gallery.slice(gallerySplit) : gallery, 'holistic-gallery-secondary');
+        renderGallery(gallery, 'holistic-gallery');
 
         const disclosure = document.getElementById('holistic-details');
         const summary = disclosure?.querySelector('summary');
@@ -661,8 +654,10 @@
     const renderTopics = (data) => {
         const root = document.getElementById('topics-root');
         const title = document.getElementById('topics-title');
+        const subline = document.getElementById('topics-subline');
         if (!root) return;
         if (title) title.textContent = data?.title || '';
+        if (subline) subline.textContent = data?.subline || '';
         root.innerHTML = '';
 
         (data?.items || []).forEach((item, index) => {
@@ -685,8 +680,20 @@
     };
 
     const renderSiteContent = (site) => {
-        const navClaim = document.getElementById('site-nav-claim');
-        if (navClaim) navClaim.textContent = site?.hero?.headline || '';
+        const heroHeadline = document.getElementById('hero-headline');
+        if (heroHeadline && site?.hero?.headline) {
+            const parts = site.hero.headline.split(' oder ');
+            heroHeadline.textContent = parts.shift();
+            if (parts.length) {
+                heroHeadline.appendChild(document.createElement('br'));
+                heroHeadline.appendChild(document.createTextNode('oder '));
+                heroHeadline.appendChild(createElement('span', '', parts.join(' oder ')));
+            }
+        }
+        const kicker = document.getElementById('hero-kicker');
+        const subline = document.getElementById('hero-subline');
+        if (kicker) kicker.textContent = site?.hero?.kicker || '';
+        if (subline) subline.textContent = site?.hero?.subline || '';
 
         renderApproach(site?.philosophy, 'philosophy');
         renderApproach(site?.methodology, 'methodology');
@@ -701,39 +708,38 @@
         if (!root) return;
         root.innerHTML = '';
         const items = data?.items || [];
-        const groups = [
-            { id: 'krafttraining', title: 'Testimonials Krafttraining' },
-            { id: 'ganzheitlich', title: 'Stimmen aus dem ganzheitlichen Coaching' },
-        ];
-
-        groups.forEach((group) => {
-            const groupItems = items.filter((item) => (item.category || 'krafttraining') === group.id);
-            if (!groupItems.length) return;
-            const section = createElement('section', 'testimonial-detail-group');
-            section.id = `testimonials-${group.id}`;
-            section.appendChild(createElement('h2', 'testimonial-detail-group__title', group.title));
-            const list = createElement('div', 'testimonial-detail-group__list');
-            groupItems.forEach((item) => {
-                const article = createElement('article', 'testimonial-detail reveal');
-                article.id = `testimonial-${slugify(item.name)}`;
+        items.forEach((item) => {
+                const article = createElement('article', 'testimonial-detail');
+                article.id = `feedback-${slugify(feedbackName(item))}`;
                 const media = createElement('div', 'testimonial-detail__media');
                 const image = createElement('img');
                 image.src = item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
-                image.alt = item.name || 'Testimonial';
+                image.alt = feedbackName(item) || 'Kundenfeedback';
                 image.loading = 'lazy';
+                image.style.objectPosition = item.image_position || 'center center';
                 if (item.image_placeholder) image.classList.add('is-placeholder');
                 media.appendChild(image);
                 const copy = createElement('div', 'testimonial-detail__copy');
-                copy.appendChild(createElement('p', 'section-kicker', group.id === 'ganzheitlich' ? 'Ganzheitliches Coaching' : 'Krafttraining'));
-                copy.appendChild(createElement('h3', '', item.name || ''));
+                const category = {ganzheitlich: 'Ganzheitliches Coaching', performance: 'Performance Coaching'}[item.category] || 'Krafttraining';
+                copy.appendChild(createElement('p', 'section-kicker', category));
+                copy.appendChild(createElement('h2', '', feedbackName(item)));
+                if (item.result?.trim()) copy.appendChild(createElement('p', 'testimonial-card__result', item.result));
                 copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
                 article.appendChild(media);
                 article.appendChild(copy);
-                list.appendChild(article);
-            });
-            section.appendChild(list);
-            root.appendChild(section);
+                root.appendChild(article);
         });
+        // Tall feedback text scrolls naturally before sticking at its lower edge.
+        const updateSticky = () => root.querySelectorAll('.testimonial-detail__copy').forEach((copy) => {
+            copy.style.setProperty('--feedback-sticky-top', `${Math.min(getNavOffset() + 10, window.innerHeight - copy.offsetHeight - 24)}px`);
+        });
+        updateSticky();
+        window.addEventListener('resize', updateSticky, {passive: true});
+        document.fonts?.ready.then(updateSticky);
+        if ('ResizeObserver' in window) {
+            const observer = new ResizeObserver(updateSticky);
+            root.querySelectorAll('.testimonial-detail__copy').forEach((copy) => observer.observe(copy));
+        }
     };
 
     const renderAboutPage = (data) => {
@@ -917,7 +923,7 @@
         initScrollRestoration();
         initAnchorNavigation();
         initNavigation();
-        initHeroClaim();
+        initHeroNavigation();
         observeReveals();
         initWaitlistForm();
         loadPageContent();

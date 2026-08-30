@@ -1,8 +1,8 @@
 {
   "hero": {
-    "kicker": "Lukas Schwarz Coaching",
-    "headline": "Kompensierst du noch oder lebst du schon?",
-    "subline": ""
+    "kicker": "Dein Körper. Dein Leben. Dein Weg.",
+    "headline": "Kompensierst du noch oder wächst du schon?",
+    "subline": "Bewegen. Verstehen. Fühlen."
   },
   "philosophy": {
     "eyebrow": "Philosophie",
@@ -38,7 +38,7 @@
     "image_alt": "Lukas Schwarz nach einem Wettkampf"
   },
   "contact": {
-    "title": "Lass uns herausfinden, was du wirklich brauchst.",
+    "title": "Lass uns herausfinden\nwas du wirklich brauchst",
     "text": "",
     "whatsapp_url": "https://wa.me/message/DESOIT6QG64AJ1",
     "telegram_url": "https://t.me/Lukas_Schwarz",
@@ -48,39 +48,48 @@
     "training": {
       "title": "FAQ Krafttraining",
       "items": [
-      {
-        "question": "Was erwarte ich von dir?",
-        "answer": "Ehrliche Kommunikation: Ohne Vertrauen und Kommunikation funktioniert Coaching nicht.\n\nDein Bestmöglichstes: Ich kann dir den roten Teppich ausrollen — gehen musst du selbst. Fehler sind willkommen. Daraus lernen wir."
-      },
-      {
-        "question": "Was bedeutet Biomechanik genau?",
-        "answer": "Biomechanik ist die wissenschaftliche Betrachtung des menschlichen Körpers und seiner Bewegungsgesetze. Statt Muskeln nur isoliert zu betrachten, analysieren wir hier die fundamentalen Grundprinzipien des Körpers. Wir betrachten wie dein gesamtes System aus Muskeln, Gelenken und Nerven als Einheit funktioniert."
-      },
-      {
-        "question": "Wie lange dauert es, bis ich schmerzfrei werde?",
-        "answer": "In der Regel braucht es 6–8 Wochen, bis erste deutliche Erfolge im Bereich der Schmerzsymptomatik sichtbar werden. Eine komplette Beschwerdefreiheit hängt immer stark von der individuellen Problematik und der Dauer der bestehenden Kompensation ab."
-      },
-      {
-        "question": "Wie lange dauert es, bis ich meine Wettkampfleistung verbessern kann?",
-        "answer": "Für eine spezifische Wettkampfvorbereitung sollten mindestens 3 Monate eingeplant werden. Wenn Kompensationen vorliegen, die deine aktuelle Wettkampfleistung einschränken, sind 6 Monate empfehlenswert, um nachhaltige Veränderungen umzusetzen."
-      },
-      {
-        "question": "Was kostet ein Coaching?",
-        "answer": "Die Coaching Preise werden nach einer ersten Anfrage und Analyse deiner Ziele gemeinsam besprochen."
-      },
-      {
-        "question": "Welche Voraussetzungen brauche ich für das Training?",
-        "answer": "Grundsätzlich ist das Training in jedem kommerziellen Fitnessstudio oder auch mit einfachem Equipment zu Hause möglich."
-      },
-      {
-        "question": "Ich möchte langfristig abnehmen und den Jo-Jo-Effekt vermeiden. Ist das Lifestyle Coaching für mich geeignet?",
-        "answer": "Ja, das Lifestyle Coaching ist genau dafür geeignet. Der Fokus liegt darauf, Ursachen für wiederkehrende Probleme im Training und in der Ernährung zu erkennen und langfristige Strategien zu entwickeln, die zu dir und deinem Alltag passen."
-      }
+        {
+          "question": "Was erwarte ich von dir?",
+          "answer": "Ehrliche Kommunikation: Ohne Vertrauen und Kommunikation funktioniert Coaching nicht.\n\nDein Bestmöglichstes: Ich kann dir den roten Teppich ausrollen — gehen musst du selbst. Fehler sind willkommen. Daraus lernen wir."
+        },
+        {
+          "question": "Was bedeutet Biomechanik genau?",
+          "answer": "Biomechanik ist die wissenschaftliche Betrachtung des menschlichen Körpers und seiner Bewegungsgesetze. Statt Muskeln nur isoliert zu betrachten, analysieren wir hier die fundamentalen Grundprinzipien des Körpers. Wir betrachten wie dein gesamtes System aus Muskeln, Gelenken und Nerven als Einheit funktioniert."
+        },
+        {
+          "question": "Wie lange dauert es, bis ich schmerzfrei werde?",
+          "answer": "In der Regel braucht es 6–8 Wochen, bis erste deutliche Erfolge im Bereich der Schmerzsymptomatik sichtbar werden. Eine komplette Beschwerdefreiheit hängt immer stark von der individuellen Problematik und der Dauer der bestehenden Kompensation ab."
+        },
+        {
+          "question": "Wie lange dauert es, bis ich mit Performance Coaching meine Wettkampfleistung verbessern kann?",
+          "answer": "Für eine spezifische Wettkampfvorbereitung sollten mindestens 3 Monate eingeplant werden. Wenn Kompensationen vorliegen, die deine aktuelle Wettkampfleistung einschränken, sind 6 Monate empfehlenswert, um nachhaltige Veränderungen umzusetzen."
+        },
+        {
+          "question": "Ich möchte langfristig abnehmen und den Jo-Jo-Effekt vermeiden. Ist das Lifestyle Coaching für mich geeignet?",
+          "answer": "Ja, das Lifestyle Coaching ist genau dafür geeignet. Der Fokus liegt darauf, Ursachen für wiederkehrende Probleme im Training und in der Ernährung zu erkennen und langfristige Strategien zu entwickeln, die zu dir und deinem Alltag passen."
+        }
       ]
     },
     "holistic": {
       "title": "FAQ Ganzheitliches Coaching",
-      "items": []
+      "items": [
+        {
+          "question": "Woran erkenne ich, dass ich kompensiere?",
+          "answer": "Wenn du immer wieder in denselben Mustern landest, obwohl du es eigentlich anders möchtest. Du weißt, was dir guttut, tust es aber trotzdem nicht. Du bleibst beispielsweise bei der abendlichen Schokolade, obwohl du eigentlich auf Diät bist."
+        },
+        {
+          "question": "Für wen ist das Coaching geeignet?",
+          "answer": "Für Menschen, die nicht nur besser funktionieren, sondern sich selbst besser verstehen wollen. Für dich, wenn du spürst, dass alte Muster, innere Blockaden oder ein fehlender Kompass dich davon abhalten, so zu leben, wie du es eigentlich möchtest – dein eigenes Leben zu leben."
+        },
+        {
+          "question": "Wie lange dauert das Coaching?",
+          "answer": "Das Coaching dauert insgesamt 30 Tage und kann bei Bedarf verlängert werden."
+        },
+        {
+          "question": "Kann man das Coaching auch live machen?",
+          "answer": "Ja. Das Coaching ist auch live oder als Reise-Coaching möglich. Im Rahmen eines Live-Coachings übernimmt der Klient die anfallenden Kosten für Anfahrt, Unterkunft und Verpflegung."
+        }
+      ]
     }
   },
   "holistic": {
@@ -116,46 +125,74 @@
       "Authentizität: Wenn deine Worte, dein Denken, dein Fühlen und deine Handlungen wieder in eine Richtung zeigen.",
       "Freiheit: Freiheit von alten Mustern, Einschränkungen und Blockaden – und Freiheit für Entwicklung, Leistungsfähigkeit und ein Leben, das zu dir Leichtigkeit verspricht."
     ],
-    "gallery_split_count": 4,
     "gallery": [
-      { "image": "assets/img/DSCF9956.JPG", "alt": "Gemeinsamer Abend am Tisch" },
-      { "image": "assets/img/ganzheitlich-berggruppe.jpg", "alt": "Gemeinsame Zeit in den Bergen" },
-      { "image": "assets/img/DSCF9953.JPG", "alt": "Freunde bei einem gemeinsamen Abend" },
-      { "image": "assets/img/DSCF9971.JPG", "alt": "Lukas Schwarz im Gespräch" },
-      { "image": "assets/img/resilient-mentoring/hallen-event.jpg", "alt": "Lukas Schwarz mit einer Athletin in der Veranstaltungshalle" },
-      { "image": "assets/img/resilient-mentoring/mentoring-am-wasser.jpg", "alt": "Gemeinsame Zeit am Wasser" },
-      { "image": "assets/img/resilient-mentoring/mentoring-unterwegs.jpg", "alt": "Lukas Schwarz mit einem Coachee unterwegs" },
-      { "image": "assets/img/resilient-mentoring/gemeinsame-zeit-am-meer.jpg", "alt": "Gemeinsame Zeit mit der Mentoring-Gruppe am Meer" },
-      { "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG", "alt": "Gemeinsamer Erfolg nach dem Wettkampf", "image_position": "center 25%" }
+      {
+        "image": "assets/img/resilient-mentoring/hallen-event.jpg",
+        "alt": "Lukas Schwarz mit einer Athletin in der Veranstaltungshalle"
+      },
+      {
+        "image": "assets/img/DSCF9956.JPG",
+        "alt": "Gemeinsamer Abend am Tisch"
+      },
+      {
+        "image": "assets/img/ganzheitlich-berggruppe.jpg",
+        "alt": "Gemeinsame Zeit in den Bergen"
+      },
+      {
+        "image": "assets/img/DSCF9953.JPG",
+        "alt": "Freunde bei einem gemeinsamen Abend"
+      },
+      {
+        "image": "assets/img/DSCF9971.JPG",
+        "alt": "Lukas Schwarz im Gespräch"
+      },
+      {
+        "image": "assets/img/resilient-mentoring/mentoring-am-wasser.jpg",
+        "alt": "Gemeinsame Zeit am Wasser"
+      },
+      {
+        "image": "assets/img/resilient-mentoring/mentoring-unterwegs.jpg",
+        "alt": "Lukas Schwarz mit einem Coachee unterwegs"
+      },
+      {
+        "image": "assets/img/resilient-mentoring/gemeinsame-zeit-am-meer.jpg",
+        "alt": "Gemeinsame Zeit mit der Mentoring-Gruppe am Meer"
+      },
+      {
+        "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG",
+        "alt": "Gemeinsamer Erfolg nach dem Wettkampf",
+        "image_position": "center 25%"
+      }
     ]
   },
   "topics": {
-    "title": "Themen, die wir im Rahmen des Coachings behandeln könnten",
+    "title": "Coaching-Themen",
     "items": [
       {
         "title": "Werte & Ziele",
         "subtitle": "Kompass",
         "text": "Wer bist du eigentlich und was willst du eigentlich? Und wo stellst du dich hinten an, obwohl du es eigentlich gar nicht möchtest? Deine Träume, deine Ziele, deine Ausrichtung – genau das macht dich energetisch.",
-        "image": "assets/img/topic-values.svg"
+        "image": "assets/img/topic-values.svg?v=20260830-theme"
       },
       {
         "title": "Soziales & Umfeld",
         "subtitle": "Masken-Bild",
         "text": "Dein Umfeld hat Einfluss auf dich – positiven wie negativen. Familie, Freunde und Partner sollten zu dir passen. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst.",
-        "image": "assets/img/topic-social.svg?v=20260826"
+        "image": "assets/img/topic-social.svg?v=20260830-theme"
       },
       {
         "title": "Kompensationen & Blockaden",
         "subtitle": "Phoenix",
         "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
-        "image": "assets/img/topic-blocks.svg?v=20260826"
+        "image": "assets/img/topic-blocks.svg?v=20260830-theme"
       },
       {
         "title": "Gesundheit & Training",
         "subtitle": "Körper und Geist",
         "text": "Körper und Geist sind untrennbar miteinander verbunden. Deine Haltung ist die Repräsentation deines Lebens. Wie sieht es in dir aus? Nur ein fitter Körper kann einen fitten Geist haben.",
-        "image": "assets/img/topic-health.svg?v=20260826"
+        "image": "assets/img/topic-health.svg?v=20260830-theme"
       }
-    ]
+    ],
+    "subline": "Bereiche, die wir im Rahmen eines Coachings behandeln könnten."
   }
 }

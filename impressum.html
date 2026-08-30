@@ -1,108 +1,82 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
-
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Impressum von Lukas Schwarz Coaching.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Impressum von Lukas Schwarz LLC – Lukas Schwarz Coaching.">
+    <meta name="theme-color" content="#090909">
     <title>Impressum | Lukas Schwarz Coaching</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="assets/tailwind-config.js"></script>
+    <link rel="icon" href="assets/img/Logo-LS_Coaching_white_cut.png">
+    <link rel="stylesheet" href="assets/custom.css">
     <script defer src="assets/cookie-consent.js"></script>
-    <style>
-         :root {
-            color-scheme: dark;
-        }
-        
-        @media (prefers-color-scheme: light) {
-             :root {
-                color-scheme: light;
-            }
-            body {
-                background: #f1f5f9 !important;
-                color: #111827 !important;
-            }
-            nav,
-            footer {
-                background: #f1f5f9 !important;
-                border-color: #e5e7eb !important;
-            }
-            .card {
-                background: #f8fafc !important;
-                border-color: #e5e7eb !important;
-            }
-            .copy {
-                color: #374151 !important;
-            }
-            .text-white {
-                color: #111827 !important;
-            }
-        }
-    </style>
+    <script defer src="assets/site.js"></script>
 </head>
-
-<body class="bg-black text-gray-300 font-sans antialiased">
-
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="assets/img/Logo-LS_Coaching_white-coloured.png" alt="Lukas Schwarz Coaching" class="h-9 w-auto object-contain">
-                <span class="sr-only">Startseite</span>
+<body class="site-body">
+    <nav class="site-nav" aria-label="Hauptnavigation">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand" aria-label="Lukas Schwarz Coaching – zur Startseite">
+                <img src="assets/img/Logo-LS_Coaching_white-coloured.png" alt="" class="site-nav__logo">
+                <span class="site-nav__brand-name">Lukas Schwarz Coaching</span>
             </a>
-            <a href="index.html" class="text-xs font-bold tracking-widest uppercase text-white hover:text-brand-gold transition">Startseite</a>
+            <div class="site-nav__actions">
+                <a href="index.html#kontakt" class="site-nav__contact">Kontakt</a>
+                <button id="site-menu-button" type="button" class="site-nav__menu-button" aria-controls="site-menu" aria-expanded="false">
+                    <span>Menü</span><span class="site-nav__menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                </button>
+            </div>
+        </div>
+        <div id="site-menu" class="site-menu" aria-hidden="true" inert>
+            <div class="site-menu__panel">
+                <a class="site-menu__item" href="index.html#philosophie">Philosophie</a>
+                <a class="site-menu__item" href="index.html#methodik">Warum / Methodik</a>
+                <div class="site-menu__group">
+                    <a class="site-menu__item" href="index.html#coaching">Coaching</a>
+                    <div class="site-menu__children">
+                        <a href="index.html#lifestyle">Lifestyle Coaching</a>
+                        <a href="index.html#performance">Performance Coaching</a>
+                        <a href="index.html#ganzheitlich">Ganzheitliches Coaching</a>
+                    </div>
+                </div>
+                <a class="site-menu__item" href="index.html#kundenfeedback">Kundenfeedback</a>
+                <a class="site-menu__item" href="index.html#kontakt">Kontakt</a>
+                <a class="site-menu__item" href="index.html#faq">FAQ</a>
+            </div>
         </div>
     </nav>
-
-    <main class="max-w-3xl mx-auto px-4 pt-28 pb-20">
-        <h1 class="text-4xl md:text-5xl font-black text-white uppercase italic mb-10">Impressum</h1>
-
-        <div class="card border border-gray-800 bg-brand-card p-6 md:p-8 mb-10">
-            <p class="copy text-gray-400 text-sm leading-relaxed">Stand: 22.03.2026</p>
-            <p class="copy text-gray-400 text-sm leading-relaxed mt-3">
-                Angaben gemäß § 5 DDG und § 18 MStV.
-            </p>
-        </div>
-
-        <div class="space-y-8">
-            <section class="card border border-gray-800 bg-brand-card p-6 md:p-8">
-                <h2 class="text-white font-black uppercase tracking-widest text-xs mb-4">1. Anbieter</h2>
-                <p class="copy text-gray-400 leading-relaxed">
-                    Lukas Schwarz<br> Osterfeldstraße 1<br> 86391 Stadtbergen <br> Deutschland
-                </p>
-            </section>
-
-            <section class="card border border-gray-800 bg-brand-card p-6 md:p-8">
-                <h2 class="text-white font-black uppercase tracking-widest text-xs mb-4">2. Kontakt</h2>
-                <p class="copy text-gray-400 leading-relaxed">
-                    E-Mail: luk.black@me.com<br>
-                </p>
-            </section>
-
-            <section class="card border border-gray-800 bg-brand-card p-6 md:p-8">
-                <h2 class="text-white font-black uppercase tracking-widest text-xs mb-4">3. Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-                <p class="copy text-gray-400 leading-relaxed">
-                    Lukas Schwarz<br> Anschrift wie oben
-                </p>
-            </section>
-
-            <section class="card border border-gray-800 bg-brand-card p-6 md:p-8">
-                <h2 class="text-white font-black uppercase tracking-widest text-xs mb-4">4. Verbraucherstreitbeilegung (§ 36 VSBG)</h2>
-                <p class="copy text-gray-400 leading-relaxed">
-                    Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-                </p>
-            </section>
+    <main class="content-page legal-page">
+        <div class="section-shell">
+            <header class="content-page__intro">
+                <p class="section-kicker">Lukas Schwarz LLC</p>
+                <h1>Impressum</h1>
+                <p>Stand: 29. August 2026</p>
+            </header>
+            <div class="legal-copy">
+                <p>Angaben gemäß § 5 DDG und § 18 MStV.</p>
+                <h2>1. Anbieter</h2>
+                <p>Unternehmen: Lukas Schwarz LLC</p>
+                <p>Anschrift: 8206 Louisiana Blvd NE, Ste A #10372, Albuquerque, New Mexico 87113, USA</p>
+                <p>Vertreten durch: Lukas Schwarz</p>
+                <h2>2. Kontakt</h2>
+                <p>E-Mail: <a href="mailto:luk.black@me.com">luk.black@me.com</a></p>
+                <p>Website: <a href="https://www.lukasschwarzcoaching.com">www.lukasschwarzcoaching.com</a></p>
+                <h2>3. Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+                <p>Name: Lukas Schwarz</p>
+                <p>Anschrift: 8206 Louisiana Blvd NE, Ste A #10372, Albuquerque, New Mexico 87113, USA</p>
+                <h2>4. Verbraucherstreitbeilegung (§ 36 VSBG)</h2>
+                <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            </div>
         </div>
     </main>
-
-    <footer class="py-12 bg-black text-gray-600 text-center text-[10px] uppercase tracking-[0.4em] border-t border-gray-900">
-        <p>© 2026 Lukas Schwarz Coaching</p>
-        <div class="mt-6 flex justify-center gap-8">
-            <a href="impressum.html" class="text-gray-600 hover:text-gray-400 transition">Impressum</a>
-            <a href="datenschutz.html" class="text-gray-600 hover:text-gray-400 transition">Datenschutz</a>
-            <button type="button" data-open-cookie-settings class="text-gray-600 hover:text-gray-400 transition">Cookie-Einstellungen</button>
+    <footer class="site-footer">
+        <div class="section-shell site-footer__inner">
+            <img src="assets/img/Logo-LS_Coaching_white-coloured.png" alt="Lukas Schwarz Coaching" class="site-footer__logo">
+            <p>© 2026 Lukas Schwarz Coaching</p>
+            <div class="site-footer__links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <button type="button" data-open-cookie-settings>Cookie-Einstellungen</button>
+            </div>
         </div>
     </footer>
-
 </body>
-
 </html>

@@ -1,10 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
   <title id="title">Kompass für Werte und Ziele</title>
+  <style>
+    :root { --blue: #7ca3ff; --ink: #f5f5f2; --gold: #d4b06c; --red: #f27979; }
+    @media (prefers-color-scheme: light) {
+      :root { --blue: #2755c7; --ink: #232830; --gold: #987329; --red: #a91d1d; }
+    }
+  </style>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="80" cy="60" r="42" stroke="#2755c7" stroke-width="3"/>
-    <circle cx="80" cy="60" r="31" stroke="#ffffff" stroke-opacity=".34" stroke-width="1.5"/>
-    <path d="m80 28 9 23 23 9-23 9-9 23-9-23-23-9 23-9Z" stroke="#c5a059" stroke-width="3"/>
-    <path d="m80 28 9 23-9 9-9-9Z" fill="#a91d1d" stroke="#a91d1d" stroke-width="2"/>
-    <circle cx="80" cy="60" r="4.5" fill="#ffffff" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="80" cy="60" r="42" stroke="var(--blue)" stroke-width="3"/>
+    <circle cx="80" cy="60" r="31" stroke="var(--ink)" stroke-opacity=".34" stroke-width="1.5"/>
+    <path d="m80 28 9 23 23 9-23 9-9 23-9-23-23-9 23-9Z" stroke="var(--gold)" stroke-width="3"/>
+    <path d="m80 28 9 23-9 9-9-9Z" fill="var(--red)" stroke="var(--red)" stroke-width="2"/>
+    <circle cx="80" cy="60" r="4.5" fill="var(--ink)" stroke="var(--ink)" stroke-width="1"/>
   </g>
 </svg>

@@ -1,11 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
-  <title id="title">Aufsteigender Phönix für gelöste Blockaden</title>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M79 49C65 37 50 28 25 23c9 9 15 17 18 26-7-4-14-6-22-6 12 10 21 18 28 30" stroke="#2755c7" stroke-width="3"/>
-    <path d="M81 49c14-12 29-21 54-26-9 9-15 17-18 26 7-4 14-6 22-6-12 10-21 18-28 30" stroke="#a91d1d" stroke-width="3"/>
-    <path d="M80 45c-7 8-11 18-9 29 1 9-3 16-12 23 10-1 17-5 21-12 4 7 11 11 21 12-9-7-13-14-12-23 2-11-2-21-9-29Z" stroke="#c5a059" stroke-width="3"/>
-    <path d="M80 45c-2-6 1-12 8-16-1 6 3 10 9 12-6 0-11 3-17 10" stroke="#ffffff" stroke-opacity=".7" stroke-width="2.5"/>
-    <path d="m51 47-13-11m18 23-17-4m70-8 13-11m-18 23 17-4" stroke="#ffffff" stroke-opacity=".35" stroke-width="2"/>
-    <path d="M80 62c-5 8-6 17 0 28 6-11 5-20 0-28Z" fill="#a91d1d" fill-opacity=".7" stroke="#a91d1d" stroke-width="2"/>
+  <title id="title">Phönix mit ausgebreiteten Flügeln und flammendem Schweif</title>
+  <style>
+    :root { --blue: #7ca3ff; --red: #f27979; --gold: #d4b06c; --gold-edge: #d4b06c; }
+    @media (prefers-color-scheme: light) {
+      :root { --blue: #2755c7; --red: #a91d1d; --gold: #987329; --gold-edge: #8b6324; }
+    }
+  </style>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M77 55C61 46 43 21 16 13c8 17 17 33 34 45L27 47c10 15 25 25 42 27" fill="none" stroke="var(--blue)" stroke-width="3"/>
+    <path d="M83 55c16-9 34-34 61-42-8 17-17 33-34 45l23-11c-10 15-25 25-42 27" fill="none" stroke="var(--red)" stroke-width="3"/>
+    <path d="m30 26 32 30M39 48l25 16m66-38L98 56m23-8L96 64" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+    <path d="M72 48c-5-14 4-26 17-22l9 7-12 3c4 8 6 16 4 26-2 12-9 18-10 26-1-8-8-14-10-26Z" fill="#c5a059" stroke="var(--gold-edge)" stroke-width="2.5"/>
+    <circle cx="85" cy="30" r="2" fill="#17191c"/>
+    <path d="M80 78c-2 13-18 14-18 29 8-4 14-8 18-15 4 7 10 11 18 15 0-15-16-16-18-29Z" fill="none" stroke="var(--red)" stroke-width="3"/>
+    <path d="M64 82c-9 7-17 15-16 25m48-25c9 7 17 15 16 25M80 95v18" fill="none" stroke="var(--gold)" stroke-width="3"/>
   </g>
 </svg>
