@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
   <title id="title">Kompass für Werte und Ziele</title>
   <style>
-    :root { --blue: #7ca3ff; --ink: #f5f5f2; --gold: #d4b06c; --red: #f27979; }
+    :root { --blue: #7ca3ff; --ink: #f5f5f2; --gold: #c5a059; --red: #f27979; }
     @media (prefers-color-scheme: light) {
-      :root { --blue: #2755c7; --ink: #232830; --gold: #987329; --red: #a91d1d; }
+      :root { --blue: #2755c7; --ink: #232830; --gold: #c5a059; --red: #a91d1d; }
     }
   </style>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">

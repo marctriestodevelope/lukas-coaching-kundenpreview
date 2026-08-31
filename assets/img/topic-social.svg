@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
   <title id="title">Zwei zentrierte Theatermasken für Rollen und soziales Umfeld</title>
   <style>
-    :root { --blue: #7ca3ff; --red: #f27979; --ink: #f5f5f2; --gold: #d4b06c; --surface: #171819; }
+    :root { --blue: #7ca3ff; --red: #f27979; --ink: #f5f5f2; --gold: #c5a059; --surface: #171819; }
     @media (prefers-color-scheme: light) {
-      :root { --blue: #2755c7; --red: #a91d1d; --ink: #232830; --gold: #987329; --surface: #fff; }
+      :root { --blue: #2755c7; --red: #a91d1d; --ink: #232830; --gold: #c5a059; --surface: #fff; }
     }
   </style>
   <g stroke-linecap="round" stroke-linejoin="round">

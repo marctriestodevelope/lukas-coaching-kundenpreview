@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
   <title id="title">Phönix mit ausgebreiteten Flügeln und flammendem Schweif</title>
   <style>
-    :root { --blue: #7ca3ff; --red: #f27979; --gold: #d4b06c; --gold-edge: #d4b06c; }
+    :root { --blue: #7ca3ff; --red: #f27979; --gold: #c5a059; --gold-edge: #c5a059; }
     @media (prefers-color-scheme: light) {
-      :root { --blue: #2755c7; --red: #a91d1d; --gold: #987329; --gold-edge: #8b6324; }
+      :root { --blue: #2755c7; --red: #a91d1d; --gold: #c5a059; --gold-edge: #c5a059; }
     }
   </style>
   <g stroke-linecap="round" stroke-linejoin="round">

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
+  <title id="title">Phönix – Aufbruch mit geöffneten Flügeln</title>
+  <style>
+    :root { --blue: #7ca3ff; --red: #f27979; --ink: #f5f5f2; --gold: #c5a059; }
+    @media (prefers-color-scheme: light) { :root { --blue: #2755c7; --red: #a91d1d; --ink: #232830; } }
+  </style>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M72 61C52 53 37 36 25 15c-2 25 9 45 34 58L37 62c8 14 21 21 37 20" stroke="var(--blue)"/>
+    <path d="M88 61c20-8 35-25 47-46 2 25-9 45-34 58l22-11c-8 14-21 21-37 20" stroke="var(--red)"/>
+    <path d="M44 39 66 62m50-23L94 62" stroke="var(--gold)"/>
+    <path d="M73 49c-1-11 6-18 15-14l7 6-11 2c8 18 3 33-4 44-8-10-13-23-7-38Z" fill="var(--gold)" stroke="var(--gold)"/>
+    <circle cx="85" cy="38" r="1.8" fill="#171819" stroke="none"/>
+    <path d="M80 85c-11 5-19 11-20 22l20-12 20 12c-1-11-9-17-20-22Z" stroke="var(--red)"/>
+    <path d="M80 96v17" stroke="var(--gold)"/>
+  </g>
+</svg>

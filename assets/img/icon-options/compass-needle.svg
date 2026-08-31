@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
+  <title id="title">Kompass – klare Richtung</title>
+  <style>
+    :root { --blue: #7ca3ff; --red: #f27979; --ink: #f5f5f2; --gold: #c5a059; }
+    @media (prefers-color-scheme: light) { :root { --blue: #2755c7; --red: #a91d1d; --ink: #232830; } }
+  </style>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <circle cx="80" cy="60" r="43" stroke="var(--blue)"/>
+    <path d="M80 23v7m37 30h-7M80 97v-7M43 60h7" stroke="var(--gold)"/>
+    <path d="m98 28-8 42-28 22 8-42Z" stroke="var(--ink)"/>
+    <path d="m98 28-8 42-20-20Z" fill="var(--red)" stroke="var(--red)"/>
+    <circle cx="80" cy="60" r="4" fill="var(--gold)" stroke="var(--gold)"/>
+  </g>
+</svg>

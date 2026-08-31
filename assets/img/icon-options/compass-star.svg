@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-labelledby="title">
+  <title id="title">Kompass – vier Himmelsrichtungen</title>
+  <style>
+    :root { --blue: #7ca3ff; --red: #f27979; --ink: #f5f5f2; --gold: #c5a059; }
+    @media (prefers-color-scheme: light) { :root { --blue: #2755c7; --red: #a91d1d; --ink: #232830; } }
+  </style>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M49 29a44 44 0 0 1 62 0m0 62a44 44 0 0 1-62 0" stroke="var(--blue)"/>
+    <path d="m80 15 11 34 34 11-34 11-11 34-11-34-34-11 34-11Z" stroke="var(--gold)"/>
+    <path d="m80 15 11 34-11 11-11-11Z" fill="var(--red)" stroke="var(--red)"/>
+    <path d="m125 60-34 11-11-11Z" fill="var(--blue)" stroke="var(--blue)"/>
+    <circle cx="80" cy="60" r="5" fill="var(--ink)" stroke="var(--ink)"/>
+  </g>
+</svg>

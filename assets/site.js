@@ -14,6 +14,32 @@
         return element;
     };
 
+    // Small, safe editorial format: **bold**, ## subheading, and - list items.
+    // Never interpret content-file text as HTML.
+    const appendFormattedText = (element, text) => {
+        String(text || '').split(/(\*\*[^*]+\*\*)/g).forEach((part) => {
+            element.appendChild(part.startsWith('**') && part.endsWith('**')
+                ? createElement('strong', '', part.slice(2, -2))
+                : document.createTextNode(part));
+        });
+        return element;
+    };
+
+    const renderCopyBlocks = (root, paragraphs) => {
+        root.replaceChildren();
+        let list;
+        paragraphs.forEach((text) => {
+            if (text.startsWith('- ')) {
+                if (!list) { list = createElement('ul', 'holistic-list'); root.appendChild(list); }
+                list.appendChild(appendFormattedText(createElement('li'), text.slice(2)));
+                return;
+            }
+            list = null;
+            const heading = text.startsWith('## ');
+            root.appendChild(appendFormattedText(createElement(heading ? 'h4' : 'p'), heading ? text.slice(3) : text));
+        });
+    };
+
     const slugify = (value) => String(value || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -34,7 +60,11 @@
         if (!hash || hash === '#') return false;
         const id = decodeURIComponent(String(hash).replace(/^#/, ''));
         const aliases = { wettkampf: 'performance', 'testimonials-krafttraining': 'kundenfeedback', 'testimonials-ganzheitlich': 'kundenfeedback' };
-        const target = document.getElementById(aliases[id] || id);
+        const resolvedId = aliases[id] || id;
+        let target = document.getElementById(resolvedId);
+        if (resolvedId === 'performance' && window.matchMedia('(max-width: 767px)').matches) {
+            target = target?.querySelector('.coaching-card__intro') || target;
+        }
         if (!target) return false;
         const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - getNavOffset());
         window.scrollTo({ top, behavior });
@@ -195,14 +225,14 @@
         const allParagraphs = data.paragraphs || [];
         const previewCount = Math.max(1, Number(data.preview_count || 1));
         const paragraphs = createElement('div', 'approach-paragraphs');
-        allParagraphs.slice(0, previewCount).forEach((text) => paragraphs.appendChild(createElement('p', '', text)));
+        allParagraphs.slice(0, previewCount).forEach((text) => paragraphs.appendChild(appendFormattedText(createElement('p'), text)));
         copy.appendChild(paragraphs);
 
         if (allParagraphs.length > previewCount) {
             const disclosure = createElement('details', 'approach-disclosure content-disclosure');
             const summary = createElement('summary', '', 'Mehr anzeigen');
             const expanded = createElement('div', 'content-disclosure__body');
-            allParagraphs.slice(previewCount).forEach((text) => expanded.appendChild(createElement('p', '', text)));
+            allParagraphs.slice(previewCount).forEach((text) => expanded.appendChild(appendFormattedText(createElement('p'), text)));
             disclosure.appendChild(summary);
             disclosure.appendChild(expanded);
             disclosure.addEventListener('toggle', () => {
@@ -278,6 +308,11 @@
                     toggle.textContent = open ? 'Leistungen schließen' : 'Weitere Leistungen anzeigen';
                     toggle.setAttribute('aria-expanded', String(open));
                 });
+                // On phones, expanding Lifestyle also moves Performance below it.
+                // Align only after both height changes; desktop remains untouched.
+                if (card.id === 'performance' && window.matchMedia('(max-width: 767px)').matches) {
+                    requestAnimationFrame(() => scrollToHashTarget('#performance', 'instant'));
+                }
             });
 
             const action = createElement('a', `button button--${accent}`,'Kontakt aufnehmen');
@@ -295,6 +330,17 @@
 
     const feedbackName = (item) => String(item.name || '').trim().split(/\s+/)[0];
 
+    const buildFeedbackResult = (item, detail = false) => {
+        const text = detail ? (item.result_detail || item.result) : item.result;
+        const results = String(text || '').split(/\r?\n/).map((line) => line.trim().replace(/^[–•]\s*/, '')).filter(Boolean);
+        if (!results.length) return null;
+        const result = createElement('p', 'testimonial-card__result');
+        if (detail && results.length > 1) {
+            results.forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `– ${line}`)));
+        } else result.textContent = results.join(' / ');
+        return result;
+    };
+
     const buildTestimonialCard = (testimonial) => {
         const card = createElement('article', 'testimonial-card');
         const header = createElement('div', 'testimonial-card__header');
@@ -305,10 +351,17 @@
         image.style.objectPosition = testimonial.image_position || 'center center';
         if (testimonial.image_placeholder) image.classList.add('is-placeholder');
         header.appendChild(image);
-        header.appendChild(createElement('h3', '', feedbackName(testimonial)));
+        const identity = createElement('div', 'testimonial-card__identity');
+        identity.appendChild(createElement('h3', '', feedbackName(testimonial)));
+        const result = buildFeedbackResult(testimonial);
+        if (result) identity.appendChild(result);
+        header.appendChild(identity);
         card.appendChild(header);
-        if (testimonial.result?.trim()) card.appendChild(createElement('p', 'testimonial-card__result', testimonial.result));
         card.appendChild(createElement('blockquote', '', testimonial.quote ? `„${testimonial.quote}“` : ''));
+        const more = createElement('a', 'testimonial-card__more text-link', 'Mehr anzeigen');
+        more.href = `kundenfeedback.html#feedback-${slugify(feedbackName(testimonial))}`;
+        more.setAttribute('aria-label', `Kundenfeedback von ${feedbackName(testimonial)} vollständig lesen`);
+        card.appendChild(more);
         return card;
     };
 
@@ -331,6 +384,7 @@
                 const set = createElement('div', 'testimonial-set');
                 set.setAttribute('aria-hidden', copy === 2 ? 'false' : 'true');
                 visibleItems.forEach((item) => set.appendChild(buildTestimonialCard(item)));
+                if (copy !== 2) set.querySelectorAll('a').forEach((link) => link.tabIndex = -1);
                 track.appendChild(set);
             }
         });
@@ -398,6 +452,15 @@
             };
 
             refreshGeometry();
+            carousel.addEventListener('focusin', (event) => {
+                const card = event.target.closest('.testimonial-card');
+                // Do not move a link between pointer-down and pointer-up.
+                if (!card || !event.target.matches(':focus-visible')) return;
+                const index = [...card.parentElement.children].indexOf(card);
+                phase = index * (card.getBoundingClientRect().width + gap());
+                carousel.scrollLeft = 0;
+                applyPosition();
+            });
             carousel.addEventListener('keydown', (event) => {
                 if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
                 event.preventDefault();
@@ -468,7 +531,7 @@
             const autoplay = (timestamp) => {
                 const deltaTime = Math.min(64, timestamp - lastAutoTick);
                 lastAutoTick = timestamp;
-                if (!document.hidden && !userPaused && !isPointerDown && timestamp >= interactingUntil) {
+                if (!document.hidden && !userPaused && !isPointerDown && !carousel.contains(document.activeElement) && timestamp >= interactingUntil) {
                     const baseSpeed = window.innerWidth < 768 ? 46 : 58;
                     const speed = baseSpeed;
                     pixelRemainder += speed * deltaTime / 1000;
@@ -587,7 +650,7 @@
         stage.appendChild(previous);
         stage.appendChild(next);
 
-        const status = createElement('p', 'gallery-status');
+        const status = createElement('div', 'sr-only');
         status.setAttribute('aria-live', 'polite');
         status.setAttribute('aria-atomic', 'true');
         const show = (index) => {
@@ -595,7 +658,7 @@
             image.src = items[activeIndex].image || '';
             image.alt = items[activeIndex].alt || '';
             image.style.objectPosition = items[activeIndex].image_position || 'center center';
-            status.textContent = `Bild ${activeIndex + 1} / ${items.length} – ${items[activeIndex].alt || ''}`;
+            status.textContent = `Bild ${activeIndex + 1} von ${items.length}`;
         };
         imageButton.addEventListener('click', () => show(activeIndex + 1));
         previous.addEventListener('click', () => show(activeIndex - 1));
@@ -628,12 +691,10 @@
         const visibleParagraphs = allParagraphs.slice(0, visibleCount);
         const remainingParagraphs = allParagraphs.slice(visibleCount);
         if (copy) {
-            copy.innerHTML = '';
-            visibleParagraphs.forEach((text) => copy.appendChild(createElement('p', '', text)));
+            renderCopyBlocks(copy, visibleParagraphs);
         }
         if (expanded) {
-            expanded.innerHTML = '';
-            remainingParagraphs.forEach((text) => expanded.appendChild(createElement('p', '', text)));
+            renderCopyBlocks(expanded, remainingParagraphs);
         }
         const gallery = data.gallery || [];
         renderGallery(gallery, 'holistic-gallery');
@@ -723,7 +784,8 @@
                 const category = {ganzheitlich: 'Ganzheitliches Coaching', performance: 'Performance Coaching'}[item.category] || 'Krafttraining';
                 copy.appendChild(createElement('p', 'section-kicker', category));
                 copy.appendChild(createElement('h2', '', feedbackName(item)));
-                if (item.result?.trim()) copy.appendChild(createElement('p', 'testimonial-card__result', item.result));
+                const result = buildFeedbackResult(item, true);
+                if (result) copy.appendChild(result);
                 copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
                 article.appendChild(media);
                 article.appendChild(copy);
