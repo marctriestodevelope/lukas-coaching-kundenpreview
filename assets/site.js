@@ -330,6 +330,9 @@
 
     const feedbackName = (item) => String(item.name || '').trim().split(/\s+/)[0];
 
+    const prioritizeTestimonials = (items) => [...(items || [])].sort((first, second) =>
+        Number(second.priority || 0) - Number(first.priority || 0));
+
     const buildFeedbackResult = (item, detail = false) => {
         const text = detail ? (item.result_detail || item.result) : item.result;
         const results = String(text || '').split(/\r?\n/).map((line) => line.trim().replace(/^[–•]\s*/, '')).filter(Boolean);
@@ -366,7 +369,7 @@
     };
 
     const renderTestimonials = (data) => {
-        const items = data?.items || [];
+        const items = prioritizeTestimonials(data?.items);
         document.querySelectorAll('[data-testimonial-track]').forEach((track) => {
             track.innerHTML = '';
             const category = track.dataset.testimonialCategory || '';
@@ -768,7 +771,7 @@
         const root = document.getElementById('testimonial-detail-root');
         if (!root) return;
         root.innerHTML = '';
-        const items = data?.items || [];
+        const items = prioritizeTestimonials(data?.items);
         items.forEach((item) => {
                 const article = createElement('article', 'testimonial-detail');
                 article.id = `feedback-${slugify(feedbackName(item))}`;
