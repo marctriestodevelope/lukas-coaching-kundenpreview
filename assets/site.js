@@ -14,6 +14,33 @@
         return element;
     };
 
+    const previewVersion = new URLSearchParams(window.location.search).get('version') || '';
+    const versionAssetPath = (path) => {
+        const value = String(path || '');
+        if (!previewVersion || !value.startsWith('assets/')) return value;
+        const separator = value.includes('?') ? '&' : '?';
+        return `${value}${separator}preview=${encodeURIComponent(previewVersion)}`;
+    };
+
+    const versionPagePath = (path) => {
+        const value = String(path || '');
+        if (!previewVersion || !value || value.startsWith('#')) return value;
+        const url = new URL(value, window.location.href);
+        if (url.origin !== window.location.origin || !url.pathname.endsWith('.html')) return value;
+        url.searchParams.set('version', previewVersion);
+        return url.href;
+    };
+
+    const versionStaticImages = () => {
+        if (!previewVersion) return;
+        document.querySelectorAll('img[src^="assets/"]').forEach((image) => {
+            image.src = versionAssetPath(image.getAttribute('src'));
+        });
+        document.querySelectorAll('a[href]').forEach((anchor) => {
+            anchor.href = versionPagePath(anchor.getAttribute('href'));
+        });
+    };
+
     // Small, safe editorial format: **bold**, ## subheading, and - list items.
     // Never interpret content-file text as HTML.
     const appendFormattedText = (element, text) => {
@@ -243,7 +270,7 @@
 
         const image = document.getElementById(`${prefix}-image`);
         if (image) {
-            image.src = data.image || image.src;
+            image.src = versionAssetPath(data.image || image.getAttribute('src'));
             image.alt = data.image_alt || '';
         }
     };
@@ -260,7 +287,7 @@
 
             const media = createElement('div', 'coaching-card__media');
             const image = createElement('img');
-            image.src = offer.image || '';
+            image.src = versionAssetPath(offer.image || '');
             image.alt = offer.title || 'Coaching';
             image.loading = 'lazy';
             if (offer.image_position) image.style.objectPosition = offer.image_position;
@@ -346,7 +373,7 @@
         const card = createElement('article', 'testimonial-card');
         const header = createElement('div', 'testimonial-card__header');
         const image = createElement('img');
-        image.src = testimonial.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
+        image.src = versionAssetPath(testimonial.image || 'assets/img/Logo-LS_Coaching_white-coloured.png');
         image.alt = feedbackName(testimonial) || 'Kundenfeedback';
         image.loading = 'lazy';
         image.style.objectPosition = testimonial.image_position || 'center center';
@@ -360,7 +387,7 @@
         card.appendChild(header);
         card.appendChild(createElement('blockquote', '', testimonial.quote ? `„${testimonial.quote}“` : ''));
         const more = createElement('a', 'testimonial-card__more text-link', 'Mehr anzeigen');
-        more.href = `kundenfeedback.html#feedback-${slugify(feedbackName(testimonial))}`;
+        more.href = versionPagePath(`kundenfeedback.html#feedback-${slugify(feedbackName(testimonial))}`);
         more.setAttribute('aria-label', `Kundenfeedback von ${feedbackName(testimonial)} vollständig lesen`);
         card.appendChild(more);
         return card;
@@ -665,7 +692,7 @@
         });
         const show = (index) => {
             activeIndex = (index + items.length) % items.length;
-            image.src = items[activeIndex].image || '';
+            image.src = versionAssetPath(items[activeIndex].image || '');
             image.alt = items[activeIndex].alt || '';
             image.style.objectPosition = items[activeIndex].image_position || 'center center';
             dotButtons.forEach((dot, dotIndex) => {
@@ -743,14 +770,14 @@
             const card = createElement('article', 'topic-card reveal');
             const media = createElement('div', 'topic-card__image');
             const image = createElement('img');
-            image.src = item.image || '';
+            image.src = versionAssetPath(item.image || '');
             image.alt = '';
             image.loading = 'lazy';
             if (item.dark_image) {
                 const picture = createElement('picture', 'topic-card__picture');
                 const darkSource = createElement('source');
                 darkSource.media = '(prefers-color-scheme: dark)';
-                darkSource.srcset = item.dark_image;
+                darkSource.srcset = versionAssetPath(item.dark_image);
                 picture.appendChild(darkSource);
                 picture.appendChild(image);
                 media.appendChild(picture);
@@ -805,7 +832,7 @@
                 article.id = `feedback-${slugify(feedbackName(item))}`;
                 const media = createElement('div', 'testimonial-detail__media');
                 const image = createElement('img');
-                image.src = item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png';
+                image.src = versionAssetPath(item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png');
                 image.alt = feedbackName(item) || 'Kundenfeedback';
                 image.loading = 'lazy';
                 image.style.objectPosition = item.image_position || 'center center';
@@ -859,7 +886,7 @@
             const hasArticle = Boolean(item.published && item.body?.length);
             if (hasArticle) {
                 const link = createElement('a', 'blog-card__link', 'Artikel lesen');
-                link.href = `artikel.html?id=${encodeURIComponent(item.id || '')}`;
+                link.href = versionPagePath(`artikel.html?id=${encodeURIComponent(item.id || '')}`);
                 card.appendChild(link);
             } else {
                 card.appendChild(createElement('span', 'blog-card__status', 'In Vorbereitung'));
@@ -881,7 +908,7 @@
             header.appendChild(createElement('h1', '', 'Artikel in Vorbereitung'));
             header.appendChild(createElement('p', '', 'Dieser Beitrag ist noch nicht veröffentlicht.'));
             const back = createElement('a', 'button button--ghost', 'Zur Blogübersicht');
-            back.href = 'blog.html';
+            back.href = versionPagePath('blog.html');
             header.appendChild(back);
             root.appendChild(header);
             return;
@@ -895,7 +922,7 @@
 
         if (item.image) {
             const image = createElement('img', 'article-page__image');
-            image.src = item.image;
+            image.src = versionAssetPath(item.image);
             image.alt = item.title || '';
             root.appendChild(image);
         }
@@ -1013,6 +1040,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
+        versionStaticImages();
         initScrollRestoration();
         initAnchorNavigation();
         initNavigation();
