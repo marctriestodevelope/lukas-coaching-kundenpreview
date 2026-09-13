@@ -14,6 +14,7 @@
     --color-red-bright: #d12b2b;
     --color-gold: #c5a059;
     --color-link: #8aaafa;
+    --eyebrow-size: clamp(1.05rem, 2vw, 1.4rem);
     --nav-height: 76px;
     --section-space: clamp(4rem, 7vw, 7rem);
     --shell: min(1180px, calc(100vw - 2rem));
@@ -96,7 +97,7 @@ img {
 .section-kicker {
     margin: 0 0 0.9rem;
     color: var(--color-gold);
-    font-size: 0.73rem;
+    font-size: var(--eyebrow-size);
     font-weight: 800;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -445,7 +446,7 @@ img {
     object-fit: cover;
     object-position: center 46%;
     filter: brightness(0.82) saturate(0.88);
-    transform: scale(1.015);
+    transform: scale(1.08);
 }
 
 .hero__shade {
@@ -1029,13 +1030,14 @@ img {
 }
 
 .testimonial-card__more::after {
-    content: "  ->";
-    color: var(--color-gold);
+    content: none;
 }
 
 .testimonial-card__more:hover,
 .testimonial-card__more:focus-visible {
-    color: #fff;
+    color: var(--color-link);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 /* Contact */
@@ -1355,6 +1357,36 @@ img {
     right: 1rem;
 }
 
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 1rem;
+    background: #050506;
+}
+
+.gallery-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.82);
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+}
+
+.gallery-dot:hover,
+.gallery-dot:focus-visible,
+.gallery-dot.is-active {
+    background: #fff;
+}
+
+.gallery-dot:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+}
+
 .gallery-thumbs {
     margin-top: 1rem;
     display: grid;
@@ -1392,6 +1424,27 @@ img {
 /* Topic cards */
 .topics-section {
     background: #0c0d0e;
+}
+
+.holistic-topics {
+    margin-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--color-line);
+    background: var(--color-bg-soft);
+}
+
+.holistic-topics .section-heading {
+    max-width: 980px;
+    margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.holistic-topics .topic-card {
+    background: var(--color-surface-raised);
+}
+
+.holistic-topics .topic-card h3 {
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .topics-section .section-heading {
@@ -1444,6 +1497,13 @@ img {
     inset: 9px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     pointer-events: none;
+}
+
+.topic-card__picture {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
 }
 
 .topic-card__index {
@@ -1982,7 +2042,7 @@ img {
 
     .hero-image {
         object-position: 54% 44%;
-        transform: scale(1.16);
+        transform: scale(1.2);
     }
 
     .hero__shade {
@@ -2354,7 +2414,7 @@ img {
 .hero__message { --color-gold: #c5a059; max-width: 960px; border-left: 3px solid var(--color-gold); padding-left: clamp(1.2rem, 3vw, 2.5rem); }
 .hero__message h1 { font-size: clamp(2.8rem, 6.5vw, 6.2rem); line-height: 1.02; text-wrap: balance; }
 .hero__message h1 span { color: var(--color-gold); }
-.hero__message .section-kicker { color: var(--color-gold); }
+.hero__message .section-kicker { color: var(--color-gold); font-size: clamp(1.1rem, 2.15vw, 1.55rem); }
 .hero__message .hero__subline { margin-top: 1.3rem; font-size: clamp(1.05rem, 2vw, 1.5rem); color: #fff; }
 .section-heading > p:not(.section-kicker) {
     max-width: 660px;
@@ -2409,7 +2469,7 @@ img {
 .coaching-card__action { margin: 0 var(--card-space) var(--card-space); width: calc(100% - 2 * var(--card-space)); align-self: end; }
 .coaching-card--holistic { --offer-accent: var(--color-gold); margin-top: 1.25rem; padding: var(--card-space); overflow: visible; grid-template-rows: auto auto; }
 .holistic-intro { margin-bottom: 2.5rem; text-align: left; }
-.holistic-tagline { margin: 0 0 0.8rem; color: var(--color-gold); font-size: clamp(1.05rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.3; }
+.holistic-tagline { margin: 0 0 0.8rem; color: var(--color-gold); font-size: var(--eyebrow-size); font-weight: 700; line-height: 1.3; }
 .holistic-copy h4, #holistic-expanded h4 { margin: 0.75rem 0 0; color: var(--color-text); font-size: 1.15rem; line-height: 1.45; }
 .holistic-copy strong, #holistic-expanded strong, #philosophy-copy strong { color: var(--color-text); font-weight: 800; }
 .holistic-list { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.75rem; }
@@ -2422,7 +2482,8 @@ img {
 .people-gallery--single .gallery-stage img { height: clamp(320px, 55vh, 650px); }
 .coaching-card--holistic .content-disclosure { padding: 0; margin-top: 1rem; }
 
-.topics-section .section-heading h2 { font-size: clamp(2.45rem, 6vw, 5.5rem); line-height: 0.95; }
+.topics-section .section-heading h2,
+.holistic-topics .section-heading h2 { font-size: clamp(2.45rem, 6vw, 5.5rem); line-height: 0.95; }
 .topic-card__image { background: transparent; border: 0; box-shadow: none; }
 .topic-card__image::after { display: none; }
 .topic-card__index { color: var(--color-gold); }
@@ -2444,7 +2505,14 @@ img {
 .testimonial-detail__copy { min-width: 0; position: sticky; top: var(--feedback-sticky-top, calc(var(--nav-height) + 1.5rem)); padding: clamp(1.5rem, 3vw, 2.75rem); }
 .testimonial-detail__copy blockquote { margin: 1em 0 0; font-style: normal; font-size: 1rem; }
 .testimonial-detail__copy .testimonial-card__result { margin: 0; }
-#feedback-julia .testimonial-detail__copy { padding-top: 1.25rem; }
+.coaching-card--holistic .holistic-copy p,
+.coaching-card--holistic .content-disclosure__body p,
+.coaching-card--holistic .holistic-list li {
+    text-align: left;
+    text-justify: auto;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
 
 /* Only long-form copy is justified; labels, headings and narrow cards stay left-aligned. */
 .approach-paragraphs p, .content-disclosure__body p, .holistic-copy p,
@@ -2500,7 +2568,9 @@ html.cookie-dialog-open, html.cookie-dialog-open body { overflow: hidden; }
     .holistic-layout { grid-template-columns: 1fr; }
     .people-gallery--single { position: static; }
     .people-gallery--single .gallery-stage img { height: 340px; max-height: 60svh; }
-    .topics-section .section-heading h2 { font-size: clamp(2.1rem, 9vw, 3.5rem); }
+    .topics-section .section-heading h2,
+    .holistic-topics .section-heading h2 { font-size: clamp(2.1rem, 9vw, 3.5rem); }
+    .holistic-topics { margin-inline: -0.7rem; padding: 1.25rem 0.7rem; }
     .testimonial-detail, .testimonial-detail:nth-child(even) { grid-template-columns: 1fr; min-height: 0; }
     .testimonial-detail__media, .testimonial-detail__copy { position: static; }
     .testimonial-detail__media img { aspect-ratio: 4 / 5; }

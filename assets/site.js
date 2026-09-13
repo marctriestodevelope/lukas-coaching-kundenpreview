@@ -338,9 +338,7 @@
         const results = String(text || '').split(/\r?\n/).map((line) => line.trim().replace(/^[–•]\s*/, '')).filter(Boolean);
         if (!results.length) return null;
         const result = createElement('p', 'testimonial-card__result');
-        if (detail && results.length > 1) {
-            results.forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `– ${line}`)));
-        } else result.textContent = results.join(' / ');
+        results.forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `• ${line}`)));
         return result;
     };
 
@@ -656,11 +654,25 @@
         const status = createElement('div', 'sr-only');
         status.setAttribute('aria-live', 'polite');
         status.setAttribute('aria-atomic', 'true');
+        const dots = createElement('div', 'gallery-dots');
+        const dotButtons = items.map((item, index) => {
+            const dot = createElement('button', 'gallery-dot');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', `Bild ${index + 1} anzeigen`);
+            dot.addEventListener('click', () => show(index));
+            dots.appendChild(dot);
+            return dot;
+        });
         const show = (index) => {
             activeIndex = (index + items.length) % items.length;
             image.src = items[activeIndex].image || '';
             image.alt = items[activeIndex].alt || '';
             image.style.objectPosition = items[activeIndex].image_position || 'center center';
+            dotButtons.forEach((dot, dotIndex) => {
+                const active = dotIndex === activeIndex;
+                dot.classList.toggle('is-active', active);
+                dot.setAttribute('aria-current', active ? 'true' : 'false');
+            });
             status.textContent = `Bild ${activeIndex + 1} von ${items.length}`;
         };
         imageButton.addEventListener('click', () => show(activeIndex + 1));
@@ -673,6 +685,7 @@
         });
 
         root.appendChild(stage);
+        root.appendChild(dots);
         root.appendChild(status);
         show(0);
     };
@@ -717,22 +730,33 @@
 
     const renderTopics = (data) => {
         const root = document.getElementById('topics-root');
+        const eyebrow = document.getElementById('topics-eyebrow');
         const title = document.getElementById('topics-title');
         const subline = document.getElementById('topics-subline');
         if (!root) return;
+        if (eyebrow) eyebrow.textContent = data?.eyebrow || '';
         if (title) title.textContent = data?.title || '';
         if (subline) subline.textContent = data?.subline || '';
         root.innerHTML = '';
 
-        (data?.items || []).forEach((item, index) => {
+        (data?.items || []).forEach((item) => {
             const card = createElement('article', 'topic-card reveal');
             const media = createElement('div', 'topic-card__image');
-            media.appendChild(createElement('span', 'topic-card__index', String(index + 1).padStart(2, '0')));
             const image = createElement('img');
             image.src = item.image || '';
             image.alt = '';
             image.loading = 'lazy';
-            media.appendChild(image);
+            if (item.dark_image) {
+                const picture = createElement('picture', 'topic-card__picture');
+                const darkSource = createElement('source');
+                darkSource.media = '(prefers-color-scheme: dark)';
+                darkSource.srcset = item.dark_image;
+                picture.appendChild(darkSource);
+                picture.appendChild(image);
+                media.appendChild(picture);
+            } else {
+                media.appendChild(image);
+            }
             card.appendChild(media);
             const copy = createElement('div', 'topic-card__copy');
             copy.appendChild(createElement('p', 'topic-card__subtitle', item.subtitle || ''));
@@ -747,11 +771,15 @@
         const heroHeadline = document.getElementById('hero-headline');
         if (heroHeadline && site?.hero?.headline) {
             const parts = site.hero.headline.split(' oder ');
-            heroHeadline.textContent = parts.shift();
-            if (parts.length) {
+            const firstLine = parts.shift();
+            const remainingWords = parts.join(' oder ').trim().split(/\s+/).filter(Boolean);
+            heroHeadline.textContent = parts.length || remainingWords.length ? `${firstLine} oder` : firstLine;
+            if (remainingWords.length) {
+                const finalWord = remainingWords.pop();
                 heroHeadline.appendChild(document.createElement('br'));
-                heroHeadline.appendChild(document.createTextNode('oder '));
-                heroHeadline.appendChild(createElement('span', '', parts.join(' oder ')));
+                heroHeadline.appendChild(createElement('span', '', remainingWords.join(' ')));
+                heroHeadline.appendChild(document.createElement('br'));
+                heroHeadline.appendChild(createElement('span', '', finalWord));
             }
         }
         const kicker = document.getElementById('hero-kicker');

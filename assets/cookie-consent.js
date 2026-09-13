@@ -62,8 +62,8 @@
             <p>Du kannst deine Auswahl jederzeit über „Cookie-Einstellungen“ im Footer ändern oder widerrufen.</p>
             <a href="datenschutz.html" class="text-link">Datenschutzerklärung lesen</a>
             <div class="cookie-dialog__actions">
-                <button type="button" data-cookie-action="necessary" autofocus>Nur notwendige</button>
-                <button type="button" data-cookie-action="all">Alle akzeptieren</button>
+                <button type="button" data-cookie-action="necessary" autofocus>Nur Notwendige</button>
+                <button type="button" data-cookie-action="all">Alle Akzeptieren</button>
             </div>`;
         dialog.addEventListener('click', (event) => {
             const action = event.target.closest('[data-cookie-action]')?.dataset.cookieAction;

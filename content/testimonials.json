@@ -2,6 +2,7 @@
   "items": [
     {
       "name": "Dominik",
+      "priority": 1,
       "category": "krafttraining",
       "quote": "Vor allem hatte ich das Vertrauen in meinen Körper und meine Kraft verloren.",
       "long_text": "Als ich zu Lukas gekommen bin, war ich nach einem Riss der Brustsehne und der anschließenden Operation an einem Punkt, an dem ich nicht mehr wusste, wie ich sinnvoll ins Training zurückfinden sollte. Vor allem hatte ich das Vertrauen in meinen Körper und meine Kraft verloren. Ich wollte nicht einfach nur wieder trainieren, sondern sicher und nachhaltig stärker werden. Deshalb habe ich nach jemandem gesucht, der individuell auf meine Situation eingehen kann – und genau das habe ich bei Lukas gefunden.\n\nVon Anfang an hatte ich das Gefühl, dass Lukas sich wirklich für meine Entwicklung interessiert. Er nimmt sich Zeit, hört zu und schaut genau hin, was gerade sinnvoll ist. Dabei bringt er viel Fachwissen mit, ist aber gleichzeitig offen dafür, neue Ansätze auszuprobieren und Übungen genau auf die eigenen Bedürfnisse anzupassen. Was die Zusammenarbeit für mich besonders gemacht hat, war seine positive Art. Er war immer freundlich, motiviert und gut gelaunt, wodurch jede Trainingseinheit Spaß gemacht hat.\n\nWenn ich heute zurückblicke, bin ich unglaublich froh, diesen Schritt gegangen zu sein. Lukas hat es geschafft, mich nicht nur wieder sicher und schmerzfrei ins Training zurückzuführen, sondern auch nachhaltig Kraft aufzubauen. Ich habe viele neue Übungen kennengelernt, die perfekt auf mich abgestimmt waren und meinem Training ganz neue Reize gegeben haben. Außerdem hat er mir das Thema Ernährung auf eine Art vermittelt, die ich endlich wirklich verstanden habe. Gemeinsam haben wir herausgearbeitet, was meinem Körper guttut und welche Gewohnheiten mich bislang eher ausgebremst haben.\n\nFür mich war Lukas viel mehr als nur ein Personal Trainer. Er hat mir das Vertrauen in meinen Körper zurückgegeben und mir gezeigt, dass man auch nach einer schweren Verletzung stärker zurückkommen kann. Ich kann ihn jedem empfehlen, der nicht einfach nur trainieren möchte, sondern einen Coach sucht, der sich ehrlich für den Menschen hinter dem Training interessiert und einen auf dem gesamten Weg begleitet.",
@@ -14,7 +15,7 @@
       "quote": "Lukas hat all diese Erwartungen nicht nur erfüllt, sondern in jeder Hinsicht übertroffen!",
       "long_text": "Bevor ich zu Lukas ins Coaching kam, wurde ich zwar kontinuierlich stärker, trainierte mir aber auch zahlreiche Kompensationsmuster an, die zu verschiedenen Schmerzthematiken führten. Darüber hinaus war ich auf der Suche nach einem Coach, der sich mit den Themen Atmung und Biomechanik auskennt und mir dabei hilft, mein Training noch besser in meinen teils stressigen Alltag zu integrieren. Lukas hat all diese Erwartungen nicht nur erfüllt, sondern in jeder Hinsicht übertroffen!\n\nDurch biomechanisch fundierte Lösungsansätze und clevere Trainingsplanung hat Lukas mir geholfen, mit weniger Trainingsaufwand mehr rauszuholen. Innerhalb weniger Monate konnten meine Beschwerden entweder vollständig behoben oder deutlich reduziert werden, ohne dass dabei die Leistung auf der Strecke blieb. Im Gegenteil – dank Lukas konnte ich mein großes Ziel eines 400er Totals im Streetlifting schneller erreichen, als ich es vorher jemals gedacht hätte.\n\nLukas tiefgehendes Verständnis für Bewegungsausführung, Atmung und Biomechanik hat mich nicht nur als Athlet weitergebracht, sondern mir auch neue Perspektiven für mein eigenes Coaching eröffnet. Man merkt, dass Lukas für das brennt, was er tut und alles für seine Coachees gibt. Außerdem ist Lukas ein unglaublich sympathischer Typ, mit dem die Zusammenarbeit einfach Spaß macht.",
       "image": "assets/testimonials/christian-leurs.jpg",
-      "result": ""
+      "result": "400er Total ohne Schmerzen"
     },
     {
       "name": "Etienne",
@@ -22,7 +23,7 @@
       "quote": "Solange du ein Ziel hast und daran arbeitest wird Lukas dein größter Supporter sein.",
       "long_text": "Seitdem ich bei Lukas im Coaching bin hat sich meine Herangehensweise an Training, Coachen und Biomechanik grundlegend verändert, obwohl ich seit über 6 Jahren als Trainer tätig bin, Wettkampfe bestritten habe und im Bereich Training und Therapie schon einiges an Erfahrung sammeln konnte.\nEr erklärt Zusammenhänge tiefgehend, bis man sie nicht nur gehört, sondern wirklich verstanden hat, sodass man auf Augenhöhe das Problem oder die Challenge angehen kann.\nBesonders sticht für mich immer wieder heraus, mit was für einer Begeisterung und was für einem Support er jeden bei seiner spezifischen Thematik unterstützt. Solange du ein Ziel hast und daran arbeitest wird Lukas dein größter Supporter sein.\nEine Zusammenarbeit mit Lukas kann ich jedem empfehlen der ein Sportlich orientiertes Ziel hat oder Schmerzen hat und nicht weiß wo er anfangen soll, oder jemanden braucht der ihm bei jedem Schritt zur Seite steht.",
       "image": "assets/testimonials/etienne.jpg",
-      "result": ""
+      "result": "Erfolgreiche Schulterreha"
     },
     {
       "name": "Kathi",
@@ -60,6 +61,7 @@
     },
     {
       "name": "Peaches",
+      "priority": 3,
       "category": "krafttraining",
       "quote": "Mehr Kraft und keine Schmerzen – mein Trainingsdurchbruch mit Lukas.",
       "long_text": "Mehr Kraft und keine Schmerzen – mein Trainingsdurchbruch mit Lukas.\nLukas ist nicht einfach nur ein Coach - er ist ein wandelndes Lexikon mit einem riesengroßen Herz. Er lebt, was er vermittelt, und denkt ganzheitlich wie kaum jemand sonst. Egal ob du gerade anfängst oder schon fortgeschritten bist – er findet immer einen Weg, dich besser zu machen.\n\nLukas hört zu, analysiert und baut dir ein Konzept, das wirklich zu deinem Körper passt. Kein Standardprogramm. Kein 0815-Coaching. Sondern echtes, individuelles Coaching mit Struktur, Herzblut und verdammt viel Hirn.",
@@ -101,6 +103,7 @@
     },
     {
       "name": "Jane",
+      "priority": 4,
       "category": "krafttraining",
       "quote": "Wenn du denkst, du schaffst es nie dich zu ändern - doch, du brauchst nur den richtigen Support ⭐️",
       "long_text": "Wenn du denkst, du schaffst es nie dich zu ändern - doch, du brauchst nur den richtigen Support ⭐️\n\nAls ich vor ca. 1,5 Jahren mit dem Coaching bei Lukas gestartet habe, war ich ca. 6 Monate nach meiner zweiten Kreuzband-OP und hab 30kg mehr gewogen. Hatte kaum Bewegung, schlechte Ernährung (Lieferando war mein bester Freund), keine Routinen, Fokus nur auf Arbeit – einfach halt keine gesunde Gewohnheiten. 🤡\n\nDurch das Coaching von Lukas hat sich das aber verändert: Ich trainiere regelmäßig, hab meine Ernährung komplett umgestellt und esse trotzdem so, dass ich satt und zufrieden bin. Bei Lukas gibt es keine 0815-Pläne, sondern welche, die individuell auf meine Knieprobleme abgestimmt.\nHeute: 4x die Woche Gym, ca. 30 kg weniger, ausgewogene Ernährung, kaum noch Knieschmerzen – und ich kann wieder Kniebeugen machen! 🦿➡️🦵🏼\n\nTrotz zwei weiterer Verletzungen (am Knöchel & außerhalb vom Training) hat Lukas mich mit Geduld und Plan jedes Mal zurückgeholt, alles angepasst und mich Schritt für Schritt wieder aufgebaut. 🐣\n\nWas ich an Lukas besonders schätze: Er ist nicht nur fachlich ein Brain, sondern auch menschlich komplett da. Gerade in stressigen Phasen gibt’s ehrlichen Support, motivierende Pep-Talks und echtes Einfühlungsvermögen. 🥹💓 Er entwickelt sich ständig weiter, bringt neues Wissen und neue Perspektiven mit – ich denk mir jedes Mal: „Wie viel weiß Lukas eigentlich noch??“ 👨🏽‍🏫\n\nSo kitschig es klingt: Lukas ist mehr als ein Coach. Er bringt das volle Paket – Know-how, echtes Interesse, Anpassungsfähigkeit und ein verdammt gutes Gespür für Menschen. 🎁\n\nIch bin einfach nur richtig froh, ihn an meiner Seite zu haben – und dankbar für den Support auf meiner bisherigen Journey! 📈",
@@ -109,7 +112,7 @@
     },
     {
       "name": "Julia",
-      "priority": 1,
+      "priority": 5,
       "category": "krafttraining",
       "quote": "I came to Lukas in 2023 after quitting CrossFit, uninspired, with a back injury and hip pain.",
       "long_text": "I came to Lukas in 2023 after quitting CrossFit, uninspired, with a back injury and hip pain. I couldn’t do a muscle-up, had never done a dip before, and wasn’t ready to squat heavy due to my injury. Lukas was the one who introduced me to Streetlifting!\nWe’ve come a long way since then. 2 international event wins, one European Championship and a qualification for Worlds later, I’m proud to say: I’m physically stronger than I could have ever dreamed of, and I‘ve been pain free and injury free ever since. But I’m even prouder of the person I have become because of the work we’ve put in, together. Lukas is not only a trainer and coach I trust to the highest degree, but also an inspiring person dedicated to growth, discovery and life long learning.\nI don’t know what else to say other than: Thank you for making it all happen! 🩷✨",
@@ -126,6 +129,7 @@
     },
     {
       "name": "Steffi",
+      "priority": 2,
       "category": "krafttraining",
       "quote": "Lukas begleitet mich seit über zwei Jahren im Bereich Krafttraining – und seine Arbeit macht den Unterschied.",
       "long_text": "„Lukas begleitet mich seit über zwei Jahren im Bereich Krafttraining – und seine Arbeit macht den Unterschied.\nEr erkennt körperliche Defizite schnell, analysiert die Ursache präzise und stellt ein maßgeschneidertes Trainingsprogramm zusammen, das gezielt dagegen wirkt.\nGerade für meine HYROX- und Triathlon-Wettkämpfe ist strukturiertes Krafttraining entscheidend: zur Stabilisierung des Körpers, zum Ausgleich von Dysbalancen und zur gezielten Leistungssteigerung.\nLukas arbeitet mit außergewöhnlicher Hingabe und Professionalität. Seine Trainingsplanung war ein entscheidender Faktor für meine sportlichen Erfolge – und dafür, dass ich seitdem verletzungsfrei durchtrainieren konnte.“",

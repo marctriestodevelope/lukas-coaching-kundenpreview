@@ -125,24 +125,12 @@
     ],
     "gallery": [
       {
-        "image": "assets/img/DSCF9956.JPG",
-        "alt": "Gemeinsamer Abend am Tisch"
-      },
-      {
         "image": "assets/img/ganzheitlich-berggruppe.jpg",
         "alt": "Gemeinsame Zeit in den Bergen"
       },
       {
         "image": "assets/img/DSCF9953.JPG",
         "alt": "Freunde bei einem gemeinsamen Abend"
-      },
-      {
-        "image": "assets/img/DSCF9971.JPG",
-        "alt": "Lukas Schwarz im Gespräch"
-      },
-      {
-        "image": "assets/img/resilient-mentoring/mentoring-unterwegs.jpg",
-        "alt": "Lukas Schwarz mit einem Coachee unterwegs"
       },
       {
         "image": "assets/img/resilient-mentoring/gemeinsame-zeit-am-meer.jpg",
@@ -152,17 +140,39 @@
         "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG",
         "alt": "Gemeinsamer Erfolg nach dem Wettkampf",
         "image_position": "center 25%"
+      },
+      {
+        "image": "assets/img/ganzheitliches-coaching/outdoor-festival.jpg",
+        "alt": "Lukas Schwarz mit einem Freund bei einer Veranstaltung im Freien",
+        "image_position": "center 34%"
+      },
+      {
+        "image": "assets/img/ganzheitliches-coaching/nocco-event.jpg",
+        "alt": "Lukas Schwarz mit zwei Freunden nach einer Sportveranstaltung",
+        "image_position": "center 48%"
+      },
+      {
+        "image": "assets/img/ganzheitliches-coaching/eiscafe.jpg",
+        "alt": "Lukas Schwarz mit Freunden im Eiscafe",
+        "image_position": "center 42%"
+      },
+      {
+        "image": "assets/img/ganzheitliches-coaching/training-community.jpg",
+        "alt": "Lukas Schwarz mit einer Trainingsgruppe",
+        "image_position": "center 44%"
       }
     ]
   },
   "topics": {
+    "eyebrow": "Ganzheitliches Coaching",
     "title": "Coaching-Themen",
     "items": [
       {
         "title": "Werte & Ziele",
         "subtitle": "Kompass",
         "text": "Wer bist du eigentlich und was willst du eigentlich? Und wo stellst du dich hinten an, obwohl du es eigentlich gar nicht möchtest? Deine Träume, deine Ziele, deine Ausrichtung – genau das macht dich energetisch.",
-        "image": "assets/img/topic-values.svg?v=20260830-theme"
+        "image": "assets/img/topic-kompass.png",
+        "dark_image": "assets/img/topic-kompass-dark.png"
       },
       {
         "title": "Soziales & Umfeld",
@@ -174,7 +184,8 @@
         "title": "Kompensationen & Blockaden",
         "subtitle": "Phoenix",
         "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
-        "image": "assets/img/topic-blocks.svg?v=20260830-theme"
+        "image": "assets/img/topic-phoenix.png",
+        "dark_image": "assets/img/topic-phoenix-dark.png"
       },
       {
         "title": "Gesundheit & Training",
