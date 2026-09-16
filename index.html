@@ -10,9 +10,9 @@
     <link rel="canonical" href="https://lukasschwarzcoaching.com/">
     <link rel="icon" href="assets/img/Logo-LS_Coaching_white_cut.png">
     <title>Lukas Schwarz Coaching | Kompensierst du noch oder wächst du schon?</title>
-    <link rel="stylesheet" href="assets/custom.css?v=20260913-finale-verbesserungen-3">
-    <script defer src="assets/cookie-consent.js?v=20260913-finale-verbesserungen-3"></script>
-    <script defer src="assets/site.js?v=20260913-finale-verbesserungen-4"></script>
+    <link rel="stylesheet" href="assets/custom.css?v=20260916-korrekturen-1">
+    <script defer src="assets/cookie-consent.js?v=20260916-korrekturen-1"></script>
+    <script defer src="assets/site.js?v=20260916-korrekturen-1"></script>
 </head>
 
 <body class="site-body bg-brand-dark text-gray-300 antialiased">
@@ -52,7 +52,7 @@
 
     <main id="page">
         <header id="start" class="hero scroll-mt-24">
-            <img src="assets/img/DSCF0214_3.JPG" alt="Lukas Schwarz mit seinem Team" class="hero-image">
+            <img src="assets/img/DSCF0214_3.JPG" alt="Lukas Schwarz mit seinem Team" class="hero-image" fetchpriority="high" decoding="async">
             <div class="hero__shade"></div>
             <div class="hero__content">
                 <div class="hero__message">
@@ -67,7 +67,7 @@
             <div class="section-shell approach-grid">
                 <div id="philosophy-copy" class="approach-copy reveal"></div>
                 <figure class="approach-media reveal reveal-right">
-                    <img id="philosophy-image" src="assets/img/DSC08607.JPG" alt="Lukas Schwarz mit einem Athleten">
+                    <img id="philosophy-image" src="assets/img/DSC08607.JPG" alt="Lukas Schwarz mit einem Athleten" loading="lazy" decoding="async">
                 </figure>
             </div>
         </section>
@@ -76,7 +76,7 @@
             <div class="section-shell approach-grid approach-grid--reverse">
                 <div id="methodology-copy" class="approach-copy reveal"></div>
                 <figure class="approach-media reveal reveal-left">
-                    <img id="methodology-image" src="assets/img/4C717C74-BA7B-4691-81F6-4DBEA18D7FF3.JPG" alt="Lukas Schwarz nach einem Wettkampf">
+                    <img id="methodology-image" src="assets/img/4C717C74-BA7B-4691-81F6-4DBEA18D7FF3.JPG" alt="Lukas Schwarz nach einem Wettkampf" loading="lazy" decoding="async">
                 </figure>
             </div>
         </section>
@@ -109,9 +109,8 @@
                     </div>
                     <section id="themen" class="holistic-topics scroll-mt-24" aria-labelledby="topics-title">
                         <header class="section-heading reveal">
-                            <p id="topics-eyebrow" class="section-kicker">Ganzheitliches Coaching</p>
                             <h2 id="topics-title">Coaching-Themen</h2>
-                            <p id="topics-subline">Bereiche, die wir im Rahmen eines Coachings behandeln könnten.</p>
+                            <p id="topics-subline">Bereiche, die wir im Rahmen eines ganzheitlichen Coachings behandeln könnten.</p>
                         </header>
                         <div id="topics-root" class="topics-grid"></div>
                     </section>
@@ -126,7 +125,7 @@
                     <p class="section-kicker">Echte Zusammenarbeit</p>
                     <h2>Kundenfeedback</h2>
                     <p>Was sich durch echte Zusammenarbeit verändern kann.</p>
-                    <a href="kundenfeedback.html" class="button button--blue testimonial-more">Alle anzeigen</a>
+                    <a href="kundenfeedback.html" class="testimonial-more text-link">Alle Anzeigen</a>
                 </header>
             </div>
             <div class="testimonial-carousel" data-testimonial-carousel tabindex="0" role="region" aria-label="Kundenfeedback – mit den Pfeiltasten blättern">
@@ -163,7 +162,10 @@
 
     <footer class="site-footer">
         <div class="section-shell site-footer__inner">
-            <img src="assets/img/Logo-LS_Coaching_white-coloured.png" alt="Lukas Schwarz Coaching" class="site-footer__logo">
+            <a href="index.html" class="site-footer__brand" aria-label="Lukas Schwarz Coaching – zur Startseite">
+                <img src="assets/img/Logo-LS_Coaching_white-coloured.png" alt="" class="site-footer__logo">
+                <span class="site-footer__brand-name">Lukas Schwarz Coaching</span>
+            </a>
             <p>© 2026 Lukas Schwarz Coaching</p>
             <div class="site-footer__links">
                 <a href="impressum.html">Impressum</a>

@@ -290,6 +290,7 @@
             image.src = versionAssetPath(offer.image || '');
             image.alt = offer.title || 'Coaching';
             image.loading = 'lazy';
+            image.decoding = 'async';
             if (offer.image_position) image.style.objectPosition = offer.image_position;
             media.appendChild(image);
 
@@ -365,7 +366,7 @@
         const results = String(text || '').split(/\r?\n/).map((line) => line.trim().replace(/^[–•]\s*/, '')).filter(Boolean);
         if (!results.length) return null;
         const result = createElement('p', 'testimonial-card__result');
-        results.forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `• ${line}`)));
+        results.slice(0, 1).forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `• ${line}`)));
         return result;
     };
 
@@ -376,6 +377,7 @@
         image.src = versionAssetPath(testimonial.image || 'assets/img/Logo-LS_Coaching_white-coloured.png');
         image.alt = feedbackName(testimonial) || 'Kundenfeedback';
         image.loading = 'lazy';
+        image.decoding = 'async';
         image.style.objectPosition = testimonial.image_position || 'center center';
         if (testimonial.image_placeholder) image.classList.add('is-placeholder');
         header.appendChild(image);
@@ -666,6 +668,7 @@
         imageButton.setAttribute('aria-label', 'Nächstes Bild anzeigen');
         const image = createElement('img');
         image.loading = 'lazy';
+        image.decoding = 'async';
         imageButton.appendChild(image);
         stage.appendChild(imageButton);
 
@@ -695,6 +698,8 @@
             image.src = versionAssetPath(items[activeIndex].image || '');
             image.alt = items[activeIndex].alt || '';
             image.style.objectPosition = items[activeIndex].image_position || 'center center';
+            image.style.objectFit = items[activeIndex].image_fit || 'cover';
+            image.style.height = items[activeIndex].image_fit === 'contain' ? 'auto' : '';
             dotButtons.forEach((dot, dotIndex) => {
                 const active = dotIndex === activeIndex;
                 dot.classList.toggle('is-active', active);
@@ -711,8 +716,8 @@
             if (event.key === 'ArrowRight') show(activeIndex + 1);
         });
 
+        stage.appendChild(dots);
         root.appendChild(stage);
-        root.appendChild(dots);
         root.appendChild(status);
         show(0);
     };
@@ -773,6 +778,7 @@
             image.src = versionAssetPath(item.image || '');
             image.alt = '';
             image.loading = 'lazy';
+            image.decoding = 'async';
             if (item.dark_image) {
                 const picture = createElement('picture', 'topic-card__picture');
                 const darkSource = createElement('source');
@@ -827,7 +833,18 @@
         if (!root) return;
         root.innerHTML = '';
         const items = prioritizeTestimonials(data?.items);
-        items.forEach((item) => {
+        const categories = [
+            {key: 'lifestyle', title: 'Lifestyle Coaching'},
+            {key: 'performance', title: 'Performance Coaching'},
+            {key: 'ganzheitlich', title: 'Ganzheitliches Coaching'}
+        ];
+        categories.forEach((categoryGroup) => {
+            const categoryItems = items.filter((item) => item.category === categoryGroup.key);
+            if (!categoryItems.length) return;
+            const group = createElement('section', `testimonial-detail-group testimonial-detail-group--${categoryGroup.key}`);
+            group.appendChild(createElement('h2', 'testimonial-detail-group__title', categoryGroup.title));
+            const list = createElement('div', 'testimonial-detail-group__list');
+            categoryItems.forEach((item) => {
                 const article = createElement('article', 'testimonial-detail');
                 article.id = `feedback-${slugify(feedbackName(item))}`;
                 const media = createElement('div', 'testimonial-detail__media');
@@ -835,19 +852,22 @@
                 image.src = versionAssetPath(item.image || 'assets/img/Logo-LS_Coaching_white-coloured.png');
                 image.alt = feedbackName(item) || 'Kundenfeedback';
                 image.loading = 'lazy';
+                image.decoding = 'async';
                 image.style.objectPosition = item.image_position || 'center center';
                 if (item.image_placeholder) image.classList.add('is-placeholder');
                 media.appendChild(image);
                 const copy = createElement('div', 'testimonial-detail__copy');
-                const category = {ganzheitlich: 'Ganzheitliches Coaching', performance: 'Performance Coaching'}[item.category] || 'Krafttraining';
-                copy.appendChild(createElement('p', 'section-kicker', category));
+                copy.appendChild(createElement('p', 'section-kicker', categoryGroup.title));
                 copy.appendChild(createElement('h2', '', feedbackName(item)));
                 const result = buildFeedbackResult(item, true);
                 if (result) copy.appendChild(result);
                 copy.appendChild(createElement('blockquote', '', item.long_text || item.quote || ''));
                 article.appendChild(media);
                 article.appendChild(copy);
-                root.appendChild(article);
+                list.appendChild(article);
+            });
+            group.appendChild(list);
+            root.appendChild(group);
         });
         // Tall feedback text scrolls naturally before sticking at its lower edge.
         const updateSticky = () => root.querySelectorAll('.testimonial-detail__copy').forEach((copy) => {
@@ -924,6 +944,8 @@
             const image = createElement('img', 'article-page__image');
             image.src = versionAssetPath(item.image);
             image.alt = item.title || '';
+            image.loading = 'lazy';
+            image.decoding = 'async';
             root.appendChild(image);
         }
 

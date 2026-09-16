@@ -134,7 +134,8 @@
       },
       {
         "image": "assets/img/resilient-mentoring/gemeinsame-zeit-am-meer.jpg",
-        "alt": "Gemeinsame Zeit mit der Mentoring-Gruppe am Meer"
+        "alt": "Gemeinsame Zeit mit der Mentoring-Gruppe am Meer",
+        "image_fit": "contain"
       },
       {
         "image": "assets/img/832779df-c04d-4360-bfaa-1fb46c4ca903.JPG",
@@ -164,7 +165,7 @@
     ]
   },
   "topics": {
-    "eyebrow": "Ganzheitliches Coaching",
+    "eyebrow": "",
     "title": "Coaching-Themen",
     "items": [
       {
@@ -175,25 +176,25 @@
         "dark_image": "assets/img/topic-kompass-dark.png"
       },
       {
-        "title": "Soziales & Umfeld",
+        "title": "Soziales Umfeld",
         "subtitle": "Masken-Bild",
         "text": "Dein Umfeld hat Einfluss auf dich – positiven wie negativen. Familie, Freunde und Partner sollten zu dir passen. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst.",
         "image": "assets/img/topic-social.svg?v=20260830-theme"
-      },
-      {
-        "title": "Kompensationen & Blockaden",
-        "subtitle": "Phoenix",
-        "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
-        "image": "assets/img/topic-phoenix.png",
-        "dark_image": "assets/img/topic-phoenix-dark.png"
       },
       {
         "title": "Gesundheit & Training",
         "subtitle": "Körper und Geist",
         "text": "Körper und Geist sind untrennbar miteinander verbunden. Deine Haltung ist die Repräsentation deines Lebens. Wie sieht es in dir aus? Nur ein fitter Körper kann einen fitten Geist haben.",
         "image": "assets/img/topic-health.svg?v=20260830-theme"
+      },
+      {
+        "title": "Kompensation & Blockaden",
+        "subtitle": "Phoenix",
+        "text": "Was macht dir Angst? Wir schauen dahin, wo es bisher unangenehm war. Was hast du bisher immer vor dir hergeschoben? Wir gucken uns die Kompensationen an, die dich bisher immer an demselben Punkt gehalten haben. Genau hier liegt dein Potenzial, Altes hinter dir zu lassen und Neues zu etablieren",
+        "image": "assets/img/topic-phoenix.png",
+        "dark_image": "assets/img/topic-phoenix-dark.png"
       }
     ],
-    "subline": "Bereiche, die wir im Rahmen eines Coachings behandeln könnten."
+    "subline": "Bereiche, die wir im Rahmen eines ganzheitlichen Coachings behandeln könnten."
   }
 }
