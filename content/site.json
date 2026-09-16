@@ -152,10 +152,13 @@
         "alt": "Lukas Schwarz mit zwei Freunden nach einer Sportveranstaltung",
         "image_position": "center 48%"
       },
-      {
-        "image": "assets/img/ganzheitliches-coaching/eiscafe.jpg",
-        "alt": "Lukas Schwarz mit Freunden im Eiscafe",
-        "image_position": "center 42%"
+    {
+      "image": "assets/img/ganzheitliches-coaching/eiscafe.jpg",
+      "alt": "Lukas Schwarz mit Freunden im Eiscafe",
+      "image_position": "center 58%",
+      "image_fit": "contain",
+      "image_scale": 1.12,
+      "image_origin": "center 58%"
       },
       {
         "image": "assets/img/ganzheitliches-coaching/training-community.jpg",

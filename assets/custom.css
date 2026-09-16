@@ -2673,6 +2673,79 @@ html.cookie-dialog-open, html.cookie-dialog-open body { overflow: hidden; }
     line-height: 1;
 }
 
+/* Final feedback polish: stable cards, complete detail results and aligned topics. */
+.testimonial-more {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.testimonial-card {
+    min-height: 330px;
+}
+
+.testimonial-card__header {
+    min-height: 82px;
+    align-items: flex-start;
+}
+
+.testimonial-card__identity {
+    min-width: 0;
+    min-height: 82px;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+}
+
+.testimonial-card__result {
+    min-height: 3em;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.testimonial-card blockquote {
+    min-height: 8.75em;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+}
+
+.testimonial-detail__copy .testimonial-card__result {
+    min-height: 0;
+    display: block;
+    overflow: visible;
+}
+
+.testimonial-detail-group {
+    scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+
+.topic-card {
+    align-items: start;
+}
+
+.topic-card__copy {
+    align-self: start;
+    padding-top: 0.1rem;
+}
+
+.topic-card__subtitle {
+    min-height: 1.35em;
+}
+
+.topic-card h3 {
+    min-height: 1.15em;
+}
+
+.gallery-stage img {
+    transition: opacity 180ms ease, transform 220ms ease;
+}
+
 .testimonial-detail-group {
     --testimonial-category-color: var(--color-gold);
 }

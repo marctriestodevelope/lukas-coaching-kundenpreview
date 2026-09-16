@@ -366,7 +366,8 @@
         const results = String(text || '').split(/\r?\n/).map((line) => line.trim().replace(/^[–•]\s*/, '')).filter(Boolean);
         if (!results.length) return null;
         const result = createElement('p', 'testimonial-card__result');
-        results.slice(0, 1).forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `• ${line}`)));
+        const visibleResults = detail ? results : results.slice(0, 1);
+        visibleResults.forEach((line) => result.appendChild(createElement('span', 'testimonial-card__result-line', `• ${line}`)));
         return result;
     };
 
@@ -387,7 +388,8 @@
         if (result) identity.appendChild(result);
         header.appendChild(identity);
         card.appendChild(header);
-        card.appendChild(createElement('blockquote', '', testimonial.quote ? `„${testimonial.quote}“` : ''));
+        const previewText = String(testimonial.long_text || testimonial.quote || '').replace(/\s+/g, ' ').trim();
+        card.appendChild(createElement('blockquote', '', previewText));
         const more = createElement('a', 'testimonial-card__more text-link', 'Mehr anzeigen');
         more.href = versionPagePath(`kundenfeedback.html#feedback-${slugify(feedbackName(testimonial))}`);
         more.setAttribute('aria-label', `Kundenfeedback von ${feedbackName(testimonial)} vollständig lesen`);
@@ -699,7 +701,9 @@
             image.alt = items[activeIndex].alt || '';
             image.style.objectPosition = items[activeIndex].image_position || 'center center';
             image.style.objectFit = items[activeIndex].image_fit || 'cover';
-            image.style.height = items[activeIndex].image_fit === 'contain' ? 'auto' : '';
+            image.style.height = '';
+            image.style.transform = items[activeIndex].image_scale ? `scale(${items[activeIndex].image_scale})` : '';
+            image.style.transformOrigin = items[activeIndex].image_origin || 'center center';
             dotButtons.forEach((dot, dotIndex) => {
                 const active = dotIndex === activeIndex;
                 dot.classList.toggle('is-active', active);
@@ -842,6 +846,7 @@
             const categoryItems = items.filter((item) => item.category === categoryGroup.key);
             if (!categoryItems.length) return;
             const group = createElement('section', `testimonial-detail-group testimonial-detail-group--${categoryGroup.key}`);
+            group.id = `feedback-${categoryGroup.key}`;
             group.appendChild(createElement('h2', 'testimonial-detail-group__title', categoryGroup.title));
             const list = createElement('div', 'testimonial-detail-group__list');
             categoryItems.forEach((item) => {
@@ -869,6 +874,10 @@
             group.appendChild(list);
             root.appendChild(group);
         });
+        const hashTarget = decodeURIComponent(window.location.hash.slice(1));
+        if (hashTarget) {
+            window.requestAnimationFrame(() => document.getElementById(hashTarget)?.scrollIntoView({block: 'start'}));
+        }
         // Tall feedback text scrolls naturally before sticking at its lower edge.
         const updateSticky = () => root.querySelectorAll('.testimonial-detail__copy').forEach((copy) => {
             copy.style.setProperty('--feedback-sticky-top', `${Math.min(getNavOffset() + 10, window.innerHeight - copy.offsetHeight - 24)}px`);
