@@ -67,6 +67,62 @@
         });
     };
 
+    const isSafeLegalHref = (value) => /^(?:https:\/\/|mailto:)[^\s]+$/i.test(String(value || '').trim());
+
+    const appendLegalInlineContent = (element, value) => {
+        const text = String(value || '');
+        const tokenPattern = /(\*\*[^*]+\*\*|\[[^\]]+\]\((?:https:\/\/|mailto:)[^)]+\))/gi;
+        let cursor = 0;
+
+        text.replace(tokenPattern, (token, _match, offset) => {
+            element.appendChild(document.createTextNode(text.slice(cursor, offset)));
+            if (token.startsWith('**') && token.endsWith('**')) {
+                element.appendChild(createElement('strong', '', token.slice(2, -2)));
+            } else {
+                const linkMatch = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                if (linkMatch && isSafeLegalHref(linkMatch[2])) {
+                    const link = createElement('a', '', linkMatch[1]);
+                    link.href = linkMatch[2];
+                    element.appendChild(link);
+                } else {
+                    element.appendChild(document.createTextNode(token));
+                }
+            }
+            cursor = offset + token.length;
+            return token;
+        });
+
+        element.appendChild(document.createTextNode(text.slice(cursor)));
+        return element;
+    };
+
+    const renderLegalPage = (data) => {
+        const root = document.getElementById('legal-copy');
+        if (!root) return;
+
+        const page = data?.[root.dataset.legalPage];
+        if (!page || typeof page.body !== 'string') return;
+
+        const eyebrow = document.getElementById('legal-eyebrow');
+        const title = document.getElementById('legal-title');
+        const updated = document.getElementById('legal-updated');
+        if (eyebrow) eyebrow.textContent = page.eyebrow || '';
+        if (title) title.textContent = page.title || '';
+        if (updated) {
+            updated.textContent = page.updated || '';
+            updated.hidden = !page.updated;
+        }
+
+        const fragment = document.createDocumentFragment();
+        String(page.body).trim().split(/\n{2,}/).filter(Boolean).forEach((block) => {
+            const heading = block.match(/^(#{2,4})\s+([^\n]+)$/);
+            const element = createElement(heading ? `h${heading[1].length}` : 'p');
+            appendLegalInlineContent(element, heading ? heading[2] : block);
+            fragment.appendChild(element);
+        });
+        root.replaceChildren(fragment);
+    };
+
     const slugify = (value) => String(value || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -1058,6 +1114,10 @@
                 renderBlog(data);
                 renderArticle(data);
             }));
+        }
+
+        if (document.getElementById('legal-copy')) {
+            tasks.push(loadJson('content/legal.json').then(renderLegalPage));
         }
 
         const results = await Promise.allSettled(tasks);

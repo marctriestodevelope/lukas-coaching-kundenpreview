@@ -2562,12 +2562,13 @@ img {
 .legal-copy h2 { margin: 2.75rem 0 1.25rem; font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.2; color: var(--color-text); }
 .legal-copy h3 { margin: 2rem 0 0.75rem; font-size: 1.15rem; color: var(--color-text); }
 .legal-copy h4 { margin: 1.4rem 0 0.5rem; color: var(--color-text); }
-.legal-copy p { margin: 0.75rem 0; }
+.legal-copy p { margin: 0.75rem 0; white-space: pre-line; }
 .legal-copy a { color: var(--color-link); overflow-wrap: anywhere; text-underline-offset: 3px; }
 .site-footer { background: #050506; }
 
 html.cookie-dialog-open, html.cookie-dialog-open body { overflow: hidden; }
 .cookie-dialog {
+    box-sizing: border-box;
     width: min(580px, calc(100vw - 2rem));
     max-height: calc(100svh - 2rem);
     overflow-y: auto;
